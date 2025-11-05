@@ -42,8 +42,8 @@ Options:
   -n, --no-fs        Don't print feature structures (defaults to printing)
   -f, --format FMT   Tree output format: sexp (default), ascii, unicode
                      - sexp: S-expression format (current default)
-                     - ascii: ASCII tree with box-drawing chars (├── └──)
-                     - unicode: Unicode box-drawing with bottom branches",
+                     - ascii: Sideways tree with box-drawing (├── └── │)
+                     - unicode: Vertical tree with children horizontal (/  |  \)",
     prog_name
   )
 }
