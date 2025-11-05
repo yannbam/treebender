@@ -1,0 +1,205 @@
+// ASCII Sigil Language - UNICODE EMOJI VERSION! 🎨✨🌈
+// Using actual Unicode emojis for maximum visual intuition!
+//
+// This is what happens when you let linguistics meet emoji! 😍
+//
+// REVOLUTIONARY FEATURE: Instead of cryptic abbreviations like "vis", "hab",
+// we use INTUITIVE EMOJI/UNICODE that you can SEE and FEEL!
+
+// === EMOJI LINGUISTIC MARKERS ===
+//
+// 1. EVIDENTIALITY (How do you know?)
+//    👁️ - I SAW it directly (visual evidence)
+//    🔍 - I INFERRED it (deduced from clues)
+//    👂 - I HEARD it (hearsay/tradition tells us)
+//    🔮 - I SENSE it (intuitive/mystical knowledge)
+//
+// 2. ASPECT (How does it unfold in time?)
+//    🔁 - HABITUAL (happens repeatedly)
+//    ✅ - PERFECTIVE (completed action)
+//    ▶️ - PROGRESSIVE (ongoing right now)
+//    🌱 - INCEPTIVE (just beginning)
+//    🛑 - CESSATIVE (coming to an end)
+//
+// 3. ATTUNEMENT (Your relationship to magic)
+//    🌿 - NATURAL (innate affinity)
+//    🔨 - FORCED (compelling against will)
+//    ☯️ - HARMONIOUS (mutual cooperation)
+//    ⚔️ - DISCORDANT (conflicting/resisting)
+//
+// 4. HONORIFICS (Level of respect)
+//    🙇 - HUMBLE (I bow before it)
+//    😐 - NEUTRAL (equal standing)
+//    🙏 - HONORIFIC (respectful)
+//    👑 - SACRED (highest reverence)
+//
+// 5. ANIMACY (Level of consciousness)
+//    🧠 - SENTIENT (aware, thinking)
+//    💚 - LIVING (alive but not aware)
+//    👻 - SPIRITUAL (ethereal essence)
+//    🪨 - INERT (dormant, lifeless)
+//
+// 6. DIRECTIONALITY (Energy flow)
+//    ⬆️ - UPWARD (ascending to heavens)
+//    ⬇️ - DOWNWARD (grounding to earth)
+//    ⏺️ - INWARD (centralizing to core)
+//    💫 - OUTWARD (radiating from center)
+//    ⭕ - CYCLICAL (eternal circle)
+//
+// 7. MODAL (Necessity/possibility)
+//    🤔 - POTENTIAL (might, maybe)
+//    ❗ - NECESSARY (must, required)
+//    🚫 - PROHIBITED (forbidden)
+//    📋 - OBLIGATED (should, ought to)
+//    ⭐ - DESIRED (wish, hope)
+//
+// 8. SWITCH-REFERENCE (Focus tracking)
+//    ➡️ - SAME subject continues
+//    🔀 - DIFFERENT subject
+//    🪞 - REFLEXIVE (acts on itself)
+//
+// 9. TEMPORAL DISTANCE (How far in time?)
+//    ⚡ - IMMEDIATE (right now!)
+//    📅 - RECENT (lately, just now)
+//    🏛️ - REMOTE (ancient, long ago)
+//
+// 10. CLUSIVITY (Who participates?)
+//     👥 - INCLUSIVE we (including you)
+//     🚶🚶 - EXCLUSIVE we (not you)
+//     🧍 - SOLO (I alone)
+
+// === TOP-LEVEL SIGIL ===
+Sigil -> AnnotatedContainer
+Sigil -> AnnotatedElement
+Sigil -> AnnotatedComposite
+
+// === ANNOTATED STRUCTURES ===
+AnnotatedContainer -> Evidential Container
+AnnotatedContainer -> Honorific Container
+AnnotatedContainer -> Modal Container
+AnnotatedContainer -> Aspectual Container
+AnnotatedContainer -> Directional Container
+AnnotatedContainer -> Container
+
+AnnotatedElement -> Attunement Element
+AnnotatedElement -> Animacy Element
+AnnotatedElement -> Element
+
+AnnotatedComposite -> TemporalDistance Composite
+AnnotatedComposite -> Clusivity Composite
+AnnotatedComposite -> SwitchRef Composite
+AnnotatedComposite -> Composite
+
+// === EVIDENTIALITY: How we know ===
+Evidential[ evid: direct ] -> eye
+Evidential[ evid: inferred ] -> mag
+Evidential[ evid: hearsay ] -> ear
+Evidential[ evid: intuitive ] -> crystal
+
+// === ASPECT: Temporal structure ===
+Aspectual[ aspect: habitual ] -> repeat
+Aspectual[ aspect: perfective ] -> check
+Aspectual[ aspect: progressive ] -> play
+Aspectual[ aspect: inceptive ] -> sprout
+Aspectual[ aspect: cessative ] -> stop
+
+// === ATTUNEMENT: Relationship to elements ===
+Attunement[ attune: natural ] -> leaf
+Attunement[ attune: forced ] -> hammer
+Attunement[ attune: harmonious ] -> yin
+Attunement[ attune: discordant ] -> sword
+
+// === HONORIFICS: Respect level ===
+Honorific[ honor: humble ] -> bow
+Honorific[ honor: neutral ] -> neutral
+Honorific[ honor: honorific ] -> pray
+Honorific[ honor: sacred ] -> crown
+
+// === ANIMACY: Consciousness level ===
+Animacy[ anim: sentient ] -> brain
+Animacy[ anim: living ] -> heart
+Animacy[ anim: spiritual ] -> ghost
+Animacy[ anim: inert ] -> rock
+
+// === DIRECTIONALITY: Energy flow ===
+Directional[ direction: upward ] -> up
+Directional[ direction: downward ] -> down
+Directional[ direction: inward ] -> center
+Directional[ direction: outward ] -> radiate
+Directional[ direction: cyclical ] -> circle
+
+// === MODAL: Intention/necessity ===
+Modal[ mode: potential ] -> maybe
+Modal[ mode: necessary ] -> must
+Modal[ mode: prohibited ] -> forbidden
+Modal[ mode: obligated ] -> should
+Modal[ mode: desired ] -> wish
+
+// === SWITCH-REFERENCE: Focus tracking ===
+SwitchRef[ switch: same ] -> same
+SwitchRef[ switch: different ] -> diff
+SwitchRef[ switch: reflexive ] -> mirror
+
+// === TEMPORAL DISTANCE ===
+TemporalDistance[ time: immediate ] -> now
+TemporalDistance[ time: recent ] -> recent
+TemporalDistance[ time: remote ] -> ancient
+
+// === CLUSIVITY: Participation ===
+Clusivity[ clus: inclusive ] -> together
+Clusivity[ clus: exclusive ] -> apart
+Clusivity[ clus: solo ] -> alone
+
+// === CONTAINERS (unchanged) ===
+Container[ type: amplify, energy: #e ] -> LAngle Contents[ energy: #e ] RAngle
+Container[ type: stabilize, energy: low ] -> LBracket Contents[ energy: #e ] RBracket
+Container[ type: transform ] -> LBrace FusedContents RBrace
+Container[ type: channel, energy: #e, state: #s ] -> LParen Contents[ energy: #e, state: #s ] RParen
+
+// === CONTENTS ===
+Contents -> Element
+Contents -> Element Contents
+Contents -> Container
+Contents -> Container Contents
+Contents -> AnnotatedContainer
+Contents -> AnnotatedElement
+
+// === FUSED CONTENTS ===
+FusedContents -> Element Operator Element
+FusedContents -> Element Operator Element Operator Element
+FusedContents -> Element
+FusedContents -> PowerElement
+FusedContents -> Container Operator Element
+FusedContents -> Element Operator Container
+FusedContents -> Container Operator Container
+FusedContents -> AnnotatedElement Operator AnnotatedElement
+
+// === POWER ELEMENTS ===
+PowerElement -> Element Element
+PowerElement -> Element PowerElement
+
+// === COMPOSITE ===
+Composite -> Sigil Operator Sigil
+Composite -> Sigil Sigil
+
+// === BASE ELEMENTS ===
+Element[ type: fire, energy: high, state: volatile, aspect: aggressive ] -> fire
+Element[ type: water, energy: medium, state: flowing, aspect: adaptive ] -> water
+Element[ type: air, energy: medium, state: free, aspect: swift ] -> air
+Element[ type: earth, energy: low, state: solid, aspect: protective ] -> earth
+Element[ type: void, energy: none, state: ethereal, aspect: mysterious ] -> void
+
+// === OPERATORS ===
+Operator -> plus
+Operator -> minus
+Operator -> pipe
+
+// === CONTAINER DELIMITERS ===
+LAngle   -> langle
+RAngle   -> rangle
+LBracket -> lbrack
+RBracket -> rbrack
+LBrace   -> lbrace
+RBrace   -> rbrace
+LParen   -> lparen
+RParen   -> rparen

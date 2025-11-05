@@ -1,0 +1,77 @@
+# ASCII Sigil Language - Gallery of Magical Constructs
+# Each line is a valid sigil with semantic meaning!
+
+# === BASIC ELEMENTS ===
+# Single element: Raw fire
+asterisk
+
+# Single element: Pure water
+tilde
+
+# === SIMPLE CONTAINERS ===
+# Amplified fire: <*> - Increases energy of fire
+langle asterisk rangle
+
+# Stabilized water: [~] - Grounds the flowing water
+lbrack tilde rbrack
+
+# Channeled air: (^) - Directs the swift air
+lparen caret rparen
+
+# === ELEMENT FUSION (Transformers) ===
+# Steam: {*+~} - Fire and water create steam!
+lbrace asterisk plus tilde rbrace
+
+# Lightning: {*+^} - Fire and air create lightning!
+lbrace asterisk plus caret rbrace
+
+# Mud: {#+~} - Earth and water create mud!
+lbrace hash plus tilde rbrace
+
+# === POWER AMPLIFICATION ===
+# Double fire: ** - Intense flames
+asterisk asterisk
+
+# Triple fire in amplifier: <***> - EXTREME heat!
+langle asterisk asterisk asterisk rangle
+
+# === NESTED CONTAINERS ===
+# Stabilized amplified fire: [<*>] - Volatile energy, safely contained
+lbrack langle asterisk rangle rbrack
+
+# Amplified steam: <{*+~}> - Superheated steam!
+langle lbrace asterisk plus tilde rbrace rangle
+
+# Channeled lightning: ({*+^}) - Controlled electrical energy
+lparen lbrace asterisk plus caret rbrace rparen
+
+# === COMPLEX COMPOSITIONS ===
+# Fire and water side by side: * ~ - Opposing forces
+asterisk tilde
+
+# Amplified fire beside earth: <*> # - Heat meets solid ground
+langle asterisk rangle hash
+
+# Triple element fusion: {*+~+^} - Fire, water, and air combine!
+lbrace asterisk plus tilde plus caret rbrace
+
+# === DEEPLY NESTED SIGILS ===
+# Stabilized channeled steam: [({*+~})] - Triple containment!
+lbrack lparen lbrace asterisk plus tilde rbrace rparen rbrack
+
+# Amplified stabilized fire: <[*]> - Grounded energy, then amplified
+langle lbrack asterisk rbrack rangle
+
+# Void channeling lightning: @ ({*+^}) - Mystery directs power
+at lparen lbrace asterisk plus caret rbrace rparen
+
+# === POWER STRUCTURES ===
+# Multiple amplified fires: <*> <*> <*> - Array of heat sources
+langle asterisk rangle langle asterisk rangle langle asterisk rangle
+
+# Fused double elements: {**+~~} - Intense fire meets intense water
+lbrace asterisk asterisk plus tilde tilde rbrace
+
+# === THE ULTIMATE SIGIL ===
+# Nested fusion in amplifier with void: <{@+{*+~}}> - Void absorbs steam, then amplified!
+langle lbrace at plus lbrace asterisk plus tilde rbrace rbrace rangle

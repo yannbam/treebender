@@ -1,0 +1,201 @@
+// ASCII Sigil Language - ULTRA VERSION
+// Incorporating exotic linguistic features from world languages!
+//
+// NEW LINGUISTIC FEATURES:
+//
+// 1. EVIDENTIALITY (how we know the sigil works)
+//    - vis: visual/direct experience
+//    - inf: inferred from evidence
+//    - her: hearsay/tradition
+//    - int: intuitive/mystical knowledge
+//
+// 2. ASPECT (temporal structure of sigil's effect)
+//    - hab: habitual/recurring
+//    - perf: completed/perfective
+//    - prog: progressive/ongoing
+//    - inch: inceptive/just beginning
+//    - cess: cessative/ending
+//
+// 3. ATTUNEMENT (caster's relationship to elements)
+//    - nat: natural affinity
+//    - for: forced/artificial
+//    - har: harmonious
+//    - dis: discordant
+//
+// 4. HONORIFIC LEVEL (respect toward elements)
+//    - hum: humble (caster below elements)
+//    - neu: neutral/equal
+//    - hon: honorific (respectful)
+//    - sac: sacred (reverential)
+//
+// 5. ANIMACY (element's consciousness level)
+//    - sent: sentient/aware
+//    - life: living but not sentient
+//    - spir: spiritual essence
+//    - inrt: inert/dormant
+//
+// 6. DIRECTIONALITY (energy flow)
+//    - up: upward/ascension
+//    - dn: downward/grounding
+//    - in: inward/centralization
+//    - out: outward/expansion
+//    - cyc: cyclical/circular
+//
+// 7. MODAL (intention/necessity)
+//    - pot: potential/maybe
+//    - nec: necessary/must
+//    - prh: prohibited/forbidden
+//    - obl: obligated/should
+//    - des: desired/wish
+//
+// 8. SWITCH-REFERENCE (focus tracking)
+//    - ss: same subject continues
+//    - ds: different subject
+//    - rfl: reflexive (acts on self)
+//
+// 9. TEMPORAL DISTANCE
+//    - imm: immediate
+//    - rec: recent
+//    - rem: remote/ancient
+//
+// 10. CLUSIVITY (who participates)
+//     - incl: inclusive (includes listener)
+//     - excl: exclusive (excludes listener)
+//     - solo: solo caster only
+
+// === TOP-LEVEL SIGIL (now with rich context) ===
+Sigil -> AnnotatedContainer
+Sigil -> AnnotatedElement
+Sigil -> AnnotatedComposite
+
+// === ANNOTATED STRUCTURES (with linguistic markers) ===
+AnnotatedContainer -> Evidential Container
+AnnotatedContainer -> Honorific Container
+AnnotatedContainer -> Modal Container
+AnnotatedContainer -> Aspectual Container
+AnnotatedContainer -> Directional Container
+AnnotatedContainer -> Container
+
+AnnotatedElement -> Attunement Element
+AnnotatedElement -> Animacy Element
+AnnotatedElement -> Element
+
+AnnotatedComposite -> TemporalDistance Composite
+AnnotatedComposite -> Clusivity Composite
+AnnotatedComposite -> Composite
+
+// === LINGUISTIC MARKERS (prefix modifiers) ===
+
+// Evidentiality: How do we know?
+Evidential[ evid: direct ] -> vis
+Evidential[ evid: inferred ] -> inf
+Evidential[ evid: hearsay ] -> her
+Evidential[ evid: intuitive ] -> int
+
+// Aspect: Temporal structure
+Aspectual[ aspect: habitual ] -> hab
+Aspectual[ aspect: perfective ] -> perf
+Aspectual[ aspect: progressive ] -> prog
+Aspectual[ aspect: inceptive ] -> inch
+Aspectual[ aspect: cessative ] -> cess
+
+// Attunement: Relationship to elements
+Attunement[ attune: natural ] -> nat
+Attunement[ attune: forced ] -> forcd
+Attunement[ attune: harmonious ] -> har
+Attunement[ attune: discordant ] -> dis
+
+// Honorific: Respect level
+Honorific[ honor: humble ] -> hum
+Honorific[ honor: neutral ] -> neu
+Honorific[ honor: honorific ] -> hon
+Honorific[ honor: sacred ] -> sac
+
+// Animacy: Consciousness level
+Animacy[ anim: sentient ] -> sent
+Animacy[ anim: living ] -> life
+Animacy[ anim: spiritual ] -> spir
+Animacy[ anim: inert ] -> inrt
+
+// Directionality: Energy flow
+Directional[ direction: upward ] -> updir
+Directional[ direction: downward ] -> dndir
+Directional[ direction: inward ] -> indir
+Directional[ direction: outward ] -> outdir
+Directional[ direction: cyclical ] -> cycdir
+
+// Modal: Intention/necessity
+Modal[ mode: potential ] -> pot
+Modal[ mode: necessary ] -> nec
+Modal[ mode: prohibited ] -> prh
+Modal[ mode: obligated ] -> obl
+Modal[ mode: desired ] -> des
+
+// Switch-reference: Focus tracking
+SwitchRef[ switch: same ] -> ss
+SwitchRef[ switch: different ] -> ds
+SwitchRef[ switch: reflexive ] -> rfl
+
+// Temporal distance
+TemporalDistance[ time: immediate ] -> imm
+TemporalDistance[ time: recent ] -> rec
+TemporalDistance[ time: remote ] -> rem
+
+// Clusivity: Participation
+Clusivity[ clus: inclusive ] -> incl
+Clusivity[ clus: exclusive ] -> excl
+Clusivity[ clus: solo ] -> solo
+
+// === ORIGINAL CONTAINERS (unchanged) ===
+Container[ type: amplify, energy: #e ] -> LAngle Contents[ energy: #e ] RAngle
+Container[ type: stabilize, energy: low ] -> LBracket Contents[ energy: #e ] RBracket
+Container[ type: transform ] -> LBrace FusedContents RBrace
+Container[ type: channel, energy: #e, state: #s ] -> LParen Contents[ energy: #e, state: #s ] RParen
+
+// === CONTENTS (unchanged) ===
+Contents -> Element
+Contents -> Element Contents
+Contents -> Container
+Contents -> Container Contents
+Contents -> AnnotatedContainer
+Contents -> AnnotatedElement
+
+// === FUSED CONTENTS (unchanged) ===
+FusedContents -> Element Operator Element
+FusedContents -> Element Operator Element Operator Element
+FusedContents -> Element
+FusedContents -> PowerElement
+FusedContents -> Container Operator Element
+FusedContents -> Element Operator Container
+FusedContents -> Container Operator Container
+
+// === POWER ELEMENTS (unchanged) ===
+PowerElement -> Element Element
+PowerElement -> Element PowerElement
+
+// === COMPOSITE (unchanged) ===
+Composite -> Sigil Operator Sigil
+Composite -> Sigil Sigil
+
+// === BASE ELEMENTS (unchanged) ===
+Element[ type: fire, energy: high, state: volatile, aspect: aggressive ] -> asterisk
+Element[ type: water, energy: medium, state: flowing, aspect: adaptive ] -> tilde
+Element[ type: air, energy: medium, state: free, aspect: swift ] -> caret
+Element[ type: earth, energy: low, state: solid, aspect: protective ] -> hash
+Element[ type: void, energy: none, state: ethereal, aspect: mysterious ] -> at
+
+// === OPERATORS (unchanged) ===
+Operator -> plus
+Operator -> minus
+Operator -> pipe
+
+// === TERMINAL LEXICON ===
+// Container delimiters
+LAngle   -> langle
+RAngle   -> rangle
+LBracket -> lbrack
+RBracket -> rbrack
+LBrace   -> lbrace
+RBrace   -> rbrace
+LParen   -> lparen
+RParen   -> rparen

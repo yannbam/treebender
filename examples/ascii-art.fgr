@@ -1,0 +1,63 @@
+// ASCII Art Grammar - for parsing emoticons and decorative patterns!
+// Created for the tree guardian by Claude :-)
+
+// === TOP-LEVEL RULES ===
+Art -> Face
+Art -> Decoration
+Art -> Face Decoration
+
+// === FACE/EMOTICON RULES ===
+Face -> Eyes Mouth
+Face -> Eyes Nose Mouth
+
+// Faces with mood features
+Face[ mood: happy ] -> Eyes Nose Mouth[ type: smile ] Emphasis
+Face[ mood: sad ]   -> Eyes Nose Mouth[ type: frown ]
+
+// === DECORATION RULES ===
+Decoration -> Border
+Decoration -> Stars
+
+Border -> LeftBracket Content RightBracket
+
+Stars -> Star
+Stars -> Star Stars
+
+// === TERMINAL LEXICON ===
+// (treebender expects: NonTerminal -> terminal-token)
+
+// Eyes
+Eyes[ type: normal ] -> colon
+Eyes[ type: normal ] -> semi
+Eyes[ type: wide ]   -> oeye
+Eyes[ type: caps ]   -> ocap
+
+// Noses (optional connector)
+Nose -> dash
+Nose -> caret
+
+// Mouths
+Mouth[ type: smile ]     -> rparen
+Mouth[ type: smile ]     -> capd
+Mouth[ type: frown ]     -> lparen
+Mouth[ type: neutral ]   -> vbar
+Mouth[ type: tongue ]    -> capp
+Mouth[ type: surprised ] -> omouth
+
+// Emphasis markers
+Emphasis -> bang
+Emphasis -> bang Emphasis
+
+// Decorative elements
+Star -> asterisk
+
+LeftBracket  -> lbrack
+LeftBracket  -> lbrace
+RightBracket -> rbrack
+RightBracket -> rbrace
+
+// Content words (for inside brackets)
+Content -> text
+Content -> happy
+Content -> cool
+Content -> wow
