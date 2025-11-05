@@ -93,6 +93,116 @@ impl<T, U> SynTree<T, U> {
       }),
     }
   }
+
+  /// Format the tree as ASCII with box-drawing characters (├── └──)
+  pub fn format_ascii(&self) -> String
+  where
+    T: fmt::Display,
+    U: fmt::Display,
+  {
+    let mut output = String::new();
+    self.format_ascii_recursive(&mut output, "", true, true);
+    output
+  }
+
+  fn format_ascii_recursive(
+    &self,
+    output: &mut String,
+    prefix: &str,
+    is_last: bool,
+    is_root: bool,
+  )
+  where
+    T: fmt::Display,
+    U: fmt::Display,
+  {
+    match self {
+      Self::Leaf(word) => {
+        output.push_str(prefix);
+        if !is_root {
+          output.push_str(if is_last { "└── " } else { "├── " });
+        }
+        output.push_str(&format!("{}\n", word));
+      }
+      Self::Branch(constituent, children) => {
+        // Print the branch indicator and constituent
+        output.push_str(prefix);
+        if !is_root {
+          output.push_str(if is_last { "└── " } else { "├── " });
+        }
+        output.push_str(&format!("{}\n", constituent));
+
+        // Calculate new prefix for children
+        let child_prefix = if is_root {
+          // Root node: children start fresh
+          String::new()
+        } else {
+          // Non-root: add continuation bar or spaces
+          format!("{}{}", prefix, if is_last { "    " } else { "│   " })
+        };
+
+        for (i, child) in children.iter().enumerate() {
+          let is_last_child = i == children.len() - 1;
+          child.format_ascii_recursive(output, &child_prefix, is_last_child, false);
+        }
+      }
+    }
+  }
+
+  /// Format the tree as Unicode box-drawing with branches at the bottom
+  pub fn format_unicode(&self) -> String
+  where
+    T: fmt::Display,
+    U: fmt::Display,
+  {
+    let mut output = String::new();
+    self.format_unicode_helper(&mut output, 0);
+    output
+  }
+
+  fn format_unicode_helper(&self, output: &mut String, depth: usize)
+  where
+    T: fmt::Display,
+    U: fmt::Display,
+  {
+    match self {
+      Self::Leaf(word) => {
+        output.push_str(&"  ".repeat(depth));
+        output.push_str(&format!("{}\n", word.value));
+      }
+      Self::Branch(constituent, children) => {
+        output.push_str(&"  ".repeat(depth));
+        output.push_str(&format!("{}\n", constituent));
+
+        if !children.is_empty() {
+          // Draw the branches
+          output.push_str(&"  ".repeat(depth));
+          let num_children = children.len();
+
+          if num_children == 1 {
+            output.push_str("│\n");
+          } else {
+            // Draw the connectors: ┌─┬─┬─┐
+            for i in 0..num_children {
+              if i == 0 {
+                output.push_str("┌─");
+              } else if i == num_children - 1 {
+                output.push_str("┐");
+              } else {
+                output.push_str("┬─");
+              }
+            }
+            output.push('\n');
+          }
+
+          // Recursively format children
+          for child in children {
+            child.format_unicode_helper(output, depth + 1);
+          }
+        }
+      }
+    }
+  }
 }
 
 impl<T, U> fmt::Display for SynTree<T, U>
