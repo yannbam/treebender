@@ -43,7 +43,7 @@ Options:
   -f, --format FMT   Tree output format: sexp (default), ascii, unicode
                      - sexp: S-expression format (current default)
                      - ascii: Sideways tree with box-drawing (├── └── │)
-                     - unicode: Vertical tree with children horizontal (/  |  \)",
+                     - unicode: Vertical tree with box-drawing (┌──┬──┐ │)",
     prog_name
   )
 }

@@ -150,7 +150,7 @@ impl<T, U> SynTree<T, U> {
   }
 
   /// Format the tree as a vertical tree with children spread horizontally.
-  /// Uses ASCII branch characters: /  |  \
+  /// Uses box-drawing characters: ┌──┬──┐ and │
   pub fn format_unicode(&self) -> String
   where
     T: fmt::Display,
@@ -209,23 +209,28 @@ impl<T, U> SynTree<T, U> {
           current_pos += width + 2;
         }
 
-        // Draw branches: single child = |, multiple = /  |  \
+        // Draw branches: single child = │, multiple = ┌──┬──┐
         if positions.len() == 1 {
           for i in 0..total_width {
             if i == positions[0] {
-              branch_line.push('|');
+              branch_line.push('│');
             } else {
               branch_line.push(' ');
             }
           }
         } else {
+          let first_pos = positions[0];
+          let last_pos = *positions.last().unwrap();
+
           for i in 0..total_width {
-            if i == positions[0] {
-              branch_line.push('/');
-            } else if i == *positions.last().unwrap() {
-              branch_line.push('\\');
-            } else if positions[1..positions.len() - 1].contains(&i) {
-              branch_line.push('|');
+            if i == first_pos {
+              branch_line.push('┌');
+            } else if i == last_pos {
+              branch_line.push('┐');
+            } else if positions.contains(&i) {
+              branch_line.push('┬');
+            } else if i > first_pos && i < last_pos {
+              branch_line.push('─');
             } else {
               branch_line.push(' ');
             }
