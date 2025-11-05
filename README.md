@@ -24,7 +24,7 @@ a simple subset of English, checking reflexive pronoun binding, case, and
 number agreement.
 
 ```
-$ cargo run --bin cli examples/reflexives.fgr
+$ cargo run -p cli examples/reflexives.fgr
 > she likes himself
 Parsed 0 trees
 
@@ -69,7 +69,7 @@ must appear first in the sentence. We can write a small grammar (18 lines),
 and plug in some sentences:
 
 ```
-$ cargo run --bin cli examples/asl-wordorder.fgr -n
+$ cargo run -p cli examples/asl-wordorder.fgr -n
 > boy sit
 Parsed 1 tree
 (0..2: S
@@ -95,6 +95,52 @@ Parsed 1 tree
 > boy throw ball nm-raised-eyebrows
 Parsed 0 trees
 ```
+
+## Tree Visualization Formats
+
+Treebender supports three different tree output formats, optimized for different use cases:
+
+### S-expression (default)
+Traditional nested parenthesis format, ideal for programmatic parsing:
+```bash
+$ cargo run -p cli examples/reflexives.fgr -f sexp -n
+> she likes herself
+Parsed 1 tree
+(0..3: S
+  (0..1: N (0..1: she))
+  (1..2: TV (1..2: likes))
+  (2..3: N (2..3: herself)))
+```
+
+### Horizontal Tree (`-f h-tree`)
+Sideways tree using box-drawing characters, great for deep hierarchies:
+```bash
+$ cargo run -p cli examples/reflexives.fgr -f h-tree -n
+> she likes herself
+Parsed 1 tree
+0..3: S
+├── 0..1: N
+│   └── 0..1: she
+├── 1..2: TV
+│   └── 1..2: likes
+└── 2..3: N
+    └── 2..3: herself
+```
+
+### Vertical Tree (`-f v-tree`)
+Top-down tree with horizontal layout, ideal for wide structures:
+```bash
+$ cargo run -p cli examples/reflexives.fgr -f v-tree -n
+> she likes herself
+Parsed 1 tree
+                  0..3: S
+     ┌─────────────┬───────────────┐
+ 0..1: N      1..2: TV         2..3: N
+    │             │               │
+0..1: she    1..2: likes    2..3: herself
+```
+
+All formats are designed for easy consumption by LLMs and other tools processing linguistic parse trees.
 
 ## Tutorial
 As an example, let's say we want to build a parser for English reflexive
@@ -163,7 +209,7 @@ Assuming this file is saved as `examples/no-features.fgr` (which it is :wink:),
 we can test this file with the built-in CLI:
 
 ```
-$ cargo run --bin cli examples/no-features.fgr
+$ cargo run -p cli examples/no-features.fgr
 > he falls
 Parsed 1 tree
 (0..2: S
