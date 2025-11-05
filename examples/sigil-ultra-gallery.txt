@@ -1,0 +1,201 @@
+# ASCII Sigil Language - ULTRA GALLERY
+# Showcasing exotic linguistic features from world languages!
+
+# === EVIDENTIALITY: How we know the sigil works ===
+
+# Direct observation: "I saw this fire amplifier work"
+# vis = visual/direct evidence (like Turkish -DI)
+vis langle asterisk rangle
+
+# Inferred: "There must be fire here based on the smoke"
+# inf = inferential evidential (like Quechua -shka)
+inf asterisk
+
+# Hearsay: "The elders say this water stabilizer is powerful"
+# her = reported/hearsay (like Turkish -miş, Bulgarian -l)
+her lbrack tilde rbrack
+
+# Intuitive: "I feel this fusion will create steam"
+# int = intuitive/mystical knowledge
+int lbrace asterisk plus tilde rbrace
+
+# === ASPECT: Temporal structure of the effect ===
+
+# Habitual: "This fire burns regularly/repeatedly"
+# hab = habitual aspect (like Spanish imperfect)
+hab asterisk
+
+# Perfective: "This transformation is complete"
+# perf = perfective/completed (like Russian perfective)
+perf lbrace asterisk plus tilde rbrace
+
+# Progressive: "This water is currently flowing"
+# prog = progressive/ongoing (like English -ing)
+prog tilde
+
+# Inceptive: "This air is just beginning to swirl"
+# inch = inceptive/beginning (like Greek -άρχω)
+inch caret
+
+# Cessative: "This earth is ceasing to be solid"
+# cess = cessative/ending
+cess hash
+
+# === ATTUNEMENT: Caster's relationship to elements ===
+
+# Natural affinity: "I have natural connection to fire"
+# nat = natural attunement
+nat asterisk
+
+# Forced: "I'm forcing the earth against its nature"
+# forcd = forced/artificial (like magic without consent)
+forcd hash
+
+# Harmonious: "Water and I work in harmony"
+# har = harmonious relationship
+har tilde
+
+# Discordant: "Fire resists my control"
+# dis = discordant/conflicting
+dis asterisk
+
+# === HONORIFIC: Respect toward elements ===
+
+# Humble: "I humbly request fire's power" (caster below)
+# hum = humble (like Japanese 謙譲語 kenjōgo)
+hum langle asterisk rangle
+
+# Neutral: "I use fire as an equal"
+# neu = neutral (no special respect)
+neu asterisk
+
+# Honorific: "I respectfully invoke the sacred water"
+# hon = honorific (like Japanese 尊敬語 sonkeigo)
+hon lbrack tilde rbrack
+
+# Sacred: "I reverently approach the ancient void"
+# sac = sacred/reverential (highest respect)
+sac at
+
+# === ANIMACY: Element's consciousness level ===
+
+# Sentient: "This fire is aware and thinking"
+# sent = sentient/conscious (like Navajo animate)
+sent asterisk
+
+# Living: "This water is alive but not aware"
+# life = living but not sentient
+life tilde
+
+# Spiritual: "This void has spiritual essence"
+# spir = spiritual/ethereal existence
+spir at
+
+# Inert: "This earth is dormant matter"
+# inrt = inert/lifeless (like Navajo inanimate)
+inrt hash
+
+# === DIRECTIONALITY: Energy flow ===
+
+# Upward: "Energy rises to the heavens"
+# updir = upward/ascending (like Athabaskan directionals)
+updir langle asterisk rangle
+
+# Downward: "Power grounds into earth"
+# dndir = downward/grounding
+dndir lbrack hash rbrack
+
+# Inward: "Energy centralizes toward core"
+# indir = inward/centripetal
+indir lparen tilde rparen
+
+# Outward: "Power expands in all directions"
+# outdir = outward/centrifugal
+outdir langle asterisk rangle
+
+# Cyclical: "Energy flows in eternal circle"
+# cycdir = cyclical/circular flow
+cycdir lbrace asterisk plus tilde rbrace
+
+# === MODAL: Intention and necessity ===
+
+# Potential: "This might create steam"
+# pot = potential/possible (like English "might")
+pot lbrace asterisk plus tilde rbrace
+
+# Necessary: "This must amplify the fire"
+# nec = necessary/obligatory (like English "must")
+nec langle asterisk rangle
+
+# Prohibited: "This fusion must not happen"
+# prh = prohibited/forbidden (like "must not")
+prh lbrace asterisk plus hash rbrace
+
+# Obligated: "This water should be stabilized"
+# obl = obligated/should
+obl lbrack tilde rbrack
+
+# Desired: "I wish for this transformation"
+# des = desired/optative (like Ancient Greek optative mood)
+des lbrace caret plus tilde rbrace
+
+# === TEMPORAL DISTANCE ===
+
+# Immediate: "This happens right now"
+# imm = immediate present
+imm asterisk
+
+# Recent: "This was cast recently"
+# rec = recent past (like Quichua -rqa)
+rec langle asterisk rangle
+
+# Remote: "This is from ancient times"
+# rem = remote/ancient (like Quichua -sqa)
+rem sac at
+
+# === CLUSIVITY: Who participates ===
+
+# Inclusive: "We (including you) cast this together"
+# incl = inclusive "we" (like Tok Pisin yumi)
+incl asterisk tilde
+
+# Exclusive: "We (not you) cast this"
+# excl = exclusive "we" (like Tok Pisin mipela)
+excl asterisk hash
+
+# Solo: "I alone cast this"
+# solo = solo caster
+solo sac lbrace asterisk plus at rbrace
+
+# === COMPLEX COMBINATIONS ===
+
+# "I directly observed habitual fire that flows upward,
+#  which I approach with humble respect"
+vis hab hum updir langle asterisk rangle
+
+# "I infer from evidence that this water-earth fusion
+#  is necessarily stabilized, and I'm harmoniously attuned to it"
+inf nec har lbrack lbrace tilde plus hash rbrace rbrack
+
+# "Ancient sacred knowledge tells us (including you) that
+#  the perfective void-steam transformation cycles eternally"
+rem sac incl perf cycdir lbrace at plus lbrace asterisk plus tilde rbrace rbrace
+
+# "I sense intuitively that I must humbly invoke
+#  the sentient fire to ascend, beginning its transformation"
+int nec hum inch sent updir langle asterisk rangle
+
+# "Recent tradition says we (excluding you) witnessed
+#  the spiritually living water stabilizing downward
+#  in perfect harmony"
+rec her excl spir life har dndir lbrack tilde rbrack
+
+# === THE ULTIMATE ULTRA-SIGIL ===
+# "From ancient sacred knowledge, I directly observed
+#  the necessarily habitual, reverentially sacred,
+#  spiritually sentient void absorbing the perfective
+#  harmoniously attuned cyclical fire-water steam fusion,
+#  amplified and ascending eternally, which we all
+#  participate in with humble reverence"
+rem sac vis nec hab hon spir sent updir cycdir \
+    langle lbrace at plus perf har lbrace asterisk plus tilde rbrace rbrace rangle
