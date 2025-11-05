@@ -21,9 +21,9 @@ enum TreeFormat {
 impl TreeFormat {
   fn from_str(s: &str) -> Result<Self, String> {
     match s.to_lowercase().as_str() {
-      "sexp" | "s-exp" | "sexpr" => Ok(TreeFormat::SExp),
-      "h-tree" | "htree" | "horizontal" | "ascii" | "box" => Ok(TreeFormat::HTree),
-      "v-tree" | "vtree" | "vertical" | "unicode" | "uni" => Ok(TreeFormat::VTree),
+      "sexp" => Ok(TreeFormat::SExp),
+      "h-tree" => Ok(TreeFormat::HTree),
+      "v-tree" => Ok(TreeFormat::VTree),
       _ => Err(format!(
         "Unknown format '{}'. Valid formats: sexp, h-tree, v-tree",
         s
