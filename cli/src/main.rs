@@ -13,19 +13,19 @@ use treebender::Err;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 enum TreeFormat {
-  SExp,    // S-expression (default)
-  Ascii,   // ASCII box-drawing (├── └──)
-  Unicode, // Unicode box-drawing with bottom branches
+  SExp,  // S-expression (default)
+  HTree, // Horizontal tree with box-drawing
+  VTree, // Vertical tree with box-drawing
 }
 
 impl TreeFormat {
   fn from_str(s: &str) -> Result<Self, String> {
     match s.to_lowercase().as_str() {
       "sexp" | "s-exp" | "sexpr" => Ok(TreeFormat::SExp),
-      "ascii" | "box" => Ok(TreeFormat::Ascii),
-      "unicode" | "uni" => Ok(TreeFormat::Unicode),
+      "h-tree" | "htree" | "horizontal" | "ascii" | "box" => Ok(TreeFormat::HTree),
+      "v-tree" | "vtree" | "vertical" | "unicode" | "uni" => Ok(TreeFormat::VTree),
       _ => Err(format!(
-        "Unknown format '{}'. Valid formats: sexp, ascii, unicode",
+        "Unknown format '{}'. Valid formats: sexp, h-tree, v-tree",
         s
       )),
     }
@@ -40,10 +40,10 @@ Options:
   -h, --help         Print this message
   -c, --chart        Print the parse chart (defaults to not printing)
   -n, --no-fs        Don't print feature structures (defaults to printing)
-  -f, --format FMT   Tree output format: sexp (default), ascii, unicode
+  -f, --format FMT   Tree output format: sexp (default), h-tree, v-tree
                      - sexp: S-expression format (current default)
-                     - ascii: Sideways tree with box-drawing (├── └── │)
-                     - unicode: Vertical tree with box-drawing (┌──┬──┐ │)",
+                     - h-tree: Horizontal tree with box-drawing (├── └── │)
+                     - v-tree: Vertical tree with box-drawing (┌──┬──┐ │)",
     prog_name
   )
 }
@@ -75,8 +75,8 @@ fn parse(
     // Print tree in selected format
     match tree_format {
       TreeFormat::SExp => println!("{}", t),
-      TreeFormat::Ascii => print!("{}", t.format_ascii()),
-      TreeFormat::Unicode => print!("{}", t.format_unicode()),
+      TreeFormat::HTree => print!("{}", t.format_ascii()),
+      TreeFormat::VTree => print!("{}", t.format_unicode()),
     }
 
     if print_fs {
