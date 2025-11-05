@@ -11,19 +11,50 @@ use tracing_subscriber::EnvFilter;
 use treebender::rules::Grammar;
 use treebender::Err;
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+enum TreeFormat {
+  SExp,  // S-expression (default)
+  HTree, // Horizontal tree with box-drawing
+  VTree, // Vertical tree with box-drawing
+}
+
+impl TreeFormat {
+  fn from_str(s: &str) -> Result<Self, String> {
+    match s.to_lowercase().as_str() {
+      "sexp" => Ok(TreeFormat::SExp),
+      "h-tree" => Ok(TreeFormat::HTree),
+      "v-tree" => Ok(TreeFormat::VTree),
+      _ => Err(format!(
+        "Unknown format '{}'. Valid formats: sexp, h-tree, v-tree",
+        s
+      )),
+    }
+  }
+}
+
 fn usage(prog_name: &str) -> String {
   format!(
     r"Usage: {} FILE [options]
 
 Options:
-  -h, --help    Print this message
-  -c, --chart   Print the parse chart (defaults to not printing)
-  -n, --no-fs   Don't print feature structures (defaults to printing)",
+  -h, --help         Print this message
+  -c, --chart        Print the parse chart (defaults to not printing)
+  -n, --no-fs        Don't print feature structures (defaults to printing)
+  -f, --format FMT   Tree output format: sexp (default), h-tree, v-tree
+                     - sexp: S-expression format (current default)
+                     - h-tree: Horizontal tree with box-drawing (├── └── │)
+                     - v-tree: Vertical tree with box-drawing (┌──┬──┐ │)",
     prog_name
   )
 }
 
-fn parse(g: &Grammar, sentence: &str, print_chart: bool, print_fs: bool) -> Result<(), Err> {
+fn parse(
+  g: &Grammar,
+  sentence: &str,
+  print_chart: bool,
+  print_fs: bool,
+  tree_format: TreeFormat,
+) -> Result<(), Err> {
   let sentence = sentence.split(' ').collect::<Vec<_>>();
 
   let chart = g.parse_chart(&sentence);
@@ -41,7 +72,13 @@ fn parse(g: &Grammar, sentence: &str, print_chart: bool, print_fs: bool) -> Resu
   );
 
   for (t, idx, arena) in trees {
-    println!("{}", t);
+    // Print tree in selected format
+    match tree_format {
+      TreeFormat::SExp => println!("{}", t),
+      TreeFormat::HTree => print!("{}", t.format_ascii()),
+      TreeFormat::VTree => print!("{}", t.format_unicode()),
+    }
+
     if print_fs {
       println!("{}", arena.display(idx));
     }
@@ -55,6 +92,7 @@ struct Args {
   filename: String,
   print_fs: bool,
   print_chart: bool,
+  tree_format: TreeFormat,
 }
 
 impl Args {
@@ -81,8 +119,10 @@ impl Args {
     let mut filename: Option<String> = None;
     let mut print_fs = true; // default to printing feature structures
     let mut print_chart = false; // default to *not* printing the chart
+    let mut tree_format = TreeFormat::SExp; // default to S-expression format
 
-    for o in iter {
+    let mut iter = iter.peekable();
+    while let Some(o) = iter.next() {
       if o == "-h" || o == "--help" {
         eprintln!("{}", usage(&prog_name));
         process::exit(0);
@@ -90,6 +130,17 @@ impl Args {
         print_fs = false;
       } else if o == "-c" || o == "--chart" {
         print_chart = true;
+      } else if o == "-f" || o == "--format" {
+        if let Some(format_str) = iter.next() {
+          tree_format = TreeFormat::from_str(&format_str).map_err(|e| {
+            Self::make_error_message(&e, prog_name.clone())
+          })?;
+        } else {
+          return Err(Self::make_error_message(
+            "missing format argument after -f/--format",
+            prog_name,
+          ));
+        }
       } else if filename.is_none() {
         filename = Some(o);
       } else {
@@ -102,6 +153,7 @@ impl Args {
         filename,
         print_fs,
         print_chart,
+        tree_format,
       })
     } else {
       Err(Self::make_error_message("missing filename", prog_name))
@@ -137,7 +189,13 @@ fn main() -> Result<(), Err> {
           return Ok(());
         }
         input.make_ascii_lowercase();
-        parse(&g, input.trim(), opts.print_chart, opts.print_fs)?;
+        parse(
+          &g,
+          input.trim(),
+          opts.print_chart,
+          opts.print_fs,
+          opts.tree_format,
+        )?;
         input.clear();
       }
       Err(error) => return Err(error.into()),

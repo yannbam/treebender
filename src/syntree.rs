@@ -93,6 +93,173 @@ impl<T, U> SynTree<T, U> {
       }),
     }
   }
+
+  /// Format the tree as ASCII with box-drawing characters (├── └──)
+  pub fn format_ascii(&self) -> String
+  where
+    T: fmt::Display,
+    U: fmt::Display,
+  {
+    let mut output = String::new();
+    self.format_ascii_recursive(&mut output, "", true, true);
+    output
+  }
+
+  fn format_ascii_recursive(
+    &self,
+    output: &mut String,
+    prefix: &str,
+    is_last: bool,
+    is_root: bool,
+  )
+  where
+    T: fmt::Display,
+    U: fmt::Display,
+  {
+    match self {
+      Self::Leaf(word) => {
+        output.push_str(prefix);
+        if !is_root {
+          output.push_str(if is_last { "└── " } else { "├── " });
+        }
+        output.push_str(&format!("{}\n", word));
+      }
+      Self::Branch(constituent, children) => {
+        // Print the branch indicator and constituent
+        output.push_str(prefix);
+        if !is_root {
+          output.push_str(if is_last { "└── " } else { "├── " });
+        }
+        output.push_str(&format!("{}\n", constituent));
+
+        // Calculate new prefix for children
+        let child_prefix = if is_root {
+          // Root node: children start fresh
+          String::new()
+        } else {
+          // Non-root: add continuation bar or spaces
+          format!("{}{}", prefix, if is_last { "    " } else { "│   " })
+        };
+
+        for (i, child) in children.iter().enumerate() {
+          let is_last_child = i == children.len() - 1;
+          child.format_ascii_recursive(output, &child_prefix, is_last_child, false);
+        }
+      }
+    }
+  }
+
+  /// Format the tree as a vertical tree with children spread horizontally.
+  /// Uses box-drawing characters: ┌──┬──┐ and │
+  pub fn format_unicode(&self) -> String
+  where
+    T: fmt::Display,
+    U: fmt::Display,
+  {
+    let lines = self.format_vertical_lines();
+    lines.join("\n") + "\n"
+  }
+
+  fn format_vertical_lines(&self) -> Vec<String>
+  where
+    T: fmt::Display,
+    U: fmt::Display,
+  {
+    match self {
+      Self::Leaf(word) => {
+        vec![format!("{}", word)]
+      }
+      Self::Branch(constituent, children) => {
+        if children.is_empty() {
+          return vec![format!("{}", constituent)];
+        }
+
+        // Get lines for each child
+        let child_lines: Vec<Vec<String>> = children
+          .iter()
+          .map(|c| c.format_vertical_lines())
+          .collect();
+
+        // Calculate widths
+        let child_widths: Vec<usize> = child_lines
+          .iter()
+          .map(|lines| lines.iter().map(|l| l.len()).max().unwrap_or(0))
+          .collect();
+
+        let total_width: usize = child_widths.iter().sum::<usize>() + (children.len() - 1) * 2;
+
+        // Parent node (centered)
+        let parent_str = format!("{}", constituent);
+        let parent_width = parent_str.len();
+        let parent_padding = if total_width > parent_width {
+          (total_width - parent_width) / 2
+        } else {
+          0
+        };
+        let mut result = vec![format!("{}{}", " ".repeat(parent_padding), parent_str)];
+
+        // Branch connectors
+        let mut branch_line = String::new();
+        let mut positions = vec![];
+        let mut current_pos = 0;
+
+        for &width in child_widths.iter() {
+          let mid = current_pos + width / 2;
+          positions.push(mid);
+          current_pos += width + 2;
+        }
+
+        // Draw branches: single child = │, multiple = ┌──┬──┐
+        if positions.len() == 1 {
+          for i in 0..total_width {
+            if i == positions[0] {
+              branch_line.push('│');
+            } else {
+              branch_line.push(' ');
+            }
+          }
+        } else {
+          let first_pos = positions[0];
+          let last_pos = *positions.last().unwrap();
+
+          for i in 0..total_width {
+            if i == first_pos {
+              branch_line.push('┌');
+            } else if i == last_pos {
+              branch_line.push('┐');
+            } else if positions.contains(&i) {
+              branch_line.push('┬');
+            } else if i > first_pos && i < last_pos {
+              branch_line.push('─');
+            } else {
+              branch_line.push(' ');
+            }
+          }
+        }
+        result.push(branch_line);
+
+        // Merge child lines horizontally
+        let max_child_height = child_lines.iter().map(|l| l.len()).max().unwrap_or(0);
+        for row in 0..max_child_height {
+          let mut line = String::new();
+          for (i, child_line_set) in child_lines.iter().enumerate() {
+            let text = if row < child_line_set.len() {
+              child_line_set[row].clone()
+            } else {
+              " ".repeat(child_widths[i])
+            };
+            line.push_str(&format!("{:width$}", text, width = child_widths[i]));
+            if i < children.len() - 1 {
+              line.push_str("  ");
+            }
+          }
+          result.push(line);
+        }
+
+        result
+      }
+    }
+  }
 }
 
 impl<T, U> fmt::Display for SynTree<T, U>
