@@ -1,0 +1,83 @@
+// ASCII Sigil Language - A symbolic art language with emergent meaning
+// Created for the tree guardian - thinking WAY outside the box!
+//
+// CONCEPT: Symbols (elements) combine in containers to create "sigils"
+// with complex meaning. Different containers have different effects,
+// and certain element combinations create emergent properties.
+//
+// Elements: * (fire), ~ (water), ^ (air), # (earth), @ (void)
+// Containers: < > (amplify), [ ] (stabilize), { } (transform), ( ) (channel)
+// Operators: + (combine), - (negate), | (barrier)
+
+// === TOP-LEVEL SIGIL STRUCTURE ===
+Sigil -> Container
+Sigil -> Element
+Sigil -> Composite
+
+// === COMPOSITE STRUCTURES ===
+Composite -> Sigil Operator Sigil
+Composite -> Sigil Sigil
+
+// === CONTAINERS ===
+// Amplifier: increases energy level of contents
+Container[ type: amplify, energy: #e ] -> LAngle Contents[ energy: #e ] RAngle
+
+// Stabilizer: grounds volatile elements, reduces energy
+Container[ type: stabilize, energy: low ] -> LBracket Contents[ energy: #e ] RBracket
+
+// Transformer: allows element fusion, creates new states
+Container[ type: transform ] -> LBrace FusedContents RBrace
+
+// Channeler: directs energy, maintains original properties
+Container[ type: channel, energy: #e, state: #s ] -> LParen Contents[ energy: #e, state: #s ] RParen
+
+// === CONTENTS ===
+Contents -> Element
+Contents -> Element Contents
+Contents -> Container
+Contents -> Container Contents
+
+// Special fused contents for transformer
+FusedContents -> Element Operator Element
+FusedContents -> Element Operator Element Operator Element
+FusedContents -> Element
+FusedContents -> PowerElement
+FusedContents -> Container Operator Element
+FusedContents -> Element Operator Container
+FusedContents -> Container Operator Container
+
+// === POWER ELEMENTS (repeated = stronger) ===
+PowerElement -> Element Element
+PowerElement -> Element PowerElement
+
+// === ELEMENTS (base symbols with properties) ===
+// Fire: high energy, volatile state, aggressive
+Element[ type: fire, energy: high, state: volatile, aspect: aggressive ] -> asterisk
+
+// Water: medium energy, flowing state, adaptive
+Element[ type: water, energy: medium, state: flowing, aspect: adaptive ] -> tilde
+
+// Air: medium energy, free state, swift
+Element[ type: air, energy: medium, state: free, aspect: swift ] -> caret
+
+// Earth: low energy, solid state, protective
+Element[ type: earth, energy: low, state: solid, aspect: protective ] -> hash
+
+// Void: no energy, ethereal state, mysterious
+Element[ type: void, energy: none, state: ethereal, aspect: mysterious ] -> at
+
+// === OPERATORS ===
+Operator -> plus
+Operator -> minus
+Operator -> pipe
+
+// === TERMINAL LEXICON ===
+// Container delimiters
+LAngle   -> langle
+RAngle   -> rangle
+LBracket -> lbrack
+RBracket -> rbrack
+LBrace   -> lbrace
+RBrace   -> rbrace
+LParen   -> lparen
+RParen   -> rparen
