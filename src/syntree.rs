@@ -174,71 +174,119 @@ impl<T, U> SynTree<T, U> {
           return vec![format!("{}", constituent)];
         }
 
-        // Get lines for each child
+        // Step 1: Build all child lines recursively (bottom-up)
         let child_lines: Vec<Vec<String>> = children
           .iter()
           .map(|c| c.format_vertical_lines())
           .collect();
 
-        // Calculate widths
+        // Step 2: Calculate child widths from actual rendered content
         let child_widths: Vec<usize> = child_lines
           .iter()
           .map(|lines| lines.iter().map(|l| l.len()).max().unwrap_or(0))
           .collect();
 
-        let total_width: usize = child_widths.iter().sum::<usize>() + (children.len() - 1) * 2;
-
-        // Parent node (centered)
-        let parent_str = format!("{}", constituent);
-        let parent_width = parent_str.len();
-        let parent_padding = if total_width > parent_width {
-          (total_width - parent_width) / 2
-        } else {
-          0
-        };
-        let mut result = vec![format!("{}{}", " ".repeat(parent_padding), parent_str)];
-
-        // Branch connectors
-        let mut branch_line = String::new();
+        // Step 3: Calculate child center positions as they'll appear in final layout
         let mut positions = vec![];
         let mut current_pos = 0;
 
-        for &width in child_widths.iter() {
-          let mid = current_pos + width / 2;
-          positions.push(mid);
-          current_pos += width + 2;
+        for (i, &width) in child_widths.iter().enumerate() {
+          // Find the actual center of the text in this child's first line
+          let first_line = &child_lines[i][0];
+          let leading_spaces = first_line.len() - first_line.trim_start().len();
+          let text = first_line.trim();
+          let text_center_offset = leading_spaces + text.len() / 2;
+
+          let center = current_pos + text_center_offset;
+          positions.push(center);
+          current_pos += width + 2; // width + 2-space gap
         }
 
-        // Draw branches: single child = │, multiple = ┌──┬──┐
+        // Step 4: Determine total layout width and parent center
+        let total_width: usize = child_widths.iter().sum::<usize>() + (children.len() - 1) * 2;
+
+        // Determine parent connection position
+        let branch_center = if positions.len() == 1 {
+          positions[0]
+        } else if positions.len() % 2 == 1 {
+          // Odd children: use middle child position
+          let middle_idx = positions.len() / 2;
+          positions[middle_idx]
+        } else {
+          // Even children: calculate center, then snap to nearby child if within 1
+          let center = (positions[0] + positions.last().unwrap()) / 2;
+          positions.iter()
+            .find(|&&pos| (pos as i32 - center as i32).abs() <= 1)
+            .copied()
+            .unwrap_or(center)
+        };
+
+        // Step 5: Build parent line centered above the branch center
+        let parent_str = format!("{}", constituent);
+        let parent_width = parent_str.len();
+        let parent_start = if branch_center >= parent_width / 2 {
+          branch_center - parent_width / 2
+        } else {
+          0
+        };
+
+        let mut parent_line = " ".repeat(parent_start);
+        parent_line.push_str(&parent_str);
+
+        // Ensure parent line is at least as wide as the branch line will be
+        while parent_line.len() < total_width {
+          parent_line.push(' ');
+        }
+
+        // Step 6: Build branch line
+        let mut result = vec![parent_line];
+
         if positions.len() == 1 {
+          // Single child: just one vertical line from parent to child
+          let mut branch_line = String::new();
           for i in 0..total_width {
-            if i == positions[0] {
+            if i == branch_center {
               branch_line.push('│');
             } else {
               branch_line.push(' ');
             }
           }
+          result.push(branch_line);
         } else {
+          // Multiple children: ┌──┬──┐ structure
+          let mut branch_chars: Vec<char> = vec![' '; total_width];
           let first_pos = positions[0];
           let last_pos = *positions.last().unwrap();
 
+          // Build standard branch structure with child connectors
           for i in 0..total_width {
             if i == first_pos {
-              branch_line.push('┌');
+              branch_chars[i] = '┌';
             } else if i == last_pos {
-              branch_line.push('┐');
+              branch_chars[i] = '┐';
             } else if positions.contains(&i) {
-              branch_line.push('┬');
+              branch_chars[i] = '┬';
             } else if i > first_pos && i < last_pos {
-              branch_line.push('─');
-            } else {
-              branch_line.push(' ');
+              branch_chars[i] = '─';
             }
           }
-        }
-        result.push(branch_line);
 
-        // Merge child lines horizontally
+          // Add parent connector at branch center
+          // branch_center is already snapped to nearby child if applicable
+          if positions.contains(&branch_center) {
+            // Parent aligns with a child → ┼ (4-way connector)
+            branch_chars[branch_center] = '┼';
+          } else {
+            // Parent between children → ┴ (3-way: up + left + right, no child below)
+            branch_chars[branch_center] = '┴';
+          }
+
+          result.push(branch_chars.iter().collect());
+        }
+
+        // Step 7: Add child lines below
+
+        // Step 9: Merge child lines horizontally
         let max_child_height = child_lines.iter().map(|l| l.len()).max().unwrap_or(0);
         for row in 0..max_child_height {
           let mut line = String::new();
