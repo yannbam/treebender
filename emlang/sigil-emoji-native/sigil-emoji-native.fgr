@@ -1,0 +1,213 @@
+// Native Unicode Emoji Sigil Language 🎨✨🌈
+// Using actual emoji and Unicode characters as terminals!
+//
+// This is linguistics made VISIBLE - emoji AS the language itself
+//
+// HYBRID APPROACH:
+// - Emoji for expressive linguistic markers (👁️ 🔥 🙇)
+// - ASCII for structural syntax (< > { } ( ) [ ])
+// - Unicode symbols for operators (+ - |)
+// - Whatever feels most NATURAL and CLEAR!
+
+// === EMOJI LINGUISTIC MARKERS ===
+//
+// 1. EVIDENTIALITY (How do you know?)
+//    👁️ - I SAW it directly (visual evidence)
+//    🔍 - I INFERRED it (deduced from clues)
+//    👂 - I HEARD it (hearsay/tradition tells us)
+//    🔮 - I SENSE it (intuitive/mystical knowledge)
+//
+// 2. ASPECT (How does it unfold in time?)
+//    🔁 - HABITUAL (happens repeatedly)
+//    ✅ - PERFECTIVE (completed action)
+//    ▶️ - PROGRESSIVE (ongoing right now)
+//    🌱 - INCEPTIVE (just beginning)
+//    🛑 - CESSATIVE (coming to an end)
+//
+// 3. ATTUNEMENT (Your relationship to magic)
+//    🌿 - NATURAL (innate affinity)
+//    🔨 - FORCED (compelling against will)
+//    ☯️ - HARMONIOUS (mutual cooperation)
+//    ⚔️ - DISCORDANT (conflicting/resisting)
+//
+// 4. HONORIFICS (Level of respect)
+//    🙇 - HUMBLE (I bow before it)
+//    😐 - NEUTRAL (equal standing)
+//    🙏 - HONORIFIC (respectful)
+//    👑 - SACRED (highest reverence)
+//
+// 5. ANIMACY (Level of consciousness)
+//    🧠 - SENTIENT (aware, thinking)
+//    💚 - LIVING (alive but not aware)
+//    👻 - SPIRITUAL (ethereal essence)
+//    🪨 - INERT (dormant, lifeless)
+//
+// 6. DIRECTIONALITY (Energy flow)
+//    ⬆️ - UPWARD (ascending to heavens)
+//    ⬇️ - DOWNWARD (grounding to earth)
+//    ⏺️ - INWARD (centralizing to core)
+//    💫 - OUTWARD (radiating from center)
+//    ⭕ - CYCLICAL (eternal circle)
+//
+// 7. MODAL (Necessity/possibility)
+//    🤔 - POTENTIAL (might, maybe)
+//    ❗ - NECESSARY (must, required)
+//    🚫 - PROHIBITED (forbidden)
+//    📋 - OBLIGATED (should, ought to)
+//    ⭐ - DESIRED (wish, hope)
+//
+// 8. SWITCH-REFERENCE (Focus tracking)
+//    ➡️ - SAME subject continues
+//    🔀 - DIFFERENT subject
+//    🪞 - REFLEXIVE (acts on itself)
+//
+// 9. TEMPORAL DISTANCE (How far in time?)
+//    ⚡ - IMMEDIATE (right now!)
+//    📅 - RECENT (lately, just now)
+//    🏛️ - REMOTE (ancient, long ago)
+//
+// 10. CLUSIVITY (Who participates?)
+//     👥 - INCLUSIVE we (including you)
+//     🚶🚶 - EXCLUSIVE we (not you)
+//     🧍 - SOLO (I alone)
+
+// === TOP-LEVEL SIGIL ===
+Sigil -> AnnotatedContainer
+Sigil -> AnnotatedElement
+Sigil -> AnnotatedComposite
+
+// === ANNOTATED STRUCTURES ===
+AnnotatedContainer -> Evidential Container
+AnnotatedContainer -> Honorific Container
+AnnotatedContainer -> Modal Container
+AnnotatedContainer -> Aspectual Container
+AnnotatedContainer -> Directional Container
+AnnotatedContainer -> Container
+
+AnnotatedElement -> Attunement Element
+AnnotatedElement -> Animacy Element
+AnnotatedElement -> Element
+
+AnnotatedComposite -> TemporalDistance Composite
+AnnotatedComposite -> Clusivity Composite
+AnnotatedComposite -> SwitchRef Composite
+AnnotatedComposite -> Composite
+
+// === EVIDENTIALITY: How we know ===
+Evidential[ evid: direct ] -> 👁️
+Evidential[ evid: inferred ] -> 🔍
+Evidential[ evid: hearsay ] -> 👂
+Evidential[ evid: intuitive ] -> 🔮
+
+// === ASPECT: Temporal structure ===
+Aspectual[ aspect: habitual ] -> 🔁
+Aspectual[ aspect: perfective ] -> ✅
+Aspectual[ aspect: progressive ] -> ▶️
+Aspectual[ aspect: inceptive ] -> 🌱
+Aspectual[ aspect: cessative ] -> 🛑
+
+// === ATTUNEMENT: Relationship to elements ===
+Attunement[ attune: natural ] -> 🌿
+Attunement[ attune: forced ] -> 🔨
+Attunement[ attune: harmonious ] -> ☯️
+Attunement[ attune: discordant ] -> ⚔️
+
+// === HONORIFICS: Respect level ===
+Honorific[ honor: humble ] -> 🙇
+Honorific[ honor: neutral ] -> 😐
+Honorific[ honor: honorific ] -> 🙏
+Honorific[ honor: sacred ] -> 👑
+
+// === ANIMACY: Consciousness level ===
+Animacy[ anim: sentient ] -> 🧠
+Animacy[ anim: living ] -> 💚
+Animacy[ anim: spiritual ] -> 👻
+Animacy[ anim: inert ] -> 🪨
+
+// === DIRECTIONALITY: Energy flow ===
+Directional[ direction: upward ] -> ⬆️
+Directional[ direction: downward ] -> ⬇️
+Directional[ direction: inward ] -> ⏺️
+Directional[ direction: outward ] -> 💫
+Directional[ direction: cyclical ] -> ⭕
+
+// === MODAL: Intention/necessity ===
+Modal[ mode: potential ] -> 🤔
+Modal[ mode: necessary ] -> ❗
+Modal[ mode: prohibited ] -> 🚫
+Modal[ mode: obligated ] -> 📋
+Modal[ mode: desired ] -> ⭐
+
+// === SWITCH-REFERENCE: Focus tracking ===
+SwitchRef[ switch: same ] -> ➡️
+SwitchRef[ switch: different ] -> 🔀
+SwitchRef[ switch: reflexive ] -> 🪞
+
+// === TEMPORAL DISTANCE ===
+TemporalDistance[ time: immediate ] -> ⚡
+TemporalDistance[ time: recent ] -> 📅
+TemporalDistance[ time: remote ] -> 🏛️
+
+// === CLUSIVITY: Participation ===
+Clusivity[ clus: inclusive ] -> 👥
+Clusivity[ clus: exclusive ] -> 🚶🚶
+Clusivity[ clus: solo ] -> 🧍
+
+// === CONTAINERS ===
+// Using ASCII brackets for structural clarity
+Container[ type: amplify, energy: #e ] -> LAngle Contents[ energy: #e ] RAngle
+Container[ type: stabilize, energy: low ] -> LBracket Contents[ energy: #e ] RBracket
+Container[ type: transform ] -> LBrace FusedContents RBrace
+Container[ type: channel, energy: #e, state: #s ] -> LParen Contents[ energy: #e, state: #s ] RParen
+
+// === CONTENTS ===
+Contents -> Element
+Contents -> Element Contents
+Contents -> Container
+Contents -> Container Contents
+Contents -> AnnotatedContainer
+Contents -> AnnotatedElement
+
+// === FUSED CONTENTS ===
+FusedContents -> Element Operator Element
+FusedContents -> Element Operator Element Operator Element
+FusedContents -> Element
+FusedContents -> PowerElement
+FusedContents -> Container Operator Element
+FusedContents -> Element Operator Container
+FusedContents -> Container Operator Container
+FusedContents -> AnnotatedElement Operator AnnotatedElement
+
+// === POWER ELEMENTS ===
+PowerElement -> Element Element
+PowerElement -> Element PowerElement
+
+// === COMPOSITE ===
+Composite -> Sigil Operator Sigil
+Composite -> Sigil Sigil
+
+// === BASE ELEMENTS ===
+// Pure visual emoji - immediately recognizable!
+Element[ type: fire, energy: high, state: volatile, aspect: aggressive ] -> 🔥
+Element[ type: water, energy: medium, state: flowing, aspect: adaptive ] -> 💧
+Element[ type: air, energy: medium, state: free, aspect: swift ] -> 💨
+Element[ type: earth, energy: low, state: solid, aspect: protective ] -> 🪨
+Element[ type: void, energy: none, state: ethereal, aspect: mysterious ] -> ⚫
+
+// === OPERATORS ===
+// Simple words for mathematical operations (structural, not semantic)
+Operator -> plus
+Operator -> minus
+Operator -> or
+
+// === CONTAINER DELIMITERS ===
+// ASCII bracket representations (structural syntax, not semantic content)
+// Following hybrid philosophy: emoji for MEANING, words for STRUCTURE
+LAngle   -> ‹
+RAngle   -> ›
+LBracket -> ⟦
+RBracket -> ⟧
+LBrace   -> ❴
+RBrace   -> ❵
+LParen   -> ⦅
+RParen   -> ⦆

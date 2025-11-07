@@ -177,6 +177,22 @@ cargo run -p cli grammar.fgr
 
 Shell piping (`echo | cargo`) may mangle Unicode characters depending on locale settings. File-based input preserves UTF-8 encoding correctly.
 
+### Important: Running Emlang Scripts
+
+All scripts in the `emlang/` directory should be run from the **repository root**, not from within the emlang subdirectories:
+
+```bash
+# ✅ DO: Run from repo root
+./emlang/sigil-emoji/sigil-emoji-demo.sh
+./emlang/sigil-emoji-native/sigil-emoji-native-demo.sh
+./emlang/sigil-emoji/spells/parse-all-spells.sh
+
+# ❌ DON'T: Run from within subdirectories
+cd emlang/sigil-emoji && ./sigil-emoji-demo.sh  # Will fail!
+```
+
+These scripts use relative paths to locate grammar files and depend on being executed from the project root directory.
+
 ## Tutorial
 As an example, let's say we want to build a parser for English reflexive
 pronouns (himself, herself, themselves, themself, itself). We'll also support

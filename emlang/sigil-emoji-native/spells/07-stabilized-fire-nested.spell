@@ -1,0 +1,31 @@
+# 👁️🙇 Witnessed Humble Stabilized Fire (Native Emoji)
+# Showing nested containers with different effects
+
+# Visual:
+#   👁️ EYE (direct observation)
+#     |
+#   ‹ AMPLIFIER ›
+#     |
+#   🙇 BOW (humble respect)
+#     |
+#   ⟦ STABILIZER ⟧
+#     |
+#   🔥 FIRE
+#
+# Meaning: "I directly witnessed the amplified, humbly respected, stabilized fire"
+#
+# Container effects:
+#   ‹ › AMPLIFIER: increases power
+#   ⟦ ⟧ STABILIZER: grounds energy (forces energy: low)
+#
+# Feature flow:
+#   - evid: direct (👁️)
+#   - type: amplify (outer container)
+#   - honor: humble (🙇)
+#   - type: stabilize (inner container)
+#   - energy: low (stabilizer forces this!)
+#   - But fire's intrinsic energy: high is still preserved!
+#
+# This shows the paradox: volatile fire, grounded, then amplified!
+
+👁️ ‹ 🙇 ⟦ 🔥 ⟧ ›
