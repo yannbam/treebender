@@ -123,73 +123,73 @@
     {
       "name": "Documentation",
       "details": "Update documentation with new features",
-      "status": "pending",
+      "status": "completed",
       "priority": "low",
       "sub_tasks": [
         {
           "name": "update-readme",
           "details": "Add semantic roles to README with examples",
-          "status": "pending",
+          "status": "completed",
           "priority": "medium",
           "uuid": "75b9b967-38d9-4237-926c-aa7b9f5d33ea",
           "created_at": "2025-11-07T19:28:36.660Z",
-          "updated_at": "2025-11-07T19:28:36.660Z"
+          "updated_at": "2025-11-07T19:40:21.123Z"
         },
         {
           "name": "update-tests",
           "details": "Add new test files for Phase 2 features",
-          "status": "pending",
+          "status": "completed",
           "priority": "medium",
           "uuid": "c4601510-c346-48ca-9526-5e51966709b3",
           "created_at": "2025-11-07T19:28:36.660Z",
-          "updated_at": "2025-11-07T19:28:36.660Z"
+          "updated_at": "2025-11-07T19:40:21.124Z"
         }
       ],
       "uuid": "7b911e56-7a58-4697-b950-837ed0d4be8e",
       "created_at": "2025-11-07T19:28:36.660Z",
       "updated_at": "2025-11-07T19:28:36.660Z",
-      "completion_percentage": 0
+      "completion_percentage": 100
     },
     {
       "name": "Passover",
       "details": "Prepare clean handoff for next session",
-      "status": "pending",
+      "status": "completed",
       "priority": "low",
       "sub_tasks": [
         {
           "name": "update-passover",
           "details": "Update PASSOVER.md with accomplishments and next steps",
-          "status": "pending",
+          "status": "completed",
           "priority": "medium",
           "uuid": "5f17091a-56fb-4db7-9d11-974fd2158894",
           "created_at": "2025-11-07T19:28:36.660Z",
-          "updated_at": "2025-11-07T19:28:36.660Z"
+          "updated_at": "2025-11-07T19:40:21.124Z"
         },
         {
           "name": "update-plan",
           "details": "Update emlang-compositional PlanAndTrack plan",
-          "status": "pending",
+          "status": "completed",
           "priority": "medium",
           "uuid": "7481b532-2307-4fff-8a48-ef905e03c476",
           "created_at": "2025-11-07T19:28:36.660Z",
-          "updated_at": "2025-11-07T19:28:36.660Z"
+          "updated_at": "2025-11-07T19:40:21.124Z"
         },
         {
           "name": "commit",
           "details": "Commit all changes with comprehensive message",
-          "status": "pending",
+          "status": "completed",
           "priority": "high",
           "uuid": "2cf619f5-130b-45ca-a988-02afd627253a",
           "created_at": "2025-11-07T19:28:36.660Z",
-          "updated_at": "2025-11-07T19:28:36.660Z"
+          "updated_at": "2025-11-07T19:40:21.124Z"
         }
       ],
       "uuid": "3954d921-12be-40ba-b13d-733b0f4e4313",
       "created_at": "2025-11-07T19:28:36.660Z",
       "updated_at": "2025-11-07T19:28:36.660Z",
-      "completion_percentage": 0
+      "completion_percentage": 100
     }
   ],
   "created_at": "2025-11-07T19:28:36.661Z",
-  "updated_at": "2025-11-07T19:36:15.165Z"
+  "updated_at": "2025-11-07T19:40:21.124Z"
 }
