@@ -141,6 +141,32 @@ TransformedElement:
     state: volatile
 ```
 
+## ✨ Semantic Roles (Phase 2 - NEW!)
+
+Thematic role markers inspired by ergative-absolutive languages:
+
+| Emoji | Role | Semantics | Example |
+|-------|------|-----------|---------|
+| 🤌 | Agent | Volitional performer | `🤌 🔥` = fire as agent |
+| 🎯 | Patient | Affected receiver | `🎯 💧` = water as patient |
+| 🛠️ | Instrument | Tool/means | `🛠️ 🔄 ‹ 🔥 ›` = using recursive amplification as tool |
+| 🎁 | Beneficiary | Recipient | `🎁 🌿` = for nature's benefit |
+| 📍 | Location | Spatial setting | `📍 🔥` = located fire |
+| ⏰ | Time | Temporal setting | `⏰ 💧` = timed water |
+
+### Semantic Role Examples
+
+```
+❴ 🤌 🔥 plus 🎯 💧 ❵     # Fire as agent fused with water as patient
+🛠️ 🔄 📦 ‹ 🔥 ›           # Recursive packaging used as instrument
+🎁 ‹ 🌿 🔥 ›               # Amplified natural fire for benefit
+```
+
+Semantic roles compose with **all** language features:
+- Elements, containers, patterns
+- Transformers and composed transformers
+- Other linguistic annotations
+
 ## 🚀 Running Examples
 
 ### Interactive Mode
@@ -173,27 +199,39 @@ done
 
 ## 📊 Implementation Status
 
-### ✅ Completed (Phase 1A & 1B)
+### ✅ Phase 1A: Transformer Emoji (COMPLETE)
 - [x] 8 transformer emoji as terminals
 - [x] TransformedElement grammar rules
 - [x] TransformedContainer grammar rules
+- [x] TransformedPattern grammar rules
 - [x] ComposedTransform for chaining
 - [x] Feature structure propagation
-- [x] Basic pattern matching (alternation)
-- [x] Comprehensive test suite
-- [x] Demo script
-- [x] Full documentation
+- [x] Comprehensive test suite (42/42 tests pass)
 
-### 🔄 In Progress
-- [ ] Pattern matching engine (semantic evaluation)
-- [ ] Variable binding with subscripts
+### ✅ Phase 1B: Pattern Matching (COMPLETE)
+- [x] Pattern delimiters and syntax
+- [x] Recursive alternation (unlimited elements)
+- [x] Annotated elements in patterns
+- [x] Transformers on patterns
+- [x] Integration with all language features
 
-### 🔮 Future (Phase 2 & 3)
-- [ ] Semantic roles (🤌 agent, 🎯 patient, 🛠️ instrument)
+### ✅ Phase 2: Semantic Roles (COMPLETE)
+- [x] 6 thematic role markers (🤌 🎯 🛠️ 🎁 📍 ⏰)
+- [x] Full compositional integration
+- [x] 24 semantic role tests pass
+- [x] Feature propagation working correctly
+
+### 🔄 Known Limitations
+- Chained annotations not supported (e.g., `🌿 🧠 🔥`)
+- Workaround: use nested containers
+- See tests-integration.txt for details
+
+### 🔮 Future (Phase 2 & 3 Remaining)
 - [ ] Meta-operators (≡ define, ⇒ evaluate, ∘ compose)
+- [ ] Variable binding with subscripts
 - [ ] Advanced patterns (quantifiers, guards, captures)
 - [ ] Quotation system (「」『』)
-- [ ] Full semantic evaluation
+- [ ] Full semantic evaluation engine
 
 ## 🎓 Key Concepts
 

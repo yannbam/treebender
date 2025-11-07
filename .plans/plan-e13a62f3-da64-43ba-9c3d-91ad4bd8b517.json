@@ -135,47 +135,47 @@
     {
       "name": "Phase2-Deepening",
       "details": "Add semantic richness through thematic roles and meta-operators for definitions and transformations",
-      "status": "pending",
+      "status": "in_progress",
       "priority": "medium",
       "sub_tasks": [
         {
           "name": "semantic-roles",
-          "details": "Implement semantic/thematic role markers.\n\nRoles to implement:\n- 🤌 Agent (performer)\n- 🎯 Patient (receiver)\n- 🛠️ Instrument (tool)\n- 🎁 Beneficiary (benefiter)\n- 📍 Location (place)\n- ⏰ Time (when)\n\nInspired by ergative-absolutive languages.",
-          "status": "pending",
+          "details": "Fully implemented semantic/thematic role markers.\n\n✅ Implemented 6 roles:\n- 🤌 Agent (performer with volition)\n- 🎯 Patient (receiver/affected entity)\n- 🛠️ Instrument (tool/means)\n- 🎁 Beneficiary (recipient)\n- 📍 Location (spatial setting)\n- ⏰ Time (temporal setting)\n\n✅ Full compositional integration:\n- SemanticRole + Element\n- SemanticRole + Container\n- SemanticRole + Pattern\n- SemanticRole + TransformedElement/Container/ComposedTransform\n\n✅ 24 comprehensive tests pass\n✅ Feature structures propagate role semantics correctly\n✅ Follows compositional symmetry principle",
+          "status": "completed",
           "priority": "medium",
           "sub_tasks": [
             {
               "name": "role-grammar",
               "details": "Define how semantic roles combine with elements and containers",
-              "status": "pending",
+              "status": "completed",
               "priority": "medium",
               "uuid": "4a6358f7-946b-4e75-9f35-f1918a55d103",
               "created_at": "2025-11-07T18:45:25.262Z",
-              "updated_at": "2025-11-07T18:45:25.262Z"
+              "updated_at": "2025-11-07T19:36:23.080Z"
             },
             {
               "name": "role-constraints",
               "details": "Implement constraints on which elements can take which roles",
-              "status": "pending",
+              "status": "completed",
               "priority": "medium",
               "uuid": "8a6ece42-ff08-457b-abf2-54ec85d6f5fd",
               "created_at": "2025-11-07T18:45:25.262Z",
-              "updated_at": "2025-11-07T18:45:25.262Z"
+              "updated_at": "2025-11-07T19:36:23.080Z"
             },
             {
               "name": "role-interaction",
               "details": "Define how multiple roles interact in a single expression",
-              "status": "pending",
+              "status": "completed",
               "priority": "low",
               "uuid": "489a90b1-5699-4f94-aa65-ccc9b3f84849",
               "created_at": "2025-11-07T18:45:25.262Z",
-              "updated_at": "2025-11-07T18:45:25.262Z"
+              "updated_at": "2025-11-07T19:36:23.080Z"
             }
           ],
           "uuid": "9be0e395-f2ce-4e32-81e4-ef7437731aff",
           "created_at": "2025-11-07T18:45:25.262Z",
-          "updated_at": "2025-11-07T18:45:25.262Z",
-          "completion_percentage": 0
+          "updated_at": "2025-11-07T19:36:15.347Z",
+          "completion_percentage": 100
         },
         {
           "name": "meta-operators",
@@ -220,7 +220,7 @@
       "uuid": "7f264f8c-78c8-43dc-b13c-78fa501b5c80",
       "created_at": "2025-11-07T18:45:25.262Z",
       "updated_at": "2025-11-07T18:45:25.262Z",
-      "completion_percentage": 0
+      "completion_percentage": 50
     },
     {
       "name": "Phase3-Refinement",
@@ -449,5 +449,5 @@
     }
   ],
   "created_at": "2025-11-07T18:45:25.262Z",
-  "updated_at": "2025-11-07T19:11:58.524Z"
+  "updated_at": "2025-11-07T19:36:23.080Z"
 }

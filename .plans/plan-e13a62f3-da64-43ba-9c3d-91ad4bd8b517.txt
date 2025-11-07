@@ -1,6 +1,6 @@
 🌳 "emlang-compositional"
 📝 Complete implementation plan for Emlang Compositional - the next evolution of the emoji-based emergent language. This plan covers the addition of transformer emoji (higher-order operators), pattern matching, recursive definitions, semantic roles, and meta-linguistic operators to create a computationally complete visual language.
-📊 █░░░░░░░░░ 18% (8/45 tasks)
+📊 ██░░░░░░░░ 27% (12/45 tasks)
 
 ├── 🔄 |Phase1-Core| "Maximum impact features: transformer emoji, basic pattern matching, and simple variable binding. These three additions provide the foundation for computational completeness." (🔴) (42%)
 │   ├── ✅ |transformer-emoji| "Implement transformer emoji as higher-order operators that transform other emoji.\n\nCore transformers to implement:\n- 🎭 Transform/Morph (state change)\n- 🔄 Recursion/Loop (infinite iteration)\n- 🧬 Pattern Replication (multiply patterns)\n- 📦 Package/Encapsulate (defer evaluation)\n- 🔗 Bind/Link (create relationships)\n- ⚡ Force Evaluation (immediate execution)\n- 🌀 Lazy/Suspend (thunk creation)\n- 🪞 Reflection (meta-examination)\n\nEach transformer needs grammar rules and feature unification logic." (🚨) (100%)
@@ -15,11 +15,11 @@
 │       ├── ⏸️ |subscript-parsing| "Parse Unicode subscript characters as variable identifiers" (🚨)
 │       ├── ⏸️ |scope-management| "Implement lexical scoping for bound variables" (🔴)
 │       └── ⏸️ |substitution| "Variable substitution during evaluation" (🔴)
-├── ⏸️ |Phase2-Deepening| "Add semantic richness through thematic roles and meta-operators for definitions and transformations" (🟡) (0%)
-│   ├── ⏸️ |semantic-roles| "Implement semantic/thematic role markers.\n\nRoles to implement:\n- 🤌 Agent (performer)\n- 🎯 Patient (receiver)\n- 🛠️ Instrument (tool)\n- 🎁 Beneficiary (benefiter)\n- 📍 Location (place)\n- ⏰ Time (when)\n\nInspired by ergative-absolutive languages." (🟡) (0%)
-│   │   ├── ⏸️ |role-grammar| "Define how semantic roles combine with elements and containers" (🟡)
-│   │   ├── ⏸️ |role-constraints| "Implement constraints on which elements can take which roles" (🟡)
-│   │   └── ⏸️ |role-interaction| "Define how multiple roles interact in a single expression" (🔵)
+├── 🔄 |Phase2-Deepening| "Add semantic richness through thematic roles and meta-operators for definitions and transformations" (🟡) (50%)
+│   ├── ✅ |semantic-roles| "Fully implemented semantic/thematic role markers.\n\n✅ Implemented 6 roles:\n- 🤌 Agent (performer with volition)\n- 🎯 Patient (receiver/affected entity)\n- 🛠️ Instrument (tool/means)\n- 🎁 Beneficiary (recipient)\n- 📍 Location (spatial setting)\n- ⏰ Time (temporal setting)\n\n✅ Full compositional integration:\n- SemanticRole + Element\n- SemanticRole + Container\n- SemanticRole + Pattern\n- SemanticRole + TransformedElement/Container/ComposedTransform\n\n✅ 24 comprehensive tests pass\n✅ Feature structures propagate role semantics correctly\n✅ Follows compositional symmetry principle" (🟡) (100%)
+│   │   ├── ✅ |role-grammar| "Define how semantic roles combine with elements and containers" (🟡)
+│   │   ├── ✅ |role-constraints| "Implement constraints on which elements can take which roles" (🟡)
+│   │   └── ✅ |role-interaction| "Define how multiple roles interact in a single expression" (🔵)
 │   └── ⏸️ |meta-operators| "Implement meta-linguistic operators for definitions and transformations.\n\nOperators:\n- ≡ (definition/assignment)\n- ⇒ (evaluation/reduction)\n- ∘ (function composition)\n\nEnables creating new abstractions." (🟡) (0%)
 │       ├── ⏸️ |definition-operator| "Implement ≡ for creating named definitions" (🔴)
 │       ├── ⏸️ |evaluation-operator| "Implement ⇒ for showing evaluation results" (🟡)

@@ -23,22 +23,41 @@ Sigil -> TransformedElement
 Sigil -> TransformedContainer
 Sigil -> ComposedTransform
 Sigil -> Pattern
+Sigil -> TransformedPattern
 Sigil -> AnnotatedContainer
 Sigil -> AnnotatedElement
+Sigil -> AnnotatedPattern
 Sigil -> AnnotatedComposite
 Sigil -> AnnotatedTransformed
 
 // === ANNOTATED STRUCTURES (from sigil-emoji-native) ===
 // Linguistic markers that add semantic richness
+// Following compositional symmetry: if a marker can annotate containers,
+// it can also annotate elements, patterns, and other structures
 
 AnnotatedContainer -> Evidential Container
 AnnotatedContainer -> Honorific Container
 AnnotatedContainer -> Modal Container
 AnnotatedContainer -> Aspectual Container
 AnnotatedContainer -> Directional Container
+AnnotatedContainer -> SemanticRole Container
 
+AnnotatedElement -> Evidential Element
+AnnotatedElement -> Honorific Element
+AnnotatedElement -> Modal Element
+AnnotatedElement -> Aspectual Element
+AnnotatedElement -> Directional Element
 AnnotatedElement -> Attunement Element
 AnnotatedElement -> Animacy Element
+AnnotatedElement -> SemanticRole Element
+
+// Patterns can also be annotated
+AnnotatedPattern -> Evidential Pattern
+AnnotatedPattern -> Honorific Pattern
+AnnotatedPattern -> Modal Pattern
+AnnotatedPattern -> Aspectual Pattern
+AnnotatedPattern -> Directional Pattern
+AnnotatedPattern -> SemanticRole Pattern
 
 AnnotatedComposite -> TemporalDistance Composite
 AnnotatedComposite -> Clusivity Composite
@@ -67,6 +86,11 @@ AnnotatedTransformed -> Modal ComposedTransform
 AnnotatedTransformed -> Directional TransformedElement
 AnnotatedTransformed -> Directional TransformedContainer
 AnnotatedTransformed -> Directional ComposedTransform
+
+// Semantic roles on transformations (Phase 2)
+AnnotatedTransformed -> SemanticRole TransformedElement
+AnnotatedTransformed -> SemanticRole TransformedContainer
+AnnotatedTransformed -> SemanticRole ComposedTransform
 
 // === TRANSFORMER EMOJI (Phase 1A) ===
 // These are higher-order operators that transform other emoji
@@ -97,7 +121,7 @@ Transformer[ op: lazy, semantics: suspend_eval ] -> 🌀
 Transformer[ op: reflect, semantics: meta_examine ] -> 🪞
 
 // === TRANSFORMER APPLICATION RULES ===
-// Transformers apply to elements, containers, or sigils
+// Transformers apply to elements, containers, patterns, or sigils
 // The transformation type propagates through feature structures
 
 // Transformer + Element creates a transformed element
@@ -105,6 +129,10 @@ TransformedElement[ transform: #t ] -> Transformer[ op: #t ] Element
 
 // Transformer + Container creates a transformed container
 TransformedContainer[ transform: #t ] -> Transformer[ op: #t ] Container
+
+// Transformer + Pattern creates a transformed pattern
+// Example: 🔄 popen 🔥 por 💧 pclose = recursive pattern matching
+TransformedPattern[ transform: #t ] -> Transformer[ op: #t ] Pattern
 
 // Multiple transformers compose left-to-right
 // Example: 🔄 📦 🔥 = recursively packaged fire
@@ -174,6 +202,34 @@ Clusivity[ clus: inclusive ] -> 👥
 Clusivity[ clus: exclusive ] -> 🚶🚶
 Clusivity[ clus: solo ] -> 🧍
 
+// === SEMANTIC ROLES (Phase 2) ===
+// Thematic roles inspired by ergative-absolutive languages and case systems
+// These mark the semantic relationship between participants and actions
+
+// AGENT: The performer of an action (volitional actor)
+// Example: 🤌 🧠 🔥 = sentient fire as agent
+SemanticRole[ role: agent, volition: high ] -> 🤌
+
+// PATIENT: The receiver or undergoer of an action (affected entity)
+// Example: 🎯 💧 = water as patient (being acted upon)
+SemanticRole[ role: patient, affected: true ] -> 🎯
+
+// INSTRUMENT: The tool or means by which action is performed
+// Example: 🛠️ ‹ › = using amplification as instrument
+SemanticRole[ role: instrument, tool: true ] -> 🛠️
+
+// BENEFICIARY: The entity for whose benefit action is performed
+// Example: 🎁 🌿 = for nature's benefit
+SemanticRole[ role: beneficiary, recipient: true ] -> 🎁
+
+// LOCATION: The place or spatial setting of action
+// Example: 📍 ⬆️ = located upward
+SemanticRole[ role: locative, spatial: true ] -> 📍
+
+// TIME: The temporal setting or timing of action
+// Example: ⏰ 🏛️ = at ancient time
+SemanticRole[ role: temporal, when: true ] -> ⏰
+
 // === PATTERN MATCHING (Phase 1B) ===
 // Pattern delimiters using mathematical angle brackets ⟨⟩
 // Start with simple alternation (OR) patterns
@@ -182,9 +238,16 @@ Clusivity[ clus: solo ] -> 🧍
 Pattern -> POpen PatternContent PClose
 
 // Pattern content - alternation (OR) matching
+// Supports 2+ elements through recursion
 // ⟨🔥|💧⟩ = match fire OR water
+// ⟨🔥|💧|💨|🌍⟩ = match any of four elements
+// Also supports annotated elements in patterns
 PatternContent -> Element POr Element
-PatternContent -> Element POr Element POr Element
+PatternContent -> Element POr PatternContent
+PatternContent -> AnnotatedElement POr AnnotatedElement
+PatternContent -> AnnotatedElement POr PatternContent
+PatternContent -> Element POr AnnotatedElement
+PatternContent -> AnnotatedElement POr Element
 
 // Pattern terminals - word-based for now (Unicode tokenization needs investigation)
 POpen -> popen
@@ -210,7 +273,7 @@ Container[ type: channel, energy: #e, state: #s ] -> ChanOpen Contents[ energy: 
 // === CONTENTS ===
 // Recursive contents allow arbitrary nesting depth
 // Each level of nesting adds semantic complexity
-// Supports both transformers and linguistic annotations
+// Supports transformers, linguistic annotations, and all compositional forms
 
 Contents -> Element
 Contents -> Element Contents
@@ -218,6 +281,8 @@ Contents -> Container
 Contents -> Container Contents
 Contents -> TransformedElement
 Contents -> TransformedElement Contents
+Contents -> TransformedContainer
+Contents -> TransformedContainer Contents
 Contents -> AnnotatedElement
 Contents -> AnnotatedElement Contents
 Contents -> AnnotatedContainer
@@ -225,7 +290,7 @@ Contents -> AnnotatedContainer Contents
 
 // Fused contents for transformer containers
 // Allows element fusion with operators
-// Supports annotated elements for richer semantic fusion
+// Supports annotated elements, transformed elements, and containers for rich fusion
 FusedContents -> Element Operator Element
 FusedContents -> Element Operator Element Operator Element
 FusedContents -> Element
@@ -234,8 +299,12 @@ FusedContents -> Container Operator Element
 FusedContents -> Element Operator Container
 FusedContents -> Container Operator Container
 FusedContents -> AnnotatedElement Operator AnnotatedElement
+FusedContents -> AnnotatedElement Operator Element
+FusedContents -> Element Operator AnnotatedElement
 FusedContents -> AnnotatedElement
 FusedContents -> TransformedElement Operator TransformedElement
+FusedContents -> TransformedElement Operator Element
+FusedContents -> Element Operator TransformedElement
 
 // === POWER ELEMENTS ===
 // Repeated elements = stronger manifestation

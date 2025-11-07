@@ -1,0 +1,45 @@
+{
+  "uuid": "4b89678c-534f-4ce1-bff2-6ba89482bd76",
+  "name": "grammar-fixes",
+  "details": "Fix grammar limitations discovered in testing to enable full compositional power",
+  "tasks": [
+    {
+      "name": "nested-transformers",
+      "details": "Add TransformedContainer to Contents so transformers can nest inside containers",
+      "status": "completed",
+      "priority": "urgent",
+      "uuid": "74d98f84-5b16-4863-96bc-cfe6da525ea7",
+      "created_at": "2025-11-07T19:29:33.255Z",
+      "updated_at": "2025-11-07T19:30:24.981Z"
+    },
+    {
+      "name": "extended-patterns",
+      "details": "Add support for 4+ element patterns with recursive alternation",
+      "status": "completed",
+      "priority": "high",
+      "uuid": "4fa1f69d-b319-4294-ad20-ed155668b25b",
+      "created_at": "2025-11-07T19:29:33.255Z",
+      "updated_at": "2025-11-07T19:30:24.981Z"
+    },
+    {
+      "name": "transformed-patterns",
+      "details": "Add TransformedPattern rules so transformers can operate on patterns",
+      "status": "completed",
+      "priority": "high",
+      "uuid": "2697b73a-f361-4db0-8ef9-c9a1916dd20d",
+      "created_at": "2025-11-07T19:29:33.255Z",
+      "updated_at": "2025-11-07T19:30:24.981Z"
+    },
+    {
+      "name": "test-validation",
+      "details": "All 42 comprehensive tests now pass! Fixed grammar enables:\n1. ✅ Nested TransformedContainer in Contents\n2. ✅ Recursive patterns supporting unlimited elements\n3. ✅ TransformedPattern for transformers operating on patterns\n\nGrammar is now fully compositional!",
+      "status": "completed",
+      "priority": "urgent",
+      "uuid": "b61cc82e-c7ee-4a6f-9122-a124b8bb478b",
+      "created_at": "2025-11-07T19:29:33.255Z",
+      "updated_at": "2025-11-07T19:30:50.588Z"
+    }
+  ],
+  "created_at": "2025-11-07T19:29:33.255Z",
+  "updated_at": "2025-11-07T19:30:50.588Z"
+}
