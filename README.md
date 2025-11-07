@@ -156,7 +156,7 @@ Evidential -> 🔍
 
 All tree visualization formats (sexp, h-tree, v-tree) display Unicode correctly.
 
-### Important: Shell Input Caveat
+### CRITICAL: heredoc is REQUIRED when using unicode - echo piping does NOT work with unicode
 
 When testing Unicode grammars with the CLI, **use file input or heredocs instead of echo piping**:
 
