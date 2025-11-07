@@ -479,6 +479,92 @@ Evaluated[ was: recursive_container, becomes: channeled ] -> Unevaluated[ form: 
 RecurseOp -> recurse
 EvalArrow -> eval
 
+// === META-OPERATOR: DEFINITION (≡) ===
+// Definition operator for creating named bindings within expressions
+// Like let-binding in functional languages
+//
+// Syntax: star define ❴ 🔥 plus 💧 ❵ then star plus star
+//
+// TWO-DIMENSIONAL TAGS: #n = definition NAME, #v = definition VALUE
+// Both must unify for valid reference (wrong name → 0 parses)
+//
+// Inspired by variable binding (VarExpr) - same pattern, different domain
+
+// Add definition expressions to top level
+Sigil -> DefExpr
+
+// Definition expression: bind symbol to value, use in result
+DefExpr[ def: #n, val: #v, result: #r ] -> DefBinding[ def_name: #n, def_value: #v ] DefArrow DefResult[ needs_def: #n, has_val: #v, yields: #r ]
+
+// Binding: associate definition symbol with any Sigil
+DefBinding[ def_name: #n, def_value: #v ] -> DefSymbol[ name: #n ] DefOp Sigil[ expr: #v ]
+
+// Definition reference - returns bound value
+// Tags #n and #v must BOTH unify for valid reference!
+DefResult[ needs_def: #n, has_val: #v, yields: #v ] -> DefSymbol[ name: #n ]
+
+// Definition can be used in operations
+DefResult[ needs_def: #n, has_val: #v, yields: combined ] -> DefSymbol[ name: #n ] Operator Sigil
+DefResult[ needs_def: #n, has_val: #v, yields: combined ] -> Sigil Operator DefSymbol[ name: #n ]
+DefResult[ needs_def: #n, has_val: #v, yields: combined ] -> DefSymbol[ name: #n ] Operator DefSymbol[ name: #n ]
+
+// Predefined definition symbols (finite but extensible set)
+// Following PARADIGM-SHIFT.md: can't create NEW symbols dynamically,
+// but can provide a useful set of definition slots
+// Using word-based markers like variables (x, y, z)
+DefSymbol[ name: star ] -> star
+DefSymbol[ name: circus ] -> circus
+DefSymbol[ name: castle ] -> castle
+DefSymbol[ name: temple ] -> temple
+DefSymbol[ name: rainbow ] -> rainbow
+
+// Definition operators (word-based for consistency)
+DefOp -> define
+DefArrow -> then
+
+// === META-OPERATOR: COMPOSITION (∘) ===
+// Composition operator creates first-class composed transformers
+// Mathematical function composition: (f ∘ g)(x) = f(g(x))
+//
+// Syntax: 🔄 compose 📦 apply 🔥
+// Result: First package, then recurse (right-to-left application)
+//
+// This is different from ComposedTransform (🔄 📦 🔥):
+// - ComposedTransform: direct sequential application
+// - Composition operator: creates REUSABLE composed transformer
+//
+// The composed operator can be applied to multiple targets
+
+// Add composition expressions to top level
+Sigil -> CompExpr
+
+// Composition expression: compose two transformers, apply to target
+CompExpr[ first: #t1, second: #t2, target: #tgt, result: composed ] -> ComposedOp[ op1: #t1, op2: #t2 ] CompApply CompTarget[ applies_to: #tgt ]
+
+// Composed operator: combines two transformers into one
+// Right-to-left application: compose f g = f ∘ g means "first g, then f"
+ComposedOp[ op1: #t1, op2: #t2 ] -> Transformer[ op: #t1 ] CompOp Transformer[ op: #t2 ]
+
+// Target that composed operator applies to
+// Can apply to base structures
+CompTarget[ applies_to: element ] -> Element
+CompTarget[ applies_to: container ] -> Container
+CompTarget[ applies_to: pattern ] -> Pattern
+
+// Can also apply to already-transformed structures
+CompTarget[ applies_to: transformed ] -> TransformedElement
+CompTarget[ applies_to: transformed ] -> TransformedContainer
+CompTarget[ applies_to: transformed ] -> ComposedTransform
+
+// Can apply to power elements and annotated structures
+CompTarget[ applies_to: power ] -> PowerElement
+CompTarget[ applies_to: annotated ] -> AnnotatedElement
+CompTarget[ applies_to: annotated ] -> AnnotatedContainer
+
+// Composition operators (word-based for clarity)
+CompOp -> compose
+CompApply -> apply
+
 // ======================================================================
 // === PHASE 1D: PATTERN QUANTIFIERS (COMBINATORS) ===
 // Pattern repetition quantifiers: *, +, ?

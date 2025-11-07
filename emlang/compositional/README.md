@@ -195,6 +195,87 @@ Semantic roles compose with **all** language features:
 - Transformers and composed transformers
 - Other linguistic annotations
 
+## 🎯 Meta-Operators (Phase 2 - NEW!)
+
+Three powerful meta-linguistic operators for creating abstractions and transformations:
+
+### Definition Operator (≡)
+
+**Purpose**: Create named bindings for complex expressions (like let-binding)
+
+**Syntax**: `defname define <expression> then <usage>`
+
+**Available names**: star, circus, castle, temple, rainbow
+
+**How it works**: Two-dimensional tag unification (#n = name, #v = value)
+- Both name AND value must unify for valid reference
+- Wrong name → 0 parses (semantic error caught by grammar!)
+
+**Examples**:
+```
+star define ❴ 🔥 plus 💧 ❵ then star plus star
+# Define star as fire+water fusion, then use it twice
+
+circus define 🔄 ‹ 🔥 › then circus minus 💧
+# Define circus as recursive amplified fire, combine with water
+
+castle define popen 🔥 por 💧 pclose then castle
+# Define castle as fire-or-water pattern, use the pattern
+```
+
+**Implementation**: Pure grammar via feature tag unification (following VarExpr pattern)
+
+### Composition Operator (∘)
+
+**Purpose**: Create first-class composed transformers (mathematical function composition)
+
+**Syntax**: `transformer1 compose transformer2 apply <target>`
+
+**Semantics**: Right-to-left application: (f ∘ g)(x) = f(g(x))
+
+**Examples**:
+```
+🔄 compose 📦 apply 🔥
+# First package fire, then recurse: 🔄(📦 🔥)
+
+🎭 compose 🔗 apply ‹ 💧 ›
+# First bind amplified water, then morph: 🎭(🔗 ‹ 💧 ›)
+
+⚡ compose 🌀 apply popen 🔥 por 💧 pclose
+# Force-then-suspend applied to fire-or-water pattern
+```
+
+**Key difference from ComposedTransform**:
+- `🔄 📦 🔥` (ComposedTransform): Direct sequential application
+- `🔄 compose 📦 apply 🔥` (Composition operator): Creates reusable composed transformer
+
+**Implementation**: Pure grammar via ComposedOp and feature propagation
+
+### Evaluation Operator (⇒)
+
+**Purpose**: Structural transformation via rewrite rules
+
+**Syntax**: `<unevaluated> eval <unevaluated>`
+
+**Example**:
+```
+recurse 🔥 eval recurse 🔥
+# Shows transformation: recursive_fire → amplified
+```
+
+**Implementation**: Grammar rewrite rules (like dative-shift.fgr)
+
+### Pure Grammar Achievement
+
+**All three meta-operators implemented using ONLY .fgr grammar features!**
+- No Rust code changes required
+- Feature tag unification = variable binding
+- Multiple productions = alternation
+- Rewrite rules = computation
+- Unification failure = semantic errors
+
+See PARADIGM-SHIFT.md for full technical details on this breakthrough!
+
 ## 🚀 Running Examples
 
 ### Interactive Mode
@@ -267,10 +348,11 @@ done
 - [x] 24 semantic role tests pass
 - [x] Feature propagation working correctly
 
-### ⚡ Phase 2: Meta-Operators (PARTIALLY COMPLETE - NEW!)
+### ✅ Phase 2: Meta-Operators (COMPLETE!)
 - [x] **Evaluation operator (⇒)** via rewrite rules
-- [ ] Definition operator (≡) - needs predefined symbol set
-- [ ] Composition operator (∘) - needs design work
+- [x] **Definition operator (≡)** via two-dimensional tag unification - 34/34 tests pass
+- [x] **Composition operator (∘)** via composable transformers - 40/40 tests pass
+- [x] **Pure grammar implementation** - all three operators use ONLY .fgr features!
 
 ### 🔄 Known Limitations
 - Chained annotations not supported (e.g., `🌿 🧠 🔥`)

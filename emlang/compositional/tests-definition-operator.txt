@@ -1,0 +1,94 @@
+# Test Suite: Definition Operator (≡)
+# Pure grammar implementation via feature tag unification
+# Following VarExpr pattern: two-dimensional tags for name and value
+#
+# Expected behavior:
+# - Correct definition usage → 1+ parse(s)
+# - Wrong definition name → 0 parses (semantic error)
+# - Tags #n and #v must both unify for valid reference
+#
+# Syntax: defname define <expression> then <usage>
+# Available definition symbols: star, circus, castle, temple, rainbow
+
+# === BASIC DEFINITIONS ===
+# Simple element definitions
+
+star define 🔥 then star
+circus define 💧 then circus
+castle define 💨 then castle
+temple define 🌍 then temple
+rainbow define 🌑 then rainbow
+
+# === CONTAINER DEFINITIONS ===
+# Defining containers with different semantics
+
+star define ‹ 🔥 › then star
+circus define ⟦ 💧 ⟧ then circus
+castle define ❴ 🔥 plus 💧 ❵ then castle
+temple define ⦅ 💨 ⦆ then temple
+
+# === TRANSFORMED ELEMENT DEFINITIONS ===
+# Defining transformed elements
+
+star define 🔄 🔥 then star
+circus define 🎭 💧 then circus
+castle define 🧬 💨 then castle
+temple define 📦 🌍 then temple
+rainbow define 🔗 🌑 then rainbow
+
+# === COMPOSED TRANSFORM DEFINITIONS ===
+# Defining composed transformations
+
+star define 🔄 📦 🔥 then star
+circus define 🎭 🧬 💧 then circus
+castle define 🔗 ⚡ ‹ 💨 › then castle
+
+# === PATTERN DEFINITIONS ===
+# Defining patterns for reuse
+
+star define popen 🔥 por 💧 pclose then star
+circus define popen 💨 por 🌍 por 🌑 pclose then circus
+
+# === USING DEFINITIONS IN OPERATIONS ===
+# Definitions can be used with operators
+
+star define 🔥 then star plus star
+circus define 💧 then circus minus circus
+castle define 💨 then castle pipe castle
+
+# === COMPLEX EXPRESSIONS ===
+# Combining multiple features
+
+star define ❴ 🔥 plus 💧 plus 💨 ❵ then star plus star
+circus define 🔄 ‹ 🔥 › then circus minus 💧
+castle define 🔥 then castle plus castle
+
+# === SEMANTIC CONSTRAINT TESTS ===
+# These should all fail (0 parses) - wrong definition names
+
+# star define 🔥 then circus
+# circus define 💧 then castle
+# castle define 💨 then temple
+# temple define 🌍 then rainbow
+# rainbow define 🌑 then star
+
+# === ANNOTATED ELEMENTS ===
+# Definitions with linguistic annotations
+
+star define 🌿 🔥 then star
+circus define 🧠 💧 then circus
+castle define ⬆️ 💨 then castle
+
+# === SEMANTIC ROLES ===
+# Definitions with thematic roles
+
+star define 🤌 🔥 then star
+circus define 🎯 💧 then circus
+castle define 🛠️ ‹ 🔥 › then castle
+
+# === MIXED USAGE ===
+# Using definitions with different elements
+
+star define 🔥 then star plus 💧
+circus define ‹ 💧 › then circus minus 🌍
+castle define 🔄 🔥 then castle pipe ⟦ 💨 ⟧
