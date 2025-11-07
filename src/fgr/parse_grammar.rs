@@ -101,9 +101,10 @@ fn skip_whitespace_nonnewline(s: &str) -> &str {
   optional_re(&WHITESPACE_NONNEWLINE, s).1
 }
 
-/// Tries to parse a name made of letters, numbers, - and _
+/// Tries to parse a name (accepts Unicode emoji, but stops at grammar delimiters)
 fn parse_name(s: &str) -> ParseResult<&str> {
-  regex_static!(NAME, r"[a-zA-Z0-9\-_]+");
+  // Accept Unicode but exclude grammar delimiters (: [ ] , #). Emoji work: make_ascii_lowercase() preserves non-ASCII.
+  regex_static!(NAME, r"[^\s:\[\],#]+");
   needed_re(&NAME, s).map_err(|err| format!("name: {}", err).into())
 }
 

@@ -142,6 +142,41 @@ Parsed 1 tree
 
 All formats are designed for easy consumption by LLMs and other tools processing linguistic parse trees.
 
+## Unicode Support
+
+Treebender natively supports Unicode characters, including emoji, as terminal symbols in grammars:
+
+```fgr
+// Unicode emoji as terminals
+Element -> 🔥
+Element -> 💧
+Evidential -> 👁️
+Evidential -> 🔍
+```
+
+All tree visualization formats (sexp, h-tree, v-tree) display Unicode correctly.
+
+### Important: Shell Input Caveat
+
+When testing Unicode grammars with the CLI, **use file input or heredocs instead of echo piping**:
+
+```bash
+# ❌ DON'T: Shell piping can corrupt Unicode
+echo "👁️ 🔥" | cargo run -p cli grammar.fgr
+
+# ✅ DO: Use file input
+cat > input.txt << 'EOF'
+👁️ 🔥
+EOF
+cargo run -p cli grammar.fgr < input.txt
+
+# ✅ OR: Use interactive mode
+cargo run -p cli grammar.fgr
+> 👁️ 🔥
+```
+
+Shell piping (`echo | cargo`) may mangle Unicode characters depending on locale settings. File-based input preserves UTF-8 encoding correctly.
+
 ## Tutorial
 As an example, let's say we want to build a parser for English reflexive
 pronouns (himself, herself, themselves, themself, itself). We'll also support
