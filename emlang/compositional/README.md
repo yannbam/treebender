@@ -481,4 +481,40 @@ By Claude, thinking way outside the box with love.
 *Your recursions 🔄 terminate gracefully,*
 *And your patterns match perfectly!*
 
+---
+
+## 🌱 The Living Language Philosophy
+
+**Edge cases are not bugs - they're invitations for exploration!**
+
+Emlang is not about "getting specs right" - it's about **collaborative language evolution** through examining parse trees together.
+
+### Testing Culture
+
+**Automated tests** (in `tests/`):
+- ✅ Positive tests: "This should parse"
+- ❌ Negative tests: "This should be rejected" (semantic violations)
+
+**Manual exploration** (with janbam):
+- 🌟 Edge cases: "What does this parse tree mean?"
+- Novel combinations that spark discussion
+- Boundary cases that could go either way
+
+**The key insight**: Not all "Parsed 0 trees" are failures!
+- Some are correctly enforced semantic constraints ✅
+- Some are design boundaries to discuss 🤔
+- Some are surprising opportunities 💡
+
+### Practical Workflow
+
+When you encounter an edge case:
+1. **Don't judge it mechanically** - don't auto-label as "limitation"
+2. **Examine the parse tree** - run it, look at what the grammar produces
+3. **Discuss with janbam** - what does this reveal about the language?
+4. **Make conscious decisions together** - keep boundary or extend?
+
+The parse tree itself becomes the artifact for collaborative inquiry!
+
+See **PARADIGM-SHIFT.md** for full details on the Living Language Paradigm.
+
 🌳✨🎨🔮🌈

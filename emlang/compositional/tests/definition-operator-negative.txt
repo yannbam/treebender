@@ -1,0 +1,14 @@
+# Negative Tests: Definition Operator
+# These SHOULD fail (0 parses) - testing semantic constraints
+# Wrong definition name = unification failure = grammar correctly rejects
+
+# Wrong definition names (name mismatch)
+star define 🔥 then circus
+circus define 💧 then castle
+castle define 💨 then temple
+temple define 🌍 then rainbow
+rainbow define 🌑 then star
+
+# Mixed mismatches
+star define ‹ 🔥 › then rainbow
+circus define 🔄 💧 then temple
