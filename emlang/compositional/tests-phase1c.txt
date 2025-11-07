@@ -1,0 +1,56 @@
+# ===============================================
+# Phase 1C Tests: Advanced Compositional Features
+# Variable Binding, Pattern Matching Semantics, Meta-Operators
+# All implemented via PURE .fgr grammar techniques!
+# ===============================================
+
+# === VARIABLE BINDING ===
+# Dynamic variables via two-tag unification
+# Syntax: var bind element arrow var
+
+# Basic variable binding
+x bind 🔥 arrow x
+y bind 💧 arrow y
+z bind 💨 arrow z
+
+# Unicode variables
+α bind 🔥 arrow α
+β bind 💧 arrow β
+γ bind 💨 arrow γ
+
+# Variable with operation
+x bind 🔥 arrow x plus 💧
+y bind 💧 arrow y plus 🔥
+
+# Variables with containers
+x bind ‹ 🔥 › arrow x
+y bind ❴ 🔥 plus 💧 ❵ arrow y
+
+# === PATTERN MATCHING SEMANTICS ===
+# Patterns declare can_match features
+# Unification enforces type checking!
+
+# Two-element OR patterns
+popen 🔥 por 💧 pclose matches 🔥
+popen 🔥 por 💧 pclose matches 💧
+
+# Single-element patterns  
+popen 🔥 pclose matches 🔥
+popen 💧 pclose matches 💧
+popen 💨 pclose matches 💨
+
+# Three-element OR patterns
+popen 🔥 por 💧 por 💨 pclose matches 🔥
+popen 🔥 por 💧 por 💨 pclose matches 💧
+popen 🔥 por 💧 por 💨 pclose matches 💨
+
+# === EVALUATION OPERATOR ===
+# Structural transformation via rewrite rules
+# Like Vdative -> Vbare!
+
+# Evaluate recursive elements
+recurse 🔥 eval recurse 🔥
+recurse 💧 eval recurse 💧
+
+# Evaluate recursive containers
+recurse ‹ 🔥 › eval recurse ‹ 🔥 ›

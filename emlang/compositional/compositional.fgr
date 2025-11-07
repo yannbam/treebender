@@ -352,3 +352,127 @@ TransOpen -> ❴
 TransClose -> ❵
 ChanOpen -> ⦅
 ChanClose -> ⦆
+
+// ======================================================================
+// === PHASE 1C: ADVANCED COMPOSITIONAL FEATURES ===
+// Implementing variable binding, pattern matching semantics, and
+// meta-operators using PURE .fgr GRAMMAR techniques
+//
+// KEY INSIGHT: Feature grammars can express complex semantics without
+// external evaluation code! Tags provide variable unification, multiple
+// productions provide alternation, and rewrite rules provide evaluation.
+//
+// Inspired by examples/dative-shift.fgr and examples/reflexives.fgr
+// ======================================================================
+
+// === DYNAMIC VARIABLE BINDING (Phase 1C) ===
+// Variables bind to emoji values via feature tag unification
+// TWO-DIMENSIONAL TAGS: #n = variable NAME, #v = variable VALUE
+//
+// Syntax: "x bind 🔥 arrow x" instead of subscripts like 🔥ₓ
+// This approach requires NO lexer changes, pure grammar!
+//
+// The magic: Both name and value must unify for valid reference
+// Wrong variable name → unification fails → 0 parses (semantic error!)
+
+// Add variable binding expressions to top level
+Sigil -> VarExpr
+
+// Variable expression: bind variable, use in result
+VarExpr[ var: #n, val: #v, result: #r ] -> VarBinding[ var_name: #n, var_value: #v ] VarArrow VarResult[ needs_var: #n, has_val: #v, yields: #r ]
+
+// Binding: associate variable name with element/container/pattern
+VarBinding[ var_name: #n, var_value: #v ] -> Variable[ name: #n ] BindOp Element[ type: #v ]
+VarBinding[ var_name: #n, var_value: #c ] -> Variable[ name: #n ] BindOp Container[ type: #c ]
+VarBinding[ var_name: #n, var_value: pattern ] -> Variable[ name: #n ] BindOp Pattern
+
+// Variable reference - returns bound value
+VarResult[ needs_var: #n, has_val: #v, yields: #v ] -> Variable[ name: #n ]
+
+// Variable reference with operation
+VarResult[ needs_var: #n, has_val: #v, yields: combined ] -> Variable[ name: #n ] Operator Element
+VarResult[ needs_var: #n, has_val: #v, yields: combined ] -> Variable[ name: #n ] Operator Container
+
+// Variable names - extensible! Add more as needed
+// Can use ascii (x, y, z) or unicode (α, β, γ)
+Variable[ name: x ] -> x
+Variable[ name: y ] -> y
+Variable[ name: z ] -> z
+Variable[ name: a ] -> a
+Variable[ name: b ] -> b
+Variable[ name: c ] -> c
+Variable[ name: alpha ] -> α
+Variable[ name: beta ] -> β
+Variable[ name: gamma ] -> γ
+Variable[ name: delta ] -> δ
+
+// Binding operators
+BindOp -> bind
+VarArrow -> arrow
+
+// === PATTERN MATCHING SEMANTICS (Phase 1B continued) ===
+// Patterns declare what types they CAN match via features
+// Matching enforced through tag unification - pure grammar!
+//
+// Example: popen 🔥 por 💧 pclose can match EITHER fire OR water
+// The grammar creates multiple productions with different can_match features
+
+// Add pattern matching expressions to top level
+Sigil -> PatternMatch
+
+// Pattern match expression: pattern matches element
+// Tag #t must unify between pattern's can_match and element's type!
+// If types incompatible, unification fails → 0 parses
+PatternMatch[ matched: #t, result: success ] -> Pattern[ can_match: #t ] MatchOp Element[ type: #t ]
+
+// Patterns can match different types via multiple productions
+// Two-element OR pattern can match first element
+Pattern[ can_match: fire ] -> POpen Element[ type: fire ] POr Element[ type: water ] PClose
+Pattern[ can_match: water ] -> POpen Element[ type: fire ] POr Element[ type: water ] PClose
+
+// Two-element OR pattern can match second element
+Pattern[ can_match: fire ] -> POpen Element[ type: water ] POr Element[ type: fire ] PClose
+Pattern[ can_match: water ] -> POpen Element[ type: water ] POr Element[ type: water ] PClose
+
+// Three-element OR pattern - all combinations
+Pattern[ can_match: fire ] -> POpen Element[ type: fire ] POr Element[ type: water ] POr Element[ type: air ] PClose
+Pattern[ can_match: water ] -> POpen Element[ type: fire ] POr Element[ type: water ] POr Element[ type: air ] PClose
+Pattern[ can_match: air ] -> POpen Element[ type: fire ] POr Element[ type: water ] POr Element[ type: air ] PClose
+
+// Single-element patterns
+Pattern[ can_match: fire ] -> POpen Element[ type: fire ] PClose
+Pattern[ can_match: water ] -> POpen Element[ type: water ] PClose
+Pattern[ can_match: air ] -> POpen Element[ type: air ] PClose
+Pattern[ can_match: earth ] -> POpen Element[ type: earth ] PClose
+Pattern[ can_match: void ] -> POpen Element[ type: void ] PClose
+
+// Match operator
+MatchOp -> matches
+
+// === META-OPERATOR: EVALUATION (⇒) ===
+// Evaluation as structural transformation via rewrite rules
+// Like Vdative -> Vbare in examples/dative-shift.fgr!
+//
+// Unevaluated forms REWRITE to evaluated forms
+// Features encode transformation semantics
+
+// Add evaluation expressions to top level
+Sigil -> EvalExpr
+
+// Evaluation expression: show transformation
+EvalExpr[ before: #b, after: #a ] -> Unevaluated[ form: #b ] EvalArrow Evaluated[ was: #b, becomes: #a ]
+
+// Unevaluated recursive containers
+Unevaluated[ form: recursive_fire ] -> RecurseOp Element[ type: fire ]
+Unevaluated[ form: recursive_water ] -> RecurseOp Element[ type: water ]
+Unevaluated[ form: recursive_container ] -> RecurseOp Container
+
+// Evaluated form: REWRITE RULE transforms structure!
+// This is the key: Evaluated -> Unevaluated is structural transformation
+Evaluated[ was: recursive_fire, becomes: amplified ] -> Unevaluated[ form: recursive_fire ]
+Evaluated[ was: recursive_water, becomes: stabilized ] -> Unevaluated[ form: recursive_water ]
+Evaluated[ was: recursive_container, becomes: channeled ] -> Unevaluated[ form: recursive_container ]
+
+// Evaluation operators
+RecurseOp -> recurse
+EvalArrow -> eval
