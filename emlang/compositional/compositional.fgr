@@ -1,0 +1,285 @@
+// Emlang Compositional Grammar - The Next Evolution
+// Building on the Sigil foundation with transformer emoji, pattern matching, and more
+//
+// PHASE 1A: Transformer Emoji (Higher-Order Operators)
+// Transformers operate ON other emoji, creating compositional semantics
+//
+// Evolution from Sigil:
+// - Adds 8 transformer emoji as higher-order operators
+// - Transformers compose with elements and containers
+// - Pattern matching with ⟨⟩ delimiters
+// - Preserves all sigil semantics and feature propagation
+//
+// Philosophy: Visual symbols as operators, not just terminals
+// Form encodes function, structure reveals semantics
+
+// === TOP-LEVEL STRUCTURE ===
+// Sigil is the top-level category - any valid expression
+// Integrates sigil-emoji-native's linguistic richness with new transformers
+Sigil -> Element
+Sigil -> Container
+Sigil -> Composite
+Sigil -> TransformedElement
+Sigil -> TransformedContainer
+Sigil -> ComposedTransform
+Sigil -> Pattern
+Sigil -> AnnotatedContainer
+Sigil -> AnnotatedElement
+Sigil -> AnnotatedComposite
+Sigil -> AnnotatedTransformed
+
+// === ANNOTATED STRUCTURES (from sigil-emoji-native) ===
+// Linguistic markers that add semantic richness
+
+AnnotatedContainer -> Evidential Container
+AnnotatedContainer -> Honorific Container
+AnnotatedContainer -> Modal Container
+AnnotatedContainer -> Aspectual Container
+AnnotatedContainer -> Directional Container
+
+AnnotatedElement -> Attunement Element
+AnnotatedElement -> Animacy Element
+
+AnnotatedComposite -> TemporalDistance Composite
+AnnotatedComposite -> Clusivity Composite
+AnnotatedComposite -> SwitchRef Composite
+
+// NEW: Annotated transformations!
+// Following compositional symmetry: each linguistic marker can annotate
+// any transformation type (TransformedElement, TransformedContainer, ComposedTransform)
+
+// Evidentials (epistemic source) on transformations
+AnnotatedTransformed -> Evidential TransformedElement
+AnnotatedTransformed -> Evidential TransformedContainer
+AnnotatedTransformed -> Evidential ComposedTransform
+
+// Aspects (temporal structure) on transformations
+AnnotatedTransformed -> Aspectual TransformedElement
+AnnotatedTransformed -> Aspectual TransformedContainer
+AnnotatedTransformed -> Aspectual ComposedTransform
+
+// Modals (necessity/possibility) on transformations
+AnnotatedTransformed -> Modal TransformedElement
+AnnotatedTransformed -> Modal TransformedContainer
+AnnotatedTransformed -> Modal ComposedTransform
+
+// Directionality (energy flow) on transformations
+AnnotatedTransformed -> Directional TransformedElement
+AnnotatedTransformed -> Directional TransformedContainer
+AnnotatedTransformed -> Directional ComposedTransform
+
+// === TRANSFORMER EMOJI (Phase 1A) ===
+// These are higher-order operators that transform other emoji
+// Start as simple terminals - semantic evaluation comes in later phases
+
+// 🎭 Morph/Transform - state changes and metamorphosis
+Transformer[ op: morph, semantics: state_change ] -> 🎭
+
+// 🔄 Recursion/Loop - infinite iteration and self-reference
+Transformer[ op: recursion, semantics: infinite_loop ] -> 🔄
+
+// 🧬 Pattern Replication - multiply and replicate patterns
+Transformer[ op: replicate, semantics: pattern_multiply ] -> 🧬
+
+// 📦 Package/Encapsulate - defer evaluation, create thunks
+Transformer[ op: package, semantics: defer_eval ] -> 📦
+
+// 🔗 Bind/Link - create relationships and connections
+Transformer[ op: bind, semantics: create_link ] -> 🔗
+
+// ⚡ Force Evaluation - immediate execution, strict evaluation
+Transformer[ op: force, semantics: immediate_eval ] -> ⚡
+
+// 🌀 Lazy/Suspend - suspend evaluation, create promises
+Transformer[ op: lazy, semantics: suspend_eval ] -> 🌀
+
+// 🪞 Reflection - meta-examination and introspection
+Transformer[ op: reflect, semantics: meta_examine ] -> 🪞
+
+// === TRANSFORMER APPLICATION RULES ===
+// Transformers apply to elements, containers, or sigils
+// The transformation type propagates through feature structures
+
+// Transformer + Element creates a transformed element
+TransformedElement[ transform: #t ] -> Transformer[ op: #t ] Element
+
+// Transformer + Container creates a transformed container
+TransformedContainer[ transform: #t ] -> Transformer[ op: #t ] Container
+
+// Multiple transformers compose left-to-right
+// Example: 🔄 📦 🔥 = recursively packaged fire
+ComposedTransform[ transform1: #t1, transform2: #t2 ] -> Transformer[ op: #t1 ] Transformer[ op: #t2 ] Element
+ComposedTransform[ transform1: #t1, transform2: #t2 ] -> Transformer[ op: #t1 ] Transformer[ op: #t2 ] Container
+
+// === LINGUISTIC MARKERS (from sigil-emoji-native) ===
+// Rich semantic annotations inspired by natural language typology
+
+// EVIDENTIALITY: How we know (epistemic source)
+Evidential[ evid: direct ] -> 👁️
+Evidential[ evid: inferred ] -> 🔍
+Evidential[ evid: hearsay ] -> 👂
+Evidential[ evid: intuitive ] -> 🔮
+
+// ASPECT: Temporal structure of events
+Aspectual[ aspect: habitual ] -> 🔁
+Aspectual[ aspect: perfective ] -> ✅
+Aspectual[ aspect: progressive ] -> ▶️
+Aspectual[ aspect: inceptive ] -> 🌱
+Aspectual[ aspect: cessative ] -> 🛑
+
+// ATTUNEMENT: Relationship to magical elements
+Attunement[ attune: natural ] -> 🌿
+Attunement[ attune: forced ] -> 🔨
+Attunement[ attune: harmonious ] -> ☯️
+Attunement[ attune: discordant ] -> ⚔️
+
+// HONORIFICS: Respect level (social deixis)
+Honorific[ honor: humble ] -> 🙇
+Honorific[ honor: neutral ] -> 😐
+Honorific[ honor: honorific ] -> 🙏
+Honorific[ honor: sacred ] -> 👑
+
+// ANIMACY: Consciousness level (ontological hierarchy)
+Animacy[ anim: sentient ] -> 🧠
+Animacy[ anim: living ] -> 💚
+Animacy[ anim: spiritual ] -> 👻
+Animacy[ anim: inert ] -> 🪨
+
+// DIRECTIONALITY: Energy flow vectors
+Directional[ direction: upward ] -> ⬆️
+Directional[ direction: downward ] -> ⬇️
+Directional[ direction: inward ] -> ⏺️
+Directional[ direction: outward ] -> 💫
+Directional[ direction: cyclical ] -> ⭕
+
+// MODAL: Necessity and possibility (deontic/epistemic modality)
+Modal[ mode: potential ] -> 🤔
+Modal[ mode: necessary ] -> ❗
+Modal[ mode: prohibited ] -> 🚫
+Modal[ mode: obligated ] -> 📋
+Modal[ mode: desired ] -> ⭐
+
+// SWITCH-REFERENCE: Topic/focus tracking
+SwitchRef[ switch: same ] -> ➡️
+SwitchRef[ switch: different ] -> 🔀
+SwitchRef[ switch: reflexive ] -> 🪞
+
+// TEMPORAL DISTANCE: How far in time
+TemporalDistance[ time: immediate ] -> ⚡
+TemporalDistance[ time: recent ] -> 📅
+TemporalDistance[ time: remote ] -> 🏛️
+
+// CLUSIVITY: Who participates (inclusive/exclusive distinction)
+Clusivity[ clus: inclusive ] -> 👥
+Clusivity[ clus: exclusive ] -> 🚶🚶
+Clusivity[ clus: solo ] -> 🧍
+
+// === PATTERN MATCHING (Phase 1B) ===
+// Pattern delimiters using mathematical angle brackets ⟨⟩
+// Start with simple alternation (OR) patterns
+
+// Pattern wrapper
+Pattern -> POpen PatternContent PClose
+
+// Pattern content - alternation (OR) matching
+// ⟨🔥|💧⟩ = match fire OR water
+PatternContent -> Element POr Element
+PatternContent -> Element POr Element POr Element
+
+// Pattern terminals - word-based for now (Unicode tokenization needs investigation)
+POpen -> popen
+PClose -> pclose
+POr -> por
+
+// === CONTAINERS ===
+// Four container types from Sigil, each with distinct semantics
+// Containers modify or propagate features from contents
+
+// Amplifier ‹ › - increases energy, propagates features upward
+Container[ type: amplify, energy: #e ] -> AmpOpen Contents[ energy: #e ] AmpClose
+
+// Stabilizer ⟦ ⟧ - grounds volatile elements, reduces energy
+Container[ type: stabilize, energy: low ] -> StabOpen Contents[ energy: #e ] StabClose
+
+// Transformer ❴ ❵ - allows element fusion, creates emergent states
+Container[ type: transform ] -> TransOpen FusedContents TransClose
+
+// Channeler ⦅ ⦆ - directs energy, preserves all properties
+Container[ type: channel, energy: #e, state: #s ] -> ChanOpen Contents[ energy: #e, state: #s ] ChanClose
+
+// === CONTENTS ===
+// Recursive contents allow arbitrary nesting depth
+// Each level of nesting adds semantic complexity
+// Supports both transformers and linguistic annotations
+
+Contents -> Element
+Contents -> Element Contents
+Contents -> Container
+Contents -> Container Contents
+Contents -> TransformedElement
+Contents -> TransformedElement Contents
+Contents -> AnnotatedElement
+Contents -> AnnotatedElement Contents
+Contents -> AnnotatedContainer
+Contents -> AnnotatedContainer Contents
+
+// Fused contents for transformer containers
+// Allows element fusion with operators
+// Supports annotated elements for richer semantic fusion
+FusedContents -> Element Operator Element
+FusedContents -> Element Operator Element Operator Element
+FusedContents -> Element
+FusedContents -> PowerElement
+FusedContents -> Container Operator Element
+FusedContents -> Element Operator Container
+FusedContents -> Container Operator Container
+FusedContents -> AnnotatedElement Operator AnnotatedElement
+FusedContents -> AnnotatedElement
+FusedContents -> TransformedElement Operator TransformedElement
+
+// === POWER ELEMENTS ===
+// Repeated elements = stronger manifestation
+// *** = triple fire = extreme power
+PowerElement -> Element Element
+PowerElement -> Element PowerElement
+
+// === COMPOSITE STRUCTURES ===
+// Juxtaposition and explicit operations
+Composite -> Sigil Operator Sigil
+Composite -> Sigil Sigil
+
+// === ELEMENTS (Base Symbols) ===
+// Five fundamental elements with inherent properties
+// Properties propagate through feature unification
+
+// 🔥 Fire - high energy, volatile, aggressive
+Element[ type: fire, energy: high, state: volatile, aspect: aggressive ] -> 🔥
+
+// 💧 Water - medium energy, flowing, adaptive
+Element[ type: water, energy: medium, state: flowing, aspect: adaptive ] -> 💧
+
+// 💨 Air - medium energy, free, swift
+Element[ type: air, energy: medium, state: free, aspect: swift ] -> 💨
+
+// 🌍 Earth - low energy, solid, protective
+Element[ type: earth, energy: low, state: solid, aspect: protective ] -> 🌍
+
+// 🌑 Void - no energy, ethereal, mysterious
+Element[ type: void, energy: none, state: ethereal, aspect: mysterious ] -> 🌑
+
+// === OPERATORS ===
+// Combine, negate, or create barriers between elements
+Operator -> plus
+Operator -> minus
+Operator -> pipe
+
+// === CONTAINER DELIMITERS ===
+// Using Unicode brackets for visual clarity
+AmpOpen -> ‹
+AmpClose -> ›
+StabOpen -> ⟦
+StabClose -> ⟧
+TransOpen -> ❴
+TransClose -> ❵
+ChanOpen -> ⦅
+ChanClose -> ⦆

@@ -1,0 +1,83 @@
+# Emlang Compositional - Integration Tests
+# Showcasing the fusion of linguistic markers + transformers + patterns
+#
+# This demonstrates the TRUE compositional power:
+# - Linguistic markers from sigil-emoji-native (evidentials, aspect, attunement, etc.)
+# - Transformer emoji (higher-order operators)
+# - Pattern matching (structural patterns)
+# - All composing together in arbitrarily deep structures!
+
+### LEVEL 1: Linguistic Markers + Elements
+# Foundation from sigil-emoji-native
+
+👁️ 🔥
+🔍 💧
+🌿 🔥
+🧠 💧
+⬆️ ‹ 🔥 ›
+
+### LEVEL 2: Linguistic Markers + Transformers
+# The compositional leap!
+
+👁️ 🔄 🔥
+🔍 🎭 💧
+✅ 📦 💨
+🌿 🧠 🔥
+
+### LEVEL 3: Transformers + Annotated Elements in Containers
+# Deep nesting with rich semantics
+
+🔄 ‹ 🌿 🔥 ›
+🎭 ⟦ 🧠 💧 ⟧
+📦 ❴ 🌿 🔥 plus 🧠 💧 ❵
+
+### LEVEL 4: Annotated Transformations
+# Evidentials and aspects on transformations themselves!
+
+👁️ 🔄 🔥
+👁️ 🔄 ‹ 🔥 ›
+👁️ 🔄 ‹ 🌿 🔥 ›
+✅ 🎭 ⟦ 🧠 💧 ⟧
+
+### LEVEL 5: Maximum Compositional Depth
+# Every layer adding semantic richness
+
+👁️ 🔄 ‹ 🌿 🔥 ›
+🔍 🎭 ⟦ 🧠 💧 ⟧
+✅ 📦 ❴ 🌿 🔥 plus 🧠 💧 ❵
+⬆️ 🔄 📦 ‹ ❴ 🌿 🔥 plus 💧 ❵ ›
+
+### LEVEL 6: Composed Transformers + Annotations
+# Multiple transformers with linguistic markers
+
+👁️ 🔄 📦 🔥
+✅ 🎭 🌀 💧
+▶️ 🔄 📦 ‹ 🌿 🔥 ›
+
+### LEVEL 7: All Features Combined
+# The ultimate test of compositional semantics!
+
+# "I witnessed recursively packaging amplified naturally-attuned fire"
+👁️ 🔄 📦 ‹ 🌿 🔥 ›
+
+# "Completed transformation of lazy stabilized sentient water"
+✅ 🎭 🌀 ⟦ 🧠 💧 ⟧
+
+# "Upward recursive packaging of amplified fused natural fire and water"
+⬆️ 🔄 📦 ‹ ❴ 🌿 🔥 plus 💧 ❵ ›
+
+### LEVEL 8: Integration with Patterns
+# Patterns can be annotated too!
+
+👁️ popen 🔥 por 💧 pclose
+✅ popen 🌿 🔥 por 🧠 💧 pclose
+🔄 popen 🔥 por 💧 por 💨 pclose
+
+### LEVEL 9: The Compositional Pinnacle
+# Every feature working together in harmony
+
+# "I witnessed habitually recursive packaging of necessary amplified
+#  transformation of naturally attuned fire fused with sentient water"
+# (This would be the theoretical maximum - testing subset for now)
+
+👁️ 🔁 🔄 📦 ‹ ❗ ❴ 🌿 🔥 plus 🧠 💧 ❵ ›
