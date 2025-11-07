@@ -240,8 +240,23 @@ cargo run -q -p cli emlang/compositional/compositional.fgr < /tmp/test.txt -f h-
 
 3. **Multiple Annotations:**
    - Can't stack multiple linguistic markers on same target
-   - Example: Can't do `👁️ 🔁 TransformedElement` (evidential + aspect)
+   - Example: Can't do `👁️ 🔁 🔄 🔥` (evidential + aspect + transformer)
    - Would need additional grammar rules for annotation chaining
+
+### Important Learnings
+
+1. **Always Use Heredoc for Unicode Input:**
+   - `echo "🔥" | cargo run...` can corrupt emoji
+   - Always use: `cat > file << 'EOF' ... cargo run < file`
+   - This applies to ALL emoji and Unicode terminals
+   - Shell piping is unreliable for Unicode
+
+2. **Compositional Symmetry is Worth It:**
+   - Initially had minimal AnnotatedTransformed rules (5 total)
+   - Expanded to systematic coverage (12 rules)
+   - Principle: If one linguistic marker can annotate transformations, ALL should
+   - Result: Evidential, Aspectual, Modal, and Directional can ALL annotate any transformation type
+   - Enables expressions like: `⬆️ 🔄 📦 ‹ 🔥 ›` (directional recursive packaged amplified fire)
 
 ### Repository State
 
