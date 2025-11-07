@@ -1,0 +1,453 @@
+{
+  "uuid": "e13a62f3-da64-43ba-9c3d-91ad4bd8b517",
+  "name": "emlang-compositional",
+  "details": "Complete implementation plan for Emlang Compositional - the next evolution of the emoji-based emergent language. This plan covers the addition of transformer emoji (higher-order operators), pattern matching, recursive definitions, semantic roles, and meta-linguistic operators to create a computationally complete visual language.",
+  "tasks": [
+    {
+      "name": "Phase1-Core",
+      "details": "Maximum impact features: transformer emoji, basic pattern matching, and simple variable binding. These three additions provide the foundation for computational completeness.",
+      "status": "pending",
+      "priority": "high",
+      "sub_tasks": [
+        {
+          "name": "transformer-emoji",
+          "details": "Implement transformer emoji as higher-order operators that transform other emoji.\n\nCore transformers to implement:\n- 🎭 Transform/Morph (state change)\n- 🔄 Recursion/Loop (infinite iteration)\n- 🧬 Pattern Replication (multiply patterns)\n- 📦 Package/Encapsulate (defer evaluation)\n- 🔗 Bind/Link (create relationships)\n- ⚡ Force Evaluation (immediate execution)\n- 🌀 Lazy/Suspend (thunk creation)\n- 🪞 Reflection (meta-examination)\n\nEach transformer needs grammar rules and feature unification logic.",
+          "status": "pending",
+          "priority": "urgent",
+          "sub_tasks": [
+            {
+              "name": "grammar-rules",
+              "details": "Define FGR grammar rules for transformer emoji terminals and their compositional syntax",
+              "status": "pending",
+              "priority": "urgent",
+              "uuid": "ec0b7646-ce48-478b-afc0-26ba464d7297",
+              "created_at": "2025-11-07T18:45:25.262Z",
+              "updated_at": "2025-11-07T18:45:25.262Z"
+            },
+            {
+              "name": "feature-structures",
+              "details": "Design feature structures for transformation semantics, including transformation type, target constraints, and evaluation strategy",
+              "status": "pending",
+              "priority": "urgent",
+              "uuid": "9ba39345-4d82-4ef3-a63b-aecd675bce29",
+              "created_at": "2025-11-07T18:45:25.262Z",
+              "updated_at": "2025-11-07T18:45:25.262Z"
+            },
+            {
+              "name": "test-cases",
+              "details": "Create comprehensive test cases for each transformer, including nested transformations",
+              "status": "pending",
+              "priority": "high",
+              "uuid": "158501bc-b2d2-47ef-bcf7-ddeb7cd6719a",
+              "created_at": "2025-11-07T18:45:25.262Z",
+              "updated_at": "2025-11-07T18:45:25.262Z"
+            }
+          ],
+          "uuid": "7e5bee0d-3f1d-4906-9662-ca495436eff2",
+          "created_at": "2025-11-07T18:45:25.262Z",
+          "updated_at": "2025-11-07T18:45:25.262Z",
+          "completion_percentage": 0
+        },
+        {
+          "name": "pattern-matching",
+          "details": "Implement pattern matching with mathematical Unicode symbols.\n\nPatterns to support:\n- ⟨🔥|💧|💨⟩ (alternation)\n- ⟨🔥,💧⟩ (sequence)\n- ⟨🔥*⟩ (zero or more)\n- ⟨🔥+⟩ (one or more)\n- ⟨🔥?⟩ (optional)\n\nRequires extending the parser to handle pattern syntax.",
+          "status": "pending",
+          "priority": "urgent",
+          "sub_tasks": [
+            {
+              "name": "pattern-syntax",
+              "details": "Define grammar for pattern matching expressions using angle brackets ⟨⟩",
+              "status": "pending",
+              "priority": "urgent",
+              "uuid": "af3144c3-77df-414f-a00b-9d6e304a05c1",
+              "created_at": "2025-11-07T18:45:25.262Z",
+              "updated_at": "2025-11-07T18:45:25.262Z"
+            },
+            {
+              "name": "matching-engine",
+              "details": "Implement pattern matching logic that can unify patterns with actual emoji sequences",
+              "status": "pending",
+              "priority": "high",
+              "uuid": "1a86e3fa-e2d1-4c53-8848-9706596833cc",
+              "created_at": "2025-11-07T18:45:25.262Z",
+              "updated_at": "2025-11-07T18:45:25.262Z"
+            },
+            {
+              "name": "pattern-combinators",
+              "details": "Support for combining patterns (alternation, sequence, repetition)",
+              "status": "pending",
+              "priority": "medium",
+              "uuid": "eb266a5f-4111-452d-afef-9976549f1615",
+              "created_at": "2025-11-07T18:45:25.262Z",
+              "updated_at": "2025-11-07T18:45:25.262Z"
+            }
+          ],
+          "uuid": "dfa4a96e-cada-4260-8161-02a39eb6de7f",
+          "created_at": "2025-11-07T18:45:25.262Z",
+          "updated_at": "2025-11-07T18:45:25.262Z",
+          "completion_percentage": 0
+        },
+        {
+          "name": "variable-binding",
+          "details": "Implement variable binding using Unicode subscripts.\n\nSupport binding emoji to variables:\n- 🔥ₓ (fire bound to x)\n- 💧ᵧ (water bound to y)\n- Reference: ₓ, ᵧ, ᵤ\n\nRequires scope management and substitution.",
+          "status": "pending",
+          "priority": "high",
+          "sub_tasks": [
+            {
+              "name": "subscript-parsing",
+              "details": "Parse Unicode subscript characters as variable identifiers",
+              "status": "pending",
+              "priority": "urgent",
+              "uuid": "26d88f3b-ecc3-4c74-b8ca-b8119b1d8c39",
+              "created_at": "2025-11-07T18:45:25.262Z",
+              "updated_at": "2025-11-07T18:45:25.262Z"
+            },
+            {
+              "name": "scope-management",
+              "details": "Implement lexical scoping for bound variables",
+              "status": "pending",
+              "priority": "high",
+              "uuid": "99e3e37b-5db6-47bd-b01e-019e189f573e",
+              "created_at": "2025-11-07T18:45:25.262Z",
+              "updated_at": "2025-11-07T18:45:25.262Z"
+            },
+            {
+              "name": "substitution",
+              "details": "Variable substitution during evaluation",
+              "status": "pending",
+              "priority": "high",
+              "uuid": "21d93bde-0be7-4320-858c-b9be8d259586",
+              "created_at": "2025-11-07T18:45:25.262Z",
+              "updated_at": "2025-11-07T18:45:25.262Z"
+            }
+          ],
+          "uuid": "0db01fa4-e2cb-4afe-b703-4cfd26198a71",
+          "created_at": "2025-11-07T18:45:25.262Z",
+          "updated_at": "2025-11-07T18:45:25.262Z",
+          "completion_percentage": 0
+        }
+      ],
+      "uuid": "31687cc4-97d1-4d1e-b1d3-bc85979716d4",
+      "created_at": "2025-11-07T18:45:25.261Z",
+      "updated_at": "2025-11-07T18:45:25.261Z",
+      "completion_percentage": 0
+    },
+    {
+      "name": "Phase2-Deepening",
+      "details": "Add semantic richness through thematic roles and meta-operators for definitions and transformations",
+      "status": "pending",
+      "priority": "medium",
+      "sub_tasks": [
+        {
+          "name": "semantic-roles",
+          "details": "Implement semantic/thematic role markers.\n\nRoles to implement:\n- 🤌 Agent (performer)\n- 🎯 Patient (receiver)\n- 🛠️ Instrument (tool)\n- 🎁 Beneficiary (benefiter)\n- 📍 Location (place)\n- ⏰ Time (when)\n\nInspired by ergative-absolutive languages.",
+          "status": "pending",
+          "priority": "medium",
+          "sub_tasks": [
+            {
+              "name": "role-grammar",
+              "details": "Define how semantic roles combine with elements and containers",
+              "status": "pending",
+              "priority": "medium",
+              "uuid": "4a6358f7-946b-4e75-9f35-f1918a55d103",
+              "created_at": "2025-11-07T18:45:25.262Z",
+              "updated_at": "2025-11-07T18:45:25.262Z"
+            },
+            {
+              "name": "role-constraints",
+              "details": "Implement constraints on which elements can take which roles",
+              "status": "pending",
+              "priority": "medium",
+              "uuid": "8a6ece42-ff08-457b-abf2-54ec85d6f5fd",
+              "created_at": "2025-11-07T18:45:25.262Z",
+              "updated_at": "2025-11-07T18:45:25.262Z"
+            },
+            {
+              "name": "role-interaction",
+              "details": "Define how multiple roles interact in a single expression",
+              "status": "pending",
+              "priority": "low",
+              "uuid": "489a90b1-5699-4f94-aa65-ccc9b3f84849",
+              "created_at": "2025-11-07T18:45:25.262Z",
+              "updated_at": "2025-11-07T18:45:25.262Z"
+            }
+          ],
+          "uuid": "9be0e395-f2ce-4e32-81e4-ef7437731aff",
+          "created_at": "2025-11-07T18:45:25.262Z",
+          "updated_at": "2025-11-07T18:45:25.262Z",
+          "completion_percentage": 0
+        },
+        {
+          "name": "meta-operators",
+          "details": "Implement meta-linguistic operators for definitions and transformations.\n\nOperators:\n- ≡ (definition/assignment)\n- ⇒ (evaluation/reduction)\n- ∘ (function composition)\n\nEnables creating new abstractions.",
+          "status": "pending",
+          "priority": "medium",
+          "sub_tasks": [
+            {
+              "name": "definition-operator",
+              "details": "Implement ≡ for creating named definitions",
+              "status": "pending",
+              "priority": "high",
+              "uuid": "b2d361d4-fb75-49cd-8042-62e7f8f65a87",
+              "created_at": "2025-11-07T18:45:25.262Z",
+              "updated_at": "2025-11-07T18:45:25.262Z"
+            },
+            {
+              "name": "evaluation-operator",
+              "details": "Implement ⇒ for showing evaluation results",
+              "status": "pending",
+              "priority": "medium",
+              "uuid": "4e6c88b7-3ccf-4792-a7b6-e6a41330fd98",
+              "created_at": "2025-11-07T18:45:25.262Z",
+              "updated_at": "2025-11-07T18:45:25.262Z"
+            },
+            {
+              "name": "composition-operator",
+              "details": "Implement ∘ for composing transformations",
+              "status": "pending",
+              "priority": "medium",
+              "uuid": "cc1f03ca-956d-4bd9-bc0d-3dfd92fa2c13",
+              "created_at": "2025-11-07T18:45:25.262Z",
+              "updated_at": "2025-11-07T18:45:25.262Z"
+            }
+          ],
+          "uuid": "1dc1261d-7f51-42f5-9a90-4b777ad1fd42",
+          "created_at": "2025-11-07T18:45:25.262Z",
+          "updated_at": "2025-11-07T18:45:25.262Z",
+          "completion_percentage": 0
+        }
+      ],
+      "uuid": "7f264f8c-78c8-43dc-b13c-78fa501b5c80",
+      "created_at": "2025-11-07T18:45:25.262Z",
+      "updated_at": "2025-11-07T18:45:25.262Z",
+      "completion_percentage": 0
+    },
+    {
+      "name": "Phase3-Refinement",
+      "details": "Advanced features for full expressiveness: complex patterns and meta-linguistic capabilities",
+      "status": "pending",
+      "priority": "low",
+      "sub_tasks": [
+        {
+          "name": "advanced-patterns",
+          "details": "Extend pattern matching with quantifiers and complex combinators.\n\nAdvanced features:\n- Nested patterns\n- Pattern guards\n- Named pattern captures\n- Backtracking optimization",
+          "status": "pending",
+          "priority": "low",
+          "sub_tasks": [
+            {
+              "name": "nested-patterns",
+              "details": "Support patterns within patterns",
+              "status": "pending",
+              "priority": "low",
+              "uuid": "27189105-7fbc-43ea-864f-bebd21625b43",
+              "created_at": "2025-11-07T18:45:25.262Z",
+              "updated_at": "2025-11-07T18:45:25.262Z"
+            },
+            {
+              "name": "pattern-guards",
+              "details": "Conditional constraints on pattern matches",
+              "status": "pending",
+              "priority": "low",
+              "uuid": "77868d6e-1fb9-40e5-b6cf-799f7e95a8a9",
+              "created_at": "2025-11-07T18:45:25.262Z",
+              "updated_at": "2025-11-07T18:45:25.262Z"
+            },
+            {
+              "name": "named-captures",
+              "details": "Bind matched patterns to variables",
+              "status": "pending",
+              "priority": "low",
+              "uuid": "f341c627-93d5-4575-b4ab-30ca56657087",
+              "created_at": "2025-11-07T18:45:25.262Z",
+              "updated_at": "2025-11-07T18:45:25.262Z"
+            }
+          ],
+          "uuid": "f196deb6-ddc4-426e-83f1-2f7a65899e98",
+          "created_at": "2025-11-07T18:45:25.262Z",
+          "updated_at": "2025-11-07T18:45:25.262Z",
+          "completion_percentage": 0
+        },
+        {
+          "name": "quotation-system",
+          "details": "Implement quotation for meta-linguistic operations.\n\nQuotation levels:\n- 「」 Use/mention distinction\n- 『』 Meta-quotation\n- Quasi-quotation for templates\n\nEnables talking about the language itself.",
+          "status": "pending",
+          "priority": "low",
+          "sub_tasks": [
+            {
+              "name": "basic-quotation",
+              "details": "Implement 「」 for quoting emoji without evaluation",
+              "status": "pending",
+              "priority": "low",
+              "uuid": "264cc448-3b16-4153-ad67-88302f11948e",
+              "created_at": "2025-11-07T18:45:25.262Z",
+              "updated_at": "2025-11-07T18:45:25.262Z"
+            },
+            {
+              "name": "meta-quotation",
+              "details": "Implement 『』 for quotes of quotes",
+              "status": "pending",
+              "priority": "low",
+              "uuid": "4ac0b433-e0bb-4992-82b5-e004035e7c75",
+              "created_at": "2025-11-07T18:45:25.262Z",
+              "updated_at": "2025-11-07T18:45:25.262Z"
+            },
+            {
+              "name": "quasi-quotation",
+              "details": "Template system with unquote for code generation",
+              "status": "pending",
+              "priority": "low",
+              "uuid": "ab3498c8-6885-4b01-a7e1-1c86e45d6044",
+              "created_at": "2025-11-07T18:45:25.262Z",
+              "updated_at": "2025-11-07T18:45:25.262Z"
+            }
+          ],
+          "uuid": "4e7fbc65-39e6-4268-bf72-97393b9d0e93",
+          "created_at": "2025-11-07T18:45:25.262Z",
+          "updated_at": "2025-11-07T18:45:25.262Z",
+          "completion_percentage": 0
+        }
+      ],
+      "uuid": "a8362b4f-6f5c-4b5f-8056-83054708dd22",
+      "created_at": "2025-11-07T18:45:25.262Z",
+      "updated_at": "2025-11-07T18:45:25.262Z",
+      "completion_percentage": 0
+    },
+    {
+      "name": "Documentation",
+      "details": "Comprehensive documentation for the new compositional language features",
+      "status": "pending",
+      "priority": "high",
+      "sub_tasks": [
+        {
+          "name": "README",
+          "details": "Main documentation explaining the compositional evolution, philosophy, and usage",
+          "status": "pending",
+          "priority": "urgent",
+          "uuid": "740a9bad-f9f5-440e-9b61-8121b337e5ea",
+          "created_at": "2025-11-07T18:45:25.262Z",
+          "updated_at": "2025-11-07T18:45:25.262Z"
+        },
+        {
+          "name": "grammar-spec",
+          "details": "Complete FGR grammar specification for compositional emlang",
+          "status": "pending",
+          "priority": "high",
+          "uuid": "ef8322ef-6510-435b-84a8-d43a15d5ea0d",
+          "created_at": "2025-11-07T18:45:25.262Z",
+          "updated_at": "2025-11-07T18:45:25.262Z"
+        },
+        {
+          "name": "example-gallery",
+          "details": "Gallery of example expressions from simple to complex",
+          "status": "pending",
+          "priority": "medium",
+          "uuid": "0762fae1-1213-431c-83aa-30a5c69e0a0f",
+          "created_at": "2025-11-07T18:45:25.262Z",
+          "updated_at": "2025-11-07T18:45:25.262Z"
+        },
+        {
+          "name": "tutorial-spells",
+          "details": "Progressive tutorial spells teaching each new concept",
+          "status": "pending",
+          "priority": "medium",
+          "uuid": "067ac023-7c52-4a4e-9d69-99bad753cbd4",
+          "created_at": "2025-11-07T18:45:25.262Z",
+          "updated_at": "2025-11-07T18:45:25.262Z"
+        }
+      ],
+      "uuid": "81bc54c9-84af-4b96-8a23-5803c8fe2f9f",
+      "created_at": "2025-11-07T18:45:25.262Z",
+      "updated_at": "2025-11-07T18:45:25.262Z",
+      "completion_percentage": 0
+    },
+    {
+      "name": "Testing",
+      "details": "Comprehensive testing suite for compositional features",
+      "status": "pending",
+      "priority": "high",
+      "sub_tasks": [
+        {
+          "name": "unit-tests",
+          "details": "Unit tests for each new grammatical construct",
+          "status": "pending",
+          "priority": "high",
+          "uuid": "11c663d9-49a9-4569-a6ad-b386995ab406",
+          "created_at": "2025-11-07T18:45:25.262Z",
+          "updated_at": "2025-11-07T18:45:25.262Z"
+        },
+        {
+          "name": "integration-tests",
+          "details": "Tests for complex interactions between features",
+          "status": "pending",
+          "priority": "high",
+          "uuid": "be093b3b-9c47-47f7-bfc1-b972db978dbd",
+          "created_at": "2025-11-07T18:45:25.262Z",
+          "updated_at": "2025-11-07T18:45:25.262Z"
+        },
+        {
+          "name": "demo-script",
+          "details": "Interactive demo script showcasing all features",
+          "status": "pending",
+          "priority": "medium",
+          "uuid": "48bd727a-ecce-4b3b-9292-647f3d0d9700",
+          "created_at": "2025-11-07T18:45:25.262Z",
+          "updated_at": "2025-11-07T18:45:25.262Z"
+        },
+        {
+          "name": "benchmarks",
+          "details": "Performance benchmarks for recursive and complex patterns",
+          "status": "pending",
+          "priority": "low",
+          "uuid": "e1adbb81-f8cb-4e1d-a31f-19e8d67ad9e1",
+          "created_at": "2025-11-07T18:45:25.262Z",
+          "updated_at": "2025-11-07T18:45:25.262Z"
+        }
+      ],
+      "uuid": "efa6d9f3-2489-48d6-bf66-ef813e75b0e4",
+      "created_at": "2025-11-07T18:45:25.262Z",
+      "updated_at": "2025-11-07T18:45:25.262Z",
+      "completion_percentage": 0
+    },
+    {
+      "name": "Future-2D",
+      "details": "Research and prototype 2D spatial grammar for the next evolution after compositional",
+      "status": "pending",
+      "priority": "low",
+      "sub_tasks": [
+        {
+          "name": "research",
+          "details": "Research existing 2D grammar systems, visual programming languages, and spatial parsing techniques",
+          "status": "pending",
+          "priority": "low",
+          "uuid": "0150aac6-2d5d-473b-a969-5e0621744849",
+          "created_at": "2025-11-07T18:45:25.262Z",
+          "updated_at": "2025-11-07T18:45:25.262Z"
+        },
+        {
+          "name": "design-doc",
+          "details": "Design document for 2D spatial grammar: vertical hierarchy, horizontal relationships, circular cycles, diagonal transformations",
+          "status": "pending",
+          "priority": "low",
+          "uuid": "e7d18e9f-1903-4a0e-8ef2-f3a549c2bc26",
+          "created_at": "2025-11-07T18:45:25.262Z",
+          "updated_at": "2025-11-07T18:45:25.262Z"
+        },
+        {
+          "name": "prototype",
+          "details": "Proof-of-concept parser for 2D emoji arrangements",
+          "status": "pending",
+          "priority": "low",
+          "uuid": "60c66ee6-5511-4393-8d19-4eb1e80b9ec3",
+          "created_at": "2025-11-07T18:45:25.262Z",
+          "updated_at": "2025-11-07T18:45:25.262Z"
+        }
+      ],
+      "uuid": "0f59faf1-a688-4f01-8d2d-e92818cbc78e",
+      "created_at": "2025-11-07T18:45:25.262Z",
+      "updated_at": "2025-11-07T18:45:25.262Z",
+      "completion_percentage": 0
+    }
+  ],
+  "created_at": "2025-11-07T18:45:25.262Z",
+  "updated_at": "2025-11-07T18:45:31.903Z"
+}
