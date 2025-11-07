@@ -22,7 +22,7 @@ demo() {
     echo "-------------------------------------------------------------------"
     echo "Tokens: $tokens"
     echo ""
-    echo "$tokens" | cargo run -q -p cli examples/sigil-emoji.fgr -n 2>&1 | \
+    echo "$tokens" | cargo run -q -p cli emlang/sigil-emoji/sigil-emoji.fgr -n 2>&1 | \
         grep -A 12 "^>" | head -14 | grep -v "warning:"
 }
 
@@ -139,9 +139,9 @@ echo "  5. SOCIAL MEDIA READY"
 echo "     Tweet a spell: 🔮 ❗ 🙏 ⬆️ <{🔥+💧}> ✨"
 echo ""
 echo "📚 LEARN MORE:"
-echo "  Full docs: cat examples/SIGIL-EMOJI-README.md"
-echo "  Examples:  cat examples/sigil-emoji-gallery.txt"
-echo "  Try:       cargo run -p cli examples/sigil-emoji.fgr"
+echo "  Full docs: cat emlang/sigil-emoji/SIGIL-EMOJI-README.md"
+echo "  Examples:  cat emlang/sigil-emoji/sigil-emoji-gallery.txt"
+echo "  Try:       cargo run -p cli emlang/sigil-emoji/sigil-emoji.fgr"
 echo ""
 echo "═══════════════════════════════════════════════════════════════════"
 echo ""

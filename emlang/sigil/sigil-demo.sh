@@ -29,9 +29,9 @@ demo_sigil() {
     echo "-------------------------------------------------------------------"
 
     if [ "$show_features" = "yes" ]; then
-        echo "$tokens" | cargo run -q -p cli examples/sigil.fgr 2>&1 | grep -v "warning:" | head -50
+        echo "$tokens" | cargo run -q -p cli emlang/sigil/sigil.fgr 2>&1 | grep -v "warning:" | head -50
     else
-        echo "$tokens" | cargo run -q -p cli examples/sigil.fgr -n 2>&1 | grep -v "warning:" | head -30
+        echo "$tokens" | cargo run -q -p cli emlang/sigil/sigil.fgr -n 2>&1 | grep -v "warning:" | head -30
     fi
 }
 
@@ -79,13 +79,13 @@ echo "  ✓ Recursive nesting (arbitrary depth)"
 echo "  ✓ Type-safe composition (grammar enforces valid combinations)"
 echo ""
 echo "Try it yourself:"
-echo "  cargo run -p cli examples/sigil.fgr"
+echo "  cargo run -p cli emlang/sigil/sigil.fgr"
 echo ""
 echo "Explore the gallery:"
-echo "  cat examples/sigil-gallery.txt"
+echo "  cat emlang/sigil/sigil-gallery.txt"
 echo ""
 echo "Read the documentation:"
-echo "  cat examples/SIGIL-README.md"
+echo "  cat emlang/sigil/SIGIL-README.md"
 echo ""
 echo "May your sigils be deeply nested! 🌳✨"
 echo "═══════════════════════════════════════════════════════════════════"

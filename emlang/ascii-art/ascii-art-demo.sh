@@ -32,7 +32,7 @@ run_test() {
     local tokens="$2"
     echo "ASCII Art: $ascii"
     echo "Tokens:    $tokens"
-    echo "$tokens" | cargo run -q -p cli examples/ascii-art.fgr -n 2>/dev/null | head -3
+    echo "$tokens" | cargo run -q -p cli emlang/ascii-art/ascii-art.fgr -n 2>/dev/null | head -3
     echo ""
 }
 
@@ -53,16 +53,16 @@ run_test "**"     "asterisk asterisk"
 
 echo "--- Invalid Combinations (should fail) ---"
 echo "Just eyes (no mouth):"
-echo "colon" | cargo run -q -p cli examples/ascii-art.fgr -n 2>/dev/null | head -2
+echo "colon" | cargo run -q -p cli emlang/ascii-art/ascii-art.fgr -n 2>/dev/null | head -2
 echo ""
 echo "Just mouth (no eyes):"
-echo "rparen" | cargo run -q -p cli examples/ascii-art.fgr -n 2>/dev/null | head -2
+echo "rparen" | cargo run -q -p cli emlang/ascii-art/ascii-art.fgr -n 2>/dev/null | head -2
 echo ""
 
 echo "=== Feature Structure Example ==="
 echo "Let's see the full feature structure for a happy excited face: :-D!!"
 echo ""
-echo "colon dash capd bang bang" | cargo run -q -p cli examples/ascii-art.fgr 2>/dev/null
+echo "colon dash capd bang bang" | cargo run -q -p cli emlang/ascii-art/ascii-art.fgr 2>/dev/null
 
 echo ""
 echo "=== Grammar Rules Summary ==="
@@ -70,4 +70,4 @@ echo "Face -> Eyes Mouth           (simple face)"
 echo "Face -> Eyes Nose Mouth      (face with nose)"
 echo "Face[mood: happy] -> Eyes Nose Mouth[type: smile] Emphasis"
 echo ""
-echo "Try it yourself: cargo run -p cli examples/ascii-art.fgr"
+echo "Try it yourself: cargo run -p cli emlang/ascii-art/ascii-art.fgr"

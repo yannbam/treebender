@@ -7,14 +7,16 @@ echo "║                 Parsing All Sacred Sigils                      ║"
 echo "╚════════════════════════════════════════════════════════════════╝"
 echo ""
 
-SPELL_DIR="$(dirname "$0")"
-GRAMMAR="../sigil-emoji.fgr"
+SPELL_DIR="$(cd "$(dirname "$0")" && pwd)"
+PROJECT_ROOT="$(cd "$SPELL_DIR/../../.." && pwd)"
+GRAMMAR="emlang/sigil-emoji/sigil-emoji.fgr"
 
-cd "$SPELL_DIR" || exit 1
+cd "$PROJECT_ROOT" || exit 1
 
-for spell in *.spell; do
+for spell in "$SPELL_DIR"/*.spell; do
+    spell_name="$(basename "$spell")"
     echo "═══════════════════════════════════════════════════════════════"
-    echo "📜 Spell: $spell"
+    echo "📜 Spell: $spell_name"
     echo "═══════════════════════════════════════════════════════════════"
 
     # Extract spell name and description
