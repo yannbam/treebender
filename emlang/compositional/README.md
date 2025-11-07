@@ -51,6 +51,34 @@ popen 🔥 por 💧 pclose    # Match fire OR water
 popen 🔥 por 💧 por 💨 pclose    # Match fire OR water OR air
 ```
 
+### Phase 1D: Pattern Quantifiers (NEW!)
+
+Pattern repetition quantifiers for computational expressiveness:
+
+| Quantifier | Operator | Semantics | Example |
+|------------|----------|-----------|---------|
+| qstar | * (Kleene star) | Zero or more | `popen 🔥 qstar pclose` matches nothing, 🔥, 🔥🔥, ... |
+| qplus | + (one or more) | One or more | `popen 🔥 qplus pclose` matches 🔥, 🔥🔥, 🔥🔥🔥, ... |
+| qopt | ? (optional) | Zero or one | `popen 🔥 qopt pclose` matches nothing or 🔥 |
+
+**Key Design**: Quantifiers match **PowerElement** structures! This bridges:
+- **Computational**: regex-like repetition matching
+- **Ontological**: 🔥🔥 as intensified fire manifestation
+
+```
+# qstar: zero match
+popen 🔥 qstar pclose matches-zero  ✅
+
+# qstar: multiple via PowerElement
+popen 🔥 qstar pclose matches 🔥 🔥 🔥  ✅
+
+# qplus: requires at least one
+popen 🔥 qplus pclose matches 🔥 🔥  ✅
+
+# qopt: zero or one only (no PowerElement!)
+popen 💧 qopt pclose matches 💧  ✅
+```
+
 ## 🎨 Beautiful Examples
 
 ### Simple Transformation
@@ -216,13 +244,22 @@ done
 - [x] Integration with all language features
 - [x] **Pattern matching SEMANTICS via feature unification** (NEW!)
 
-### ✅ Phase 1C: Variable Binding (COMPLETE - NEW!)
+### ✅ Phase 1C: Variable Binding (COMPLETE)
 - [x] Dynamic variable binding via word markers (x bind 🔥)
 - [x] Two-dimensional tag unification (#n = name, #v = value)
 - [x] 10 variable names (x, y, z, a, b, c, α, β, γ, δ)
 - [x] Unlimited extensibility (just add more Variable productions!)
 - [x] Semantic checking (wrong variable = 0 parses)
 - [x] **NO Rust code changes needed** - pure .fgr grammar!
+
+### ✅ Phase 1D: Pattern Quantifiers (COMPLETE - NEW!)
+- [x] Three quantifiers: qstar (*), qplus (+), qopt (?)
+- [x] Quantifiers match PowerElement structures
+- [x] Bridges computational (regex) and ontological (intensity) semantics
+- [x] Zero, one, and multiple match support
+- [x] Type unification enforces semantic constraints
+- [x] 38/38 comprehensive tests pass
+- [x] **Pure grammar implementation** - no Rust changes!
 
 ### ✅ Phase 2: Semantic Roles (COMPLETE)
 - [x] 6 thematic role markers (🤌 🎯 🛠️ 🎁 📍 ⏰)
@@ -241,8 +278,7 @@ done
 - See tests-integration.txt for details
 
 ### 🔮 Future (Phase 3 & Beyond)
-- [ ] Pattern quantifiers (*, +, ?)
-- [ ] Advanced patterns (quantifiers, guards, captures)
+- [ ] Advanced patterns (guards, captures, nested patterns)
 - [ ] Quotation system (「」『』)
 - [ ] Full semantic evaluation engine (Rust)
 - [ ] 2D spatial grammar (next evolution!)

@@ -23,6 +23,7 @@ Sigil -> TransformedElement
 Sigil -> TransformedContainer
 Sigil -> ComposedTransform
 Sigil -> Pattern
+Sigil -> QuantifiedPattern
 Sigil -> TransformedPattern
 Sigil -> AnnotatedContainer
 Sigil -> AnnotatedElement
@@ -308,9 +309,10 @@ FusedContents -> Element Operator TransformedElement
 
 // === POWER ELEMENTS ===
 // Repeated elements = stronger manifestation
-// *** = triple fire = extreme power
-PowerElement -> Element Element
-PowerElement -> Element PowerElement
+// 🔥🔥 = double fire, 🔥🔥🔥 = triple fire = extreme power
+// Feature: base tracks the element type being repeated
+PowerElement[ base: #t ] -> Element[ type: #t ] Element[ type: #t ]
+PowerElement[ base: #t ] -> Element[ type: #t ] PowerElement[ base: #t ]
 
 // === COMPOSITE STRUCTURES ===
 // Juxtaposition and explicit operations
@@ -476,3 +478,70 @@ Evaluated[ was: recursive_container, becomes: channeled ] -> Unevaluated[ form: 
 // Evaluation operators
 RecurseOp -> recurse
 EvalArrow -> eval
+
+// ======================================================================
+// === PHASE 1D: PATTERN QUANTIFIERS (COMBINATORS) ===
+// Pattern repetition quantifiers: *, +, ?
+//
+// KEY DESIGN INSIGHT: Quantifiers bridge TWO semantic domains:
+// 1. COMPUTATIONAL: "zero or more" (like regex)
+// 2. ONTOLOGICAL: PowerElement intensity (🔥🔥 = double fire)
+//
+// Solution: Quantifiers match BOTH single elements AND PowerElement structures!
+//
+// Semantic mapping:
+// - qstar (*) → matches: nothing, 🔥, 🔥🔥, 🔥🔥🔥, ...
+// - qplus (+) → matches: 🔥, 🔥🔥, 🔥🔥🔥, ... (no zero!)
+// - qopt  (?) → matches: nothing, 🔥 (zero or one only)
+//
+// This maintains coherence because PowerElement IS repeated manifestation!
+// ======================================================================
+
+// Add quantified matching to top level
+Sigil -> QuantifiedMatch
+
+// === QUANTIFIER TERMINALS ===
+// Word-based markers (no Unicode tokenization changes needed)
+QuantStar -> qstar   // Zero or more (Kleene star)
+QuantPlus -> qplus   // One or more
+QuantOpt -> qopt     // Optional (zero or one)
+
+// === QUANTIFIED PATTERNS ===
+// Patterns with quantifiers - track what they can match
+
+// qstar: can match any count including zero
+QuantifiedPattern[ quant: star, matches: #t ] -> POpen Element[ type: #t ] QuantStar PClose
+
+// qplus: requires at least one
+QuantifiedPattern[ quant: plus, matches: #t ] -> POpen Element[ type: #t ] QuantPlus PClose
+
+// qopt: zero or exactly one
+QuantifiedPattern[ quant: opt, matches: #t ] -> POpen Element[ type: #t ] QuantOpt PClose
+
+// === QUANTIFIED MATCHING RULES ===
+// Multiple productions handle different match cases
+// Pattern semantics enforced through feature unification!
+
+// ZERO MATCH: qstar and qopt can match zero elements
+// Special terminal "matches-zero" for this case
+QuantifiedMatch[ quant: star, matched: #t, count: zero ] -> QuantifiedPattern[ quant: star, matches: #t ] MatchZero
+QuantifiedMatch[ quant: opt, matched: #t, count: zero ] -> QuantifiedPattern[ quant: opt, matches: #t ] MatchZero
+
+// ONE MATCH: all quantifiers can match single element
+// Tag #q unifies with any quantifier, tag #t enforces type matching
+QuantifiedMatch[ quant: #q, matched: #t, count: one ] -> QuantifiedPattern[ quant: #q, matches: #t ] MatchOp Element[ type: #t ]
+
+// MULTIPLE MATCH: qstar and qplus match PowerElement
+// PowerElement[ base: #t ] must unify with pattern's matches: #t
+// This is the key: PowerElement represents repeated manifestation!
+QuantifiedMatch[ quant: star, matched: #t, count: multiple ] -> QuantifiedPattern[ quant: star, matches: #t ] MatchOp PowerElement[ base: #t ]
+QuantifiedMatch[ quant: plus, matched: #t, count: multiple ] -> QuantifiedPattern[ quant: plus, matches: #t ] MatchOp PowerElement[ base: #t ]
+
+// Note: qopt does NOT match PowerElement (only zero or one!)
+// Semantic constraint enforced through absence of production
+// Attempting to match qopt with PowerElement → 0 parses ✅
+
+// === MATCHING OPERATORS ===
+// matches: general matching operator (already defined)
+// matches-zero: special operator for zero-count matches
+MatchZero -> matches-zero

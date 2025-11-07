@@ -1,0 +1,86 @@
+# Pattern Combinator Tests for Emlang Compositional
+# Phase 1D: Pattern quantifiers (*, +, ?)
+#
+# KEY: Quantifiers match BOTH single elements AND PowerElement structures
+# This maintains semantic coherence: 🔥🔥 IS repeated fire manifestation
+
+# === QSTAR (zero or more) ===
+
+# Zero match - qstar allows empty
+popen 🔥 qstar pclose matches-zero
+
+# One match - single element
+popen 🔥 qstar pclose matches 🔥
+
+# Multiple match - PowerElement (double fire)
+popen 🔥 qstar pclose matches 🔥 🔥
+
+# Multiple match - PowerElement (triple fire)
+popen 🔥 qstar pclose matches 🔥 🔥 🔥
+
+# Different elements
+popen 💧 qstar pclose matches-zero
+popen 💧 qstar pclose matches 💧
+popen 💧 qstar pclose matches 💧 💧
+
+popen 💨 qstar pclose matches-zero
+popen 💨 qstar pclose matches 💨
+popen 💨 qstar pclose matches 💨 💨 💨
+
+# === QPLUS (one or more) ===
+
+# One match - minimum requirement
+popen 🔥 qplus pclose matches 🔥
+
+# Multiple match - PowerElement
+popen 🔥 qplus pclose matches 🔥 🔥
+popen 🔥 qplus pclose matches 🔥 🔥 🔥
+
+# Different elements
+popen 💧 qplus pclose matches 💧
+popen 💧 qplus pclose matches 💧 💧
+
+popen 🌍 qplus pclose matches 🌍
+popen 🌍 qplus pclose matches 🌍 🌍 🌍
+
+# === QOPT (optional: zero or one) ===
+
+# Zero match - optional allows empty
+popen 🔥 qopt pclose matches-zero
+
+# One match - single element only
+popen 🔥 qopt pclose matches 🔥
+
+# Different elements
+popen 💧 qopt pclose matches-zero
+popen 💧 qopt pclose matches 💧
+
+popen 🌑 qopt pclose matches-zero
+popen 🌑 qopt pclose matches 🌑
+
+# === ALL FIVE ELEMENTS ===
+
+# Fire
+popen 🔥 qstar pclose matches-zero
+popen 🔥 qplus pclose matches 🔥
+popen 🔥 qopt pclose matches 🔥
+
+# Water
+popen 💧 qstar pclose matches 💧 💧
+popen 💧 qplus pclose matches 💧
+popen 💧 qopt pclose matches-zero
+
+# Air
+popen 💨 qstar pclose matches 💨
+popen 💨 qplus pclose matches 💨 💨
+popen 💨 qopt pclose matches 💨
+
+# Earth
+popen 🌍 qstar pclose matches 🌍 🌍 🌍
+popen 🌍 qplus pclose matches 🌍 🌍
+popen 🌍 qopt pclose matches-zero
+
+# Void
+popen 🌑 qstar pclose matches 🌑
+popen 🌑 qplus pclose matches 🌑 🌑 🌑
+popen 🌑 qopt pclose matches 🌑

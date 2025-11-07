@@ -1,0 +1,31 @@
+# Negative Tests for Pattern Combinators
+# These should produce 0 parses due to semantic constraints
+
+# === TYPE MISMATCHES ===
+# Pattern expects fire, but gets water
+popen 🔥 qstar pclose matches 💧
+
+# Pattern expects water, but gets fire
+popen 💧 qplus pclose matches 🔥
+
+# Pattern expects air, but gets earth
+popen 💨 qopt pclose matches 🌍
+
+# === QPLUS REJECTS ZERO ===
+# qplus requires at least one match
+# Note: we don't have a "matches-zero" variant for qplus!
+
+# === QOPT REJECTS MULTIPLE ===
+# qopt should only match zero or one, NOT PowerElement
+popen 🔥 qopt pclose matches 🔥 🔥
+popen 💧 qopt pclose matches 💧 💧 💧
+popen 💨 qopt pclose matches 💨 💨
+
+# === WRONG ELEMENT IN POWERELEM ENT ===
+# PowerElement of water shouldn't match pattern for fire
+popen 🔥 qstar pclose matches 💧 💧
+popen 🔥 qplus pclose matches 💧 💧 💧
+
+# PowerElement of fire shouldn't match pattern for water
+popen 💧 qstar pclose matches 🔥 🔥
+popen 💧 qplus pclose matches 🔥 🔥
