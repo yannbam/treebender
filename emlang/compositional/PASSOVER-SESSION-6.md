@@ -313,6 +313,24 @@ This is the power of compositional grammar.
 ❌ **Predetermined semantics** ("this must mean X")
 ✅ **Emergent meaning** ("what does the parse tree show?")
 
+### 🔧 IMPORTANT: Grammar Refactoring Opportunity
+
+**From janbam**: The middle portion of compositional.fgr (lines ~70-100) has MASSIVE repetition!
+
+**Current pattern** (violates DRY):
+```fgr
+AnnotatedTransformed -> Evidential TransformedElement
+AnnotatedTransformed -> Evidential TransformedContainer
+AnnotatedTransformed -> Evidential TransformedQuotation
+AnnotatedTransformed -> Evidential ComposedTransform
+// Same 4 lines repeated for Aspectual, Modal, Directional, SemanticRole...
+// = 5 annotation types × 4 transformed types = 20 productions!
+```
+
+**Task for next session**: Review the grammar with fresh eyes and consolidate using grammar categories/rules. Can we DRY this up? Can we use higher-level grammar abstractions to eliminate repetition?
+
+This is a **refactoring/simplification** task - make the grammar more elegant through consolidation and rewrite rules!
+
 ---
 
 ## 🙏 Acknowledgments
