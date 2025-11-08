@@ -309,6 +309,93 @@ recurse 🔥 eval recurse 🔥
 
 See PARADIGM-SHIFT.md for full technical details on this breakthrough!
 
+## 「」 Quotation System (Phase 3C - NEW!)
+
+**Breakthrough**: Quotation composes freely with ALL features through natural grammar composition!
+
+### Core Concept
+
+**Quotation suspends/represents any Sigil** - creating meta-linguistic capability:
+
+```
+🔥               # Fire (using the element)
+「 🔥 」          # Quoted fire (representing the element)
+```
+
+This is the **use/mention distinction** - quotation lets emlang talk about its own syntax!
+
+### The Power of Free Composition
+
+Instead of defining quotation "types", quotation naturally combines with existing features:
+
+| Composition | Example | Semantics |
+|-------------|---------|-----------|
+| **Basic** | `「 🔥 」` | Represent fire element |
+| **Nested** | `「 「 🔥 」 」` | Meta-quotation (quote a quote!) |
+| **Transformed** | `🔄 「 🔥 」` | Recursive quotation |
+| **Reflected** | `🪞 「 🔥 」` | Examine quoted structure |
+| **Agent-marked** | `🤌 「 🔥 」` | Quotation as agent |
+| **Multi-layer** | `🤌 🔄 「 🔥 」` | Agent-marked recursive quotation |
+
+### What Can Be Quoted
+
+**ANY Sigil structure** - quotation is universal:
+
+```
+「 🔥 」                        # Elements
+「 ‹ 🔥 › 」                     # Containers
+「 ❴ 🔥 plus 💧 ❵ 」             # Composites
+「 🔄 🔥 」                      # Transformations
+「 popen 🔥 por 💧 pclose 」     # Patterns (meta!)
+「 🌿 🔥 」                      # Annotations
+「 🔥 🔥 」                      # Power elements
+```
+
+### Emergent Capabilities
+
+Free composition creates capabilities we didn't explicitly design:
+
+**Meta-recursion**:
+```
+🔄 「 🔄 🔥 」    # Recursive quotation of recursion!
+🪞 「 🪞 💧 」    # Reflection on reflection!
+```
+
+**Complex annotation**:
+```
+🛠️ 📦 「 ‹ 🔥 › 」    # Packaged amplification as instrument
+🎯 🪞 「 💧 」         # Reflected quotation as patient
+```
+
+**All combinations work** because quotation is just another Sigil, and all features already know how to compose with Sigils!
+
+### Implementation
+
+**Minimal grammar** (~15 lines):
+- Added `QuoteOpen` → 「 and `QuoteClose` → 」 terminals
+- Added `Quotation` → `QuoteOpen Sigil QuoteClose`
+- Added `TransformedQuotation` for transformer composition
+- Extended annotation rules for full integration
+
+**Tests**: 27/27 compositions passing (100%)
+- Basic quotation, nested quotation
+- All 8 transformers on quotations
+- All 6 semantic roles on quotations
+- Multi-layer composition
+- Quoting all structure types
+
+See `tests/quotation-composition.txt` for comprehensive examples!
+
+### Why This Matters
+
+Quotation enables:
+1. **Meta-linguistic capability** - talk about syntax itself
+2. **Code as data** - expressions become first-class values
+3. **Reflection** - examine structure of expressions
+4. **Templates** (future) - build expressions from parts
+
+This is a **foundational leap** - emlang can now represent its own structure!
+
 ## 🚀 Running Examples
 
 ### Interactive Mode
@@ -396,7 +483,7 @@ done
 - [x] **Nested patterns** - Patterns match ANY Sigil structure (33/33 tests ✅)
 - [ ] Pattern guards - Conditional constraints on pattern matches
 - [ ] Named captures - Bind matched patterns to variables
-- [ ] Quotation system (「」『』)
+- [x] **Quotation system (「」)** - Meta-linguistic capability via free composition (27/27 tests ✅)
 
 ### 🔮 Future (Beyond Phase 3)
 - [ ] Full semantic evaluation engine (Rust)
