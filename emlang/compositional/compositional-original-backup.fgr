@@ -38,53 +38,67 @@ Sigil -> Quotation
 // Following compositional symmetry: if a marker can annotate containers,
 // it can also annotate elements, patterns, and other structures
 
-// === MARKER ABSTRACTIONS ===
-// Instead of enumerating Marker × Structure for every combination,
-// we define marker hierarchies once and combine with structure types.
-// This is the rewrite rule pattern from dative-shift.fgr applied systematically.
+AnnotatedContainer -> Evidential Container
+AnnotatedContainer -> Honorific Container
+AnnotatedContainer -> Modal Container
+AnnotatedContainer -> Aspectual Container
+AnnotatedContainer -> Directional Container
+AnnotatedContainer -> SemanticRole Container
 
-// Common markers that apply to most structures
-CommonMarker -> Evidential
-CommonMarker -> Honorific
-CommonMarker -> Modal
-CommonMarker -> Aspectual
-CommonMarker -> Directional
-CommonMarker -> SemanticRole
+AnnotatedElement -> Evidential Element
+AnnotatedElement -> Honorific Element
+AnnotatedElement -> Modal Element
+AnnotatedElement -> Aspectual Element
+AnnotatedElement -> Directional Element
+AnnotatedElement -> Attunement Element
+AnnotatedElement -> Animacy Element
+AnnotatedElement -> SemanticRole Element
 
-// Element-specific markers extend common markers
-ElementMarker -> CommonMarker
-ElementMarker -> Attunement
-ElementMarker -> Animacy
+// Patterns can also be annotated
+AnnotatedPattern -> Evidential Pattern
+AnnotatedPattern -> Honorific Pattern
+AnnotatedPattern -> Modal Pattern
+AnnotatedPattern -> Aspectual Pattern
+AnnotatedPattern -> Directional Pattern
+AnnotatedPattern -> SemanticRole Pattern
 
-// Composite-specific markers
-CompositeMarker -> TemporalDistance
-CompositeMarker -> Clusivity
-CompositeMarker -> SwitchRef
+AnnotatedComposite -> TemporalDistance Composite
+AnnotatedComposite -> Clusivity Composite
+AnnotatedComposite -> SwitchRef Composite
 
-// Transform types - all structures that can be transformed and annotated
-TransformType -> TransformedElement
-TransformType -> TransformedContainer
-TransformType -> TransformedQuotation
-TransformType -> ComposedTransform
+// NEW: Annotated transformations!
+// Following compositional symmetry: each linguistic marker can annotate
+// any transformation type (TransformedElement, TransformedContainer, ComposedTransform)
 
-// === CONSOLIDATED ANNOTATION RULES ===
-// Each annotation rule now generates all combinations through marker abstraction
+// Evidentials (epistemic source) on transformations
+AnnotatedTransformed -> Evidential TransformedElement
+AnnotatedTransformed -> Evidential TransformedContainer
+AnnotatedTransformed -> Evidential TransformedQuotation
+AnnotatedTransformed -> Evidential ComposedTransform
 
-// Annotated containers use common markers
-AnnotatedContainer -> CommonMarker Container
+// Aspects (temporal structure) on transformations
+AnnotatedTransformed -> Aspectual TransformedElement
+AnnotatedTransformed -> Aspectual TransformedContainer
+AnnotatedTransformed -> Aspectual TransformedQuotation
+AnnotatedTransformed -> Aspectual ComposedTransform
 
-// Annotated elements use element markers (common + element-specific)
-AnnotatedElement -> ElementMarker Element
+// Modals (necessity/possibility) on transformations
+AnnotatedTransformed -> Modal TransformedElement
+AnnotatedTransformed -> Modal TransformedContainer
+AnnotatedTransformed -> Modal TransformedQuotation
+AnnotatedTransformed -> Modal ComposedTransform
 
-// Annotated patterns use common markers
-AnnotatedPattern -> CommonMarker Pattern
+// Directionality (energy flow) on transformations
+AnnotatedTransformed -> Directional TransformedElement
+AnnotatedTransformed -> Directional TransformedContainer
+AnnotatedTransformed -> Directional TransformedQuotation
+AnnotatedTransformed -> Directional ComposedTransform
 
-// Annotated composites use composite-specific markers
-AnnotatedComposite -> CompositeMarker Composite
-
-// Annotated transformations: common markers × all transform types
-// This single rule replaces 20 explicit rules (5 markers × 4 transform types)
-AnnotatedTransformed -> CommonMarker TransformType
+// Semantic roles on transformations (Phase 2)
+AnnotatedTransformed -> SemanticRole TransformedElement
+AnnotatedTransformed -> SemanticRole TransformedContainer
+AnnotatedTransformed -> SemanticRole TransformedQuotation
+AnnotatedTransformed -> SemanticRole ComposedTransform
 
 // === TRANSFORMER EMOJI (Phase 1A) ===
 // These are higher-order operators that transform other emoji
@@ -248,36 +262,81 @@ Pattern -> POpen PatternContent PClose
 //   popen 🔄 🔥 por 💧 pclose = match recursive-fire OR plain-water
 //   popen popen 🔥 pclose por 💧 pclose = match pattern OR element (meta!)
 
-// === MATCHABLE ABSTRACTION ===
-// Anything that can appear in a pattern is Matchable.
-// Instead of enumerating all pairwise combinations (74 rules),
-// we define Matchable once and let the recursive pattern generate combinations.
+// Elements (original)
+PatternContent -> Element POr Element
+PatternContent -> Element POr PatternContent
+PatternContent -> AnnotatedElement POr AnnotatedElement
+PatternContent -> AnnotatedElement POr PatternContent
+PatternContent -> Element POr AnnotatedElement
+PatternContent -> AnnotatedElement POr Element
 
-Matchable -> Element
-Matchable -> AnnotatedElement
-Matchable -> Container
-Matchable -> AnnotatedContainer
-Matchable -> Composite
-Matchable -> TransformedElement
-Matchable -> TransformedContainer
-Matchable -> TransformedQuotation
-Matchable -> ComposedTransform
-Matchable -> Pattern              // Meta-matching: patterns matching patterns!
-Matchable -> PowerElement
+// Containers - patterns can match container structures
+PatternContent -> Container POr Container
+PatternContent -> Container POr PatternContent
+PatternContent -> Element POr Container
+PatternContent -> Container POr Element
+PatternContent -> AnnotatedElement POr Container
+PatternContent -> Container POr AnnotatedElement
 
-// === CONSOLIDATED PATTERN CONTENT ===
-// These two rules replace all 74 explicit combinations above.
-// The recursive rule handles arbitrary-length alternations:
-// - Matchable POr Matchable generates all two-element patterns
-// - Matchable POr PatternContent handles longer chains recursively
-// Example expansion: A POr (B POr C) = A or (B or C)
+// Composites - patterns can match composite structures (juxtaposition, operators)
+PatternContent -> Composite POr Composite
+PatternContent -> Composite POr PatternContent
+PatternContent -> Element POr Composite
+PatternContent -> Composite POr Element
+PatternContent -> Container POr Composite
+PatternContent -> Composite POr Container
 
-// Two matchables with POr - generates all pairwise combinations
-PatternContent -> Matchable POr Matchable
+// Transformed elements - patterns can match transformer applications
+PatternContent -> TransformedElement POr TransformedElement
+PatternContent -> TransformedElement POr PatternContent
+PatternContent -> Element POr TransformedElement
+PatternContent -> TransformedElement POr Element
+PatternContent -> Container POr TransformedElement
+PatternContent -> TransformedElement POr Container
 
-// Recursive case - matchable followed by more pattern content
-// This handles patterns of any length: A por B por C por D...
-PatternContent -> Matchable POr PatternContent
+// Transformed containers - patterns can match transformed container structures
+PatternContent -> TransformedContainer POr TransformedContainer
+PatternContent -> TransformedContainer POr PatternContent
+PatternContent -> Element POr TransformedContainer
+PatternContent -> TransformedContainer POr Element
+PatternContent -> TransformedElement POr TransformedContainer
+PatternContent -> TransformedContainer POr TransformedElement
+
+// Composed transforms - patterns can match multi-transformer compositions
+PatternContent -> ComposedTransform POr ComposedTransform
+PatternContent -> ComposedTransform POr PatternContent
+PatternContent -> TransformedElement POr ComposedTransform
+PatternContent -> ComposedTransform POr TransformedElement
+PatternContent -> Element POr ComposedTransform
+PatternContent -> ComposedTransform POr Element
+PatternContent -> Container POr ComposedTransform
+PatternContent -> ComposedTransform POr Container
+
+// Patterns matching patterns (META-MATCHING!) - ultimate recursion
+// Example: popen popen 🔥 por 💧 pclose por 💨 pclose
+// Matches: (fire-or-water pattern) OR plain-air
+PatternContent -> Pattern POr Pattern
+PatternContent -> Pattern POr PatternContent
+PatternContent -> Element POr Pattern
+PatternContent -> Pattern POr Element
+PatternContent -> Container POr Pattern
+PatternContent -> Pattern POr Container
+PatternContent -> TransformedElement POr Pattern
+PatternContent -> Pattern POr TransformedElement
+
+// Annotated containers in patterns
+PatternContent -> AnnotatedContainer POr AnnotatedContainer
+PatternContent -> AnnotatedContainer POr PatternContent
+PatternContent -> Element POr AnnotatedContainer
+PatternContent -> AnnotatedContainer POr Element
+PatternContent -> Container POr AnnotatedContainer
+PatternContent -> AnnotatedContainer POr Container
+
+// Power elements in patterns - match intensified manifestations
+PatternContent -> PowerElement POr PowerElement
+PatternContent -> PowerElement POr PatternContent
+PatternContent -> Element POr PowerElement
+PatternContent -> PowerElement POr Element
 
 // Pattern terminals - word-based for now (Unicode tokenization needs investigation)
 POpen -> popen
@@ -310,40 +369,36 @@ Quotation -> QuoteOpen Sigil QuoteClose
 // Each level of nesting adds semantic complexity
 // Supports transformers, linguistic annotations, and all compositional forms
 
-// === CONTENT ITEM ABSTRACTION ===
-// Instead of enumerating each content type twice (with/without recursion),
-// define ContentItem once and use it in the recursive Contents pattern
-ContentItem -> Element
-ContentItem -> Container
-ContentItem -> TransformedElement
-ContentItem -> TransformedContainer
-ContentItem -> AnnotatedElement
-ContentItem -> AnnotatedContainer
-
-// === CONSOLIDATED CONTENTS ===
-// The recursive pattern now works for all content types
-Contents -> ContentItem
-Contents -> ContentItem Contents
+Contents -> Element
+Contents -> Element Contents
+Contents -> Container
+Contents -> Container Contents
+Contents -> TransformedElement
+Contents -> TransformedElement Contents
+Contents -> TransformedContainer
+Contents -> TransformedContainer Contents
+Contents -> AnnotatedElement
+Contents -> AnnotatedElement Contents
+Contents -> AnnotatedContainer
+Contents -> AnnotatedContainer Contents
 
 // Fused contents for transformer containers
 // Allows element fusion with operators
 // Supports annotated elements, transformed elements, and containers for rich fusion
-
-// === FUSEABLE ABSTRACTION ===
-// Anything that can appear in fused contents
-Fuseable -> Element
-Fuseable -> PowerElement
-Fuseable -> Container
-Fuseable -> AnnotatedElement
-Fuseable -> TransformedElement
-
-// === CONSOLIDATED FUSED CONTENTS ===
-// Single fuseable item (no operator)
-FusedContents -> Fuseable
-// Two fused items with operator (generates all cross-product combinations)
-FusedContents -> Fuseable Operator Fuseable
-// Three fused items with operators
-FusedContents -> Fuseable Operator Fuseable Operator Fuseable
+FusedContents -> Element Operator Element
+FusedContents -> Element Operator Element Operator Element
+FusedContents -> Element
+FusedContents -> PowerElement
+FusedContents -> Container Operator Element
+FusedContents -> Element Operator Container
+FusedContents -> Container Operator Container
+FusedContents -> AnnotatedElement Operator AnnotatedElement
+FusedContents -> AnnotatedElement Operator Element
+FusedContents -> Element Operator AnnotatedElement
+FusedContents -> AnnotatedElement
+FusedContents -> TransformedElement Operator TransformedElement
+FusedContents -> TransformedElement Operator Element
+FusedContents -> Element Operator TransformedElement
 
 // === POWER ELEMENTS ===
 // Repeated elements = stronger manifestation

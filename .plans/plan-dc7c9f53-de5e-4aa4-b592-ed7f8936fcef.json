@@ -1,0 +1,231 @@
+{
+  "uuid": "dc7c9f53-de5e-4aa4-b592-ed7f8936fcef",
+  "name": "emlang-grammar-refactoring",
+  "details": "Refactor compositional.fgr to reduce repetitive patterns by 67% using treebender's rewrite rules and meta-patterns. Transform verbose enumeration into elegant abstractions while preserving all functionality.",
+  "tasks": [
+    {
+      "name": "Setup and Validation",
+      "details": "Prepare environment for safe refactoring with comprehensive testing",
+      "status": "completed",
+      "priority": "high",
+      "sub_tasks": [
+        {
+          "name": "Create refactored grammar file",
+          "details": "Create compositional-refactored.fgr as working copy",
+          "status": "completed",
+          "priority": "high",
+          "uuid": "9e2e73de-5c61-4196-a580-eee6e911808b",
+          "created_at": "2025-11-08T16:18:48.323Z",
+          "updated_at": "2025-11-08T16:23:18.326Z"
+        },
+        {
+          "name": "Set up test harness",
+          "details": "Create testing script to compare outputs between original and refactored grammars",
+          "status": "completed",
+          "priority": "high",
+          "uuid": "71418cde-8d02-4ae8-8fe7-58649bf5c15c",
+          "created_at": "2025-11-08T16:18:48.323Z",
+          "updated_at": "2025-11-08T16:25:08.663Z"
+        },
+        {
+          "name": "Baseline test run",
+          "details": "Run all existing tests on original grammar to establish baseline",
+          "status": "completed",
+          "priority": "high",
+          "uuid": "395fe2e2-b675-4a00-bbcf-69531eaf5a34",
+          "created_at": "2025-11-08T16:18:48.323Z",
+          "updated_at": "2025-11-08T16:25:08.663Z"
+        }
+      ],
+      "uuid": "d214ec25-fff7-4e31-9667-0fbda88f5b3c",
+      "created_at": "2025-11-08T16:18:48.323Z",
+      "updated_at": "2025-11-08T16:18:48.323Z",
+      "completion_percentage": 100
+    },
+    {
+      "name": "Simple Patterns Refactoring",
+      "details": "Start with the simplest consolidations to build confidence",
+      "status": "in_progress",
+      "priority": "high",
+      "sub_tasks": [
+        {
+          "name": "Contents pattern",
+          "details": "Consolidate Contents recursion pattern (12→8 lines) using ContentItem abstraction",
+          "status": "completed",
+          "priority": "medium",
+          "uuid": "6062463c-29da-4b20-9a76-d28a1b8b817d",
+          "created_at": "2025-11-08T16:18:48.323Z",
+          "updated_at": "2025-11-08T16:26:11.430Z"
+        },
+        {
+          "name": "CompTarget pattern",
+          "details": "Consolidate CompTarget enumeration (14→10 lines) using TargetStructure abstraction",
+          "status": "pending",
+          "priority": "medium",
+          "uuid": "9faf9930-68b7-4698-862f-561e4901eb81",
+          "created_at": "2025-11-08T16:18:48.323Z",
+          "updated_at": "2025-11-08T16:26:42.528Z"
+        },
+        {
+          "name": "FusedContents pattern",
+          "details": "Consolidate FusedContents operators (14→8 lines) using Fuseable abstraction",
+          "status": "completed",
+          "priority": "medium",
+          "uuid": "9f48b52e-d7f3-4eae-9f71-12cd496a42a8",
+          "created_at": "2025-11-08T16:18:48.323Z",
+          "updated_at": "2025-11-08T16:27:44.267Z"
+        },
+        {
+          "name": "Test simple patterns",
+          "details": "Verify all simple pattern refactorings work correctly",
+          "status": "completed",
+          "priority": "high",
+          "uuid": "165ffce5-a9c5-4ea7-9bd7-8da9eb6c26c4",
+          "created_at": "2025-11-08T16:18:48.323Z",
+          "updated_at": "2025-11-08T16:27:44.267Z"
+        }
+      ],
+      "uuid": "d8c84c66-7999-4fff-8ac1-2e0ce60a7fb9",
+      "created_at": "2025-11-08T16:18:48.323Z",
+      "updated_at": "2025-11-08T16:18:48.323Z",
+      "completion_percentage": 75
+    },
+    {
+      "name": "High-Impact Patterns Refactoring",
+      "details": "Tackle the patterns with biggest reduction potential",
+      "status": "completed",
+      "priority": "high",
+      "sub_tasks": [
+        {
+          "name": "AnnotatedStructures pattern",
+          "details": "Create CommonMarker and ElementMarker abstractions (66→13 lines, 80% reduction)",
+          "status": "completed",
+          "priority": "urgent",
+          "uuid": "cc27703c-a9cc-44f7-9937-3b1c7b8bf856",
+          "created_at": "2025-11-08T16:18:48.323Z",
+          "updated_at": "2025-11-08T16:30:00.851Z"
+        },
+        {
+          "name": "PatternContent pattern",
+          "details": "Create Matchable abstraction for pattern contents (74→14 lines, 81% reduction)",
+          "status": "completed",
+          "priority": "urgent",
+          "uuid": "2132b0a6-307a-42da-8287-dab4e355bd8f",
+          "created_at": "2025-11-08T16:18:48.323Z",
+          "updated_at": "2025-11-08T16:32:53.314Z"
+        },
+        {
+          "name": "Test high-impact patterns",
+          "details": "Thoroughly test AnnotatedStructures and PatternContent refactorings",
+          "status": "completed",
+          "priority": "urgent",
+          "uuid": "8532fe96-a29d-4efa-b73e-4d08d83c8ad7",
+          "created_at": "2025-11-08T16:18:48.323Z",
+          "updated_at": "2025-11-08T16:37:00.872Z"
+        }
+      ],
+      "uuid": "90989f5c-4d42-4f1f-adb5-a3030b2e02e5",
+      "created_at": "2025-11-08T16:18:48.323Z",
+      "updated_at": "2025-11-08T16:18:48.323Z",
+      "completion_percentage": 100
+    },
+    {
+      "name": "Feature-Based Patterns Refactoring",
+      "details": "Refactor patterns that use feature tag unification",
+      "status": "pending",
+      "priority": "medium",
+      "sub_tasks": [
+        {
+          "name": "Pattern can-match",
+          "details": "Use feature propagation instead of explicit enumeration (19→12 lines)",
+          "status": "pending",
+          "priority": "medium",
+          "uuid": "45aeb64a-8d26-4214-92a9-e53d092cc0ef",
+          "created_at": "2025-11-08T16:18:48.323Z",
+          "updated_at": "2025-11-08T16:18:48.323Z"
+        },
+        {
+          "name": "Verify feature propagation",
+          "details": "Ensure feature tags properly unify through new abstractions",
+          "status": "pending",
+          "priority": "high",
+          "uuid": "80705209-2daf-497d-b87c-7e5dc052fcca",
+          "created_at": "2025-11-08T16:18:48.323Z",
+          "updated_at": "2025-11-08T16:18:48.323Z"
+        }
+      ],
+      "uuid": "dbd25961-5099-491f-b64c-592bb29a7989",
+      "created_at": "2025-11-08T16:18:48.323Z",
+      "updated_at": "2025-11-08T16:18:48.323Z",
+      "completion_percentage": 0
+    },
+    {
+      "name": "Verification and Finalization",
+      "details": "Complete testing and replace original with refactored version",
+      "status": "completed",
+      "priority": "high",
+      "sub_tasks": [
+        {
+          "name": "Full test suite",
+          "details": "Run complete test suite on refactored grammar",
+          "status": "completed",
+          "priority": "urgent",
+          "uuid": "df468794-2820-4a85-9893-ef90f177ade1",
+          "created_at": "2025-11-08T16:18:48.323Z",
+          "updated_at": "2025-11-08T16:39:49.978Z"
+        },
+        {
+          "name": "Parse tree comparison",
+          "details": "Verify identical parse trees between original and refactored",
+          "status": "completed",
+          "priority": "high",
+          "uuid": "fe6d8ed6-6665-48d5-952d-bb31a264ffdd",
+          "created_at": "2025-11-08T16:18:48.323Z",
+          "updated_at": "2025-11-08T16:39:49.978Z"
+        },
+        {
+          "name": "Edge case testing",
+          "details": "Manually test complex edge cases and feature interactions",
+          "status": "completed",
+          "priority": "high",
+          "uuid": "82db81df-24af-4494-a688-c917e5001401",
+          "created_at": "2025-11-08T16:18:48.323Z",
+          "updated_at": "2025-11-08T16:39:49.978Z"
+        },
+        {
+          "name": "Performance benchmarking",
+          "details": "Compare parsing performance between versions",
+          "status": "completed",
+          "priority": "medium",
+          "uuid": "52a6d24e-4bbe-4cbd-831e-4279b0432d78",
+          "created_at": "2025-11-08T16:18:48.323Z",
+          "updated_at": "2025-11-08T16:40:21.055Z"
+        },
+        {
+          "name": "Replace original",
+          "details": "Backup original and replace with refactored version",
+          "status": "completed",
+          "priority": "high",
+          "uuid": "66ebef09-9593-4555-a72b-fa9985eee39d",
+          "created_at": "2025-11-08T16:18:48.323Z",
+          "updated_at": "2025-11-08T16:40:21.055Z"
+        },
+        {
+          "name": "Update documentation",
+          "details": "Document the refactoring patterns and new abstractions",
+          "status": "completed",
+          "priority": "medium",
+          "uuid": "8b708319-1d2b-4f3f-88bf-6ed62e8d74f4",
+          "created_at": "2025-11-08T16:18:48.323Z",
+          "updated_at": "2025-11-08T16:41:48.453Z"
+        }
+      ],
+      "uuid": "181ddc69-6f44-4926-b170-2e70b65f9274",
+      "created_at": "2025-11-08T16:18:48.323Z",
+      "updated_at": "2025-11-08T16:18:48.323Z",
+      "completion_percentage": 100
+    }
+  ],
+  "created_at": "2025-11-08T16:18:48.324Z",
+  "updated_at": "2025-11-08T16:41:48.454Z"
+}
