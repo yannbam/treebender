@@ -1,0 +1,15 @@
+# Nested Patterns - Negative Tests (Design Boundaries)
+# These inputs correctly produce 0 parses due to semantic/design constraints
+
+# === ANIMACY/ATTUNEMENT ONLY WORK WITH ELEMENTS, NOT CONTAINERS ===
+# Design decision: Animacy and Attunement are properties of base elements,
+# not of containment structures. This maintains semantic coherence.
+
+# Animacy marker on container - NOT SUPPORTED
+popen 🌿 🔥 por 🧠 ‹ 💧 › pclose matches 🌿 🔥
+
+# Animacy marker on nested container - NOT SUPPORTED
+popen 🌿 🔥 por 🧠 ‹ 💧 › pclose matches 🧠 ‹ 💧 ›
+
+# Attunement marker on container - NOT SUPPORTED (if pattern includes it)
+popen 🌿 🔥 por 🔨 ‹ 💧 › pclose matches 🔨 ‹ 💧 ›

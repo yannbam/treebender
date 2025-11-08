@@ -169,6 +169,39 @@ TransformedElement:
     state: volatile
 ```
 
+## 🌀 Nested Patterns (Phase 3A - NEW!)
+
+**Breakthrough**: Patterns can now match ANY Sigil structure, not just elements!
+
+This makes patterns **universal structural matchers** - they can match:
+- **Containers**: `popen ‹ 🔥 › por 💧 pclose` = match amplified-fire OR plain-water
+- **Composites**: `popen ❴ 🔥 plus 💧 ❵ por 🔥 pclose` = match steam-fusion OR fire
+- **Transformed elements**: `popen 🔄 🔥 por 💧 pclose` = match recursive-fire OR water
+- **Patterns themselves** (meta-matching!): `popen popen 🔥 pclose por 💧 pclose` = match pattern OR element
+
+**Examples**:
+```
+# Pattern matching containers
+popen ‹ 🔥 › por ⟦ 💧 ⟧ pclose matches ‹ 🔥 ›  ✅
+
+# Pattern matching transformations
+popen 🔄 🔥 por 📦 💧 pclose matches 🔄 🔥  ✅
+
+# Pattern matching composites
+popen ❴ 🔥 plus 💧 ❵ por 💨 pclose matches ❴ 🔥 plus 💧 ❵  ✅
+
+# Meta-matching: pattern matching pattern!
+popen popen 🔥 por 💧 pclose por 💨 pclose matches popen 🔥 por 💧 pclose  ✅
+
+# Mixed structures in one pattern
+popen 🔥 por ‹ 💧 › por 🔄 💨 por popen 🌍 pclose pclose matches ‹ 💧 ›  ✅
+```
+
+**Implementation**: Pure grammar via extended PatternContent productions
+- 33/33 tests pass (100%)
+- +111 grammar lines
+- Full compositionality maintained
+
 ## ✨ Semantic Roles (Phase 2 - NEW!)
 
 Thematic role markers inspired by ergative-absolutive languages:
@@ -359,9 +392,13 @@ done
 - Workaround: use nested containers
 - See tests-integration.txt for details
 
-### 🔮 Future (Phase 3 & Beyond)
-- [ ] Advanced patterns (guards, captures, nested patterns)
+### 🔄 Phase 3: Advanced Features (IN PROGRESS)
+- [x] **Nested patterns** - Patterns match ANY Sigil structure (33/33 tests ✅)
+- [ ] Pattern guards - Conditional constraints on pattern matches
+- [ ] Named captures - Bind matched patterns to variables
 - [ ] Quotation system (「」『』)
+
+### 🔮 Future (Beyond Phase 3)
 - [ ] Full semantic evaluation engine (Rust)
 - [ ] 2D spatial grammar (next evolution!)
 

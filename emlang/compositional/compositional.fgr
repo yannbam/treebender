@@ -243,12 +243,89 @@ Pattern -> POpen PatternContent PClose
 // ⟨🔥|💧⟩ = match fire OR water
 // ⟨🔥|💧|💨|🌍⟩ = match any of four elements
 // Also supports annotated elements in patterns
+//
+// PHASE 3A: NESTED PATTERNS - Patterns can match ANY Sigil structure!
+// This makes patterns universal structural matchers, not just element matchers
+// Examples:
+//   popen ‹ 🔥 › por 💧 pclose = match amplified-fire OR plain-water
+//   popen 🔄 🔥 por 💧 pclose = match recursive-fire OR plain-water
+//   popen popen 🔥 pclose por 💧 pclose = match pattern OR element (meta!)
+
+// Elements (original)
 PatternContent -> Element POr Element
 PatternContent -> Element POr PatternContent
 PatternContent -> AnnotatedElement POr AnnotatedElement
 PatternContent -> AnnotatedElement POr PatternContent
 PatternContent -> Element POr AnnotatedElement
 PatternContent -> AnnotatedElement POr Element
+
+// Containers - patterns can match container structures
+PatternContent -> Container POr Container
+PatternContent -> Container POr PatternContent
+PatternContent -> Element POr Container
+PatternContent -> Container POr Element
+PatternContent -> AnnotatedElement POr Container
+PatternContent -> Container POr AnnotatedElement
+
+// Composites - patterns can match composite structures (juxtaposition, operators)
+PatternContent -> Composite POr Composite
+PatternContent -> Composite POr PatternContent
+PatternContent -> Element POr Composite
+PatternContent -> Composite POr Element
+PatternContent -> Container POr Composite
+PatternContent -> Composite POr Container
+
+// Transformed elements - patterns can match transformer applications
+PatternContent -> TransformedElement POr TransformedElement
+PatternContent -> TransformedElement POr PatternContent
+PatternContent -> Element POr TransformedElement
+PatternContent -> TransformedElement POr Element
+PatternContent -> Container POr TransformedElement
+PatternContent -> TransformedElement POr Container
+
+// Transformed containers - patterns can match transformed container structures
+PatternContent -> TransformedContainer POr TransformedContainer
+PatternContent -> TransformedContainer POr PatternContent
+PatternContent -> Element POr TransformedContainer
+PatternContent -> TransformedContainer POr Element
+PatternContent -> TransformedElement POr TransformedContainer
+PatternContent -> TransformedContainer POr TransformedElement
+
+// Composed transforms - patterns can match multi-transformer compositions
+PatternContent -> ComposedTransform POr ComposedTransform
+PatternContent -> ComposedTransform POr PatternContent
+PatternContent -> TransformedElement POr ComposedTransform
+PatternContent -> ComposedTransform POr TransformedElement
+PatternContent -> Element POr ComposedTransform
+PatternContent -> ComposedTransform POr Element
+PatternContent -> Container POr ComposedTransform
+PatternContent -> ComposedTransform POr Container
+
+// Patterns matching patterns (META-MATCHING!) - ultimate recursion
+// Example: popen popen 🔥 por 💧 pclose por 💨 pclose
+// Matches: (fire-or-water pattern) OR plain-air
+PatternContent -> Pattern POr Pattern
+PatternContent -> Pattern POr PatternContent
+PatternContent -> Element POr Pattern
+PatternContent -> Pattern POr Element
+PatternContent -> Container POr Pattern
+PatternContent -> Pattern POr Container
+PatternContent -> TransformedElement POr Pattern
+PatternContent -> Pattern POr TransformedElement
+
+// Annotated containers in patterns
+PatternContent -> AnnotatedContainer POr AnnotatedContainer
+PatternContent -> AnnotatedContainer POr PatternContent
+PatternContent -> Element POr AnnotatedContainer
+PatternContent -> AnnotatedContainer POr Element
+PatternContent -> Container POr AnnotatedContainer
+PatternContent -> AnnotatedContainer POr Container
+
+// Power elements in patterns - match intensified manifestations
+PatternContent -> PowerElement POr PowerElement
+PatternContent -> PowerElement POr PatternContent
+PatternContent -> Element POr PowerElement
+PatternContent -> PowerElement POr Element
 
 // Pattern terminals - word-based for now (Unicode tokenization needs investigation)
 POpen -> popen
@@ -426,6 +503,41 @@ Sigil -> PatternMatch
 // Tag #t must unify between pattern's can_match and element's type!
 // If types incompatible, unification fails → 0 parses
 PatternMatch[ matched: #t, result: success ] -> Pattern[ can_match: #t ] MatchOp Element[ type: #t ]
+
+// PHASE 3A: NESTED PATTERN MATCHING - Patterns can match ANY Sigil structure!
+// For non-Element Sigils, structural matching is used (parse structure = semantic check)
+//
+// The pattern contains the structure that needs to match. If the pattern parses with
+// that structure, then the match succeeds. This maintains semantic coherence while
+// allowing maximum compositionality.
+
+// Pattern matches container - any container type can be matched
+PatternMatch[ matched: container, container_type: #c, result: success ] -> Pattern MatchOp Container[ type: #c ]
+
+// Pattern matches composite structures (operations, juxtaposition)
+PatternMatch[ matched: composite, result: success ] -> Pattern MatchOp Composite
+
+// Pattern matches transformed element (any transformer type)
+PatternMatch[ matched: transformed, transform: #t, result: success ] -> Pattern MatchOp TransformedElement[ transform: #t ]
+
+// Pattern matches transformed container
+PatternMatch[ matched: transformed_container, transform: #t, result: success ] -> Pattern MatchOp TransformedContainer[ transform: #t ]
+
+// Pattern matches composed transform (multi-transformer)
+PatternMatch[ matched: composed, t1: #t1, t2: #t2, result: success ] -> Pattern MatchOp ComposedTransform[ transform1: #t1, transform2: #t2 ]
+
+// Pattern matches pattern (META-MATCHING!) - ultimate recursion
+// This allows reasoning about patterns themselves
+PatternMatch[ matched: pattern, result: success ] -> Pattern MatchOp Pattern
+
+// Pattern matches annotated element
+PatternMatch[ matched: annotated_element, result: success ] -> Pattern MatchOp AnnotatedElement
+
+// Pattern matches annotated container
+PatternMatch[ matched: annotated_container, result: success ] -> Pattern MatchOp AnnotatedContainer
+
+// Pattern matches power element (intensified manifestation)
+PatternMatch[ matched: power, base: #b, result: success ] -> Pattern MatchOp PowerElement[ base: #b ]
 
 // Patterns can match different types via multiple productions
 // Two-element OR pattern can match first element

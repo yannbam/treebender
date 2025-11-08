@@ -1,0 +1,71 @@
+# Nested Patterns Test Suite
+# Phase 3A: Patterns matching complex structures (not just elements)
+
+# === PATTERNS MATCHING CONTAINERS ===
+# Pattern can match amplified fire OR plain water
+popen ‹ 🔥 › por 💧 pclose matches ‹ 🔥 ›
+popen ‹ 🔥 › por 💧 pclose matches 💧
+
+# Pattern can match stabilized water OR plain fire
+popen ⟦ 💧 ⟧ por 🔥 pclose matches ⟦ 💧 ⟧
+popen ⟦ 💧 ⟧ por 🔥 pclose matches 🔥
+
+# Pattern matching different container types
+popen ‹ 🔥 › por ⟦ 💧 ⟧ pclose matches ‹ 🔥 ›
+popen ‹ 🔥 › por ⟦ 💧 ⟧ pclose matches ⟦ 💧 ⟧
+
+# Pattern matching transformed containers
+popen ❴ 🔥 plus 💧 ❵ por 💨 pclose matches ❴ 🔥 plus 💧 ❵
+popen ❴ 🔥 plus 💧 ❵ por 💨 pclose matches 💨
+
+# === PATTERNS MATCHING COMPOSITES ===
+# Pattern can match composite structure OR element
+popen ❴ 🔥 plus 💧 ❵ por 🔥 pclose matches ❴ 🔥 plus 💧 ❵
+popen ❴ 🔥 plus 💧 ❵ por 🔥 pclose matches 🔥
+
+# Pattern matching different composites
+popen 🔥 🔥 por 💧 pclose matches 🔥 🔥
+popen 🔥 🔥 por 💧 pclose matches 💧
+
+# === PATTERNS MATCHING TRANSFORMED ELEMENTS ===
+# Pattern can match transformed element OR plain element
+popen 🔄 🔥 por 💧 pclose matches 🔄 🔥
+popen 🔄 🔥 por 💧 pclose matches 💧
+
+# Pattern matching different transformers
+popen 🔄 🔥 por 📦 💧 pclose matches 🔄 🔥
+popen 🔄 🔥 por 📦 💧 pclose matches 📦 💧
+
+# Pattern matching composed transforms
+popen 🔄 📦 🔥 por 💧 pclose matches 🔄 📦 🔥
+popen 🔄 📦 🔥 por 💧 pclose matches 💧
+
+# === PATTERNS MATCHING PATTERNS (META) ===
+# Pattern can match another pattern OR element
+popen popen 🔥 por 💧 pclose por 💨 pclose matches popen 🔥 por 💧 pclose
+popen popen 🔥 por 💧 pclose por 💨 pclose matches 💨
+
+# Deeply nested patterns
+popen popen popen 🔥 pclose por 💧 pclose por 💨 pclose matches popen popen 🔥 pclose por 💧 pclose
+popen popen popen 🔥 pclose por 💧 pclose por 💨 pclose matches popen 🔥 pclose
+popen popen popen 🔥 pclose por 💧 pclose por 💨 pclose matches 💨
+
+# === MIXED NESTING ===
+# Pattern matching mix of structures
+popen ‹ 🔥 › por 🔄 💧 por ❴ 💨 plus 🌍 ❵ pclose matches ‹ 🔥 ›
+popen ‹ 🔥 › por 🔄 💧 por ❴ 💨 plus 🌍 ❵ pclose matches 🔄 💧
+popen ‹ 🔥 › por 🔄 💧 por ❴ 💨 plus 🌍 ❵ pclose matches ❴ 💨 plus 🌍 ❵
+
+# Pattern matching annotated elements with containers
+# Note: Animacy/Attunement only work with Elements, not Containers
+# (see nested-patterns-negative.txt for design boundary cases)
+popen 🌿 🔥 por ‹ 💧 › pclose matches 🌿 🔥
+popen 🌿 🔥 por ‹ 💧 › pclose matches ‹ 💧 ›
+
+# === COMPLEX COMBINATIONS ===
+# All five elements with different nestings
+popen 🔥 por ‹ 💧 › por 🔄 💨 por ❴ 🌍 plus 🌑 ❵ por popen 🔥 pclose pclose matches 🔥
+popen 🔥 por ‹ 💧 › por 🔄 💨 por ❴ 🌍 plus 🌑 ❵ por popen 🔥 pclose pclose matches ‹ 💧 ›
+popen 🔥 por ‹ 💧 › por 🔄 💨 por ❴ 🌍 plus 🌑 ❵ por popen 🔥 pclose pclose matches 🔄 💨
+popen 🔥 por ‹ 💧 › por 🔄 💨 por ❴ 🌍 plus 🌑 ❵ por popen 🔥 pclose pclose matches ❴ 🌍 plus 🌑 ❵
+popen 🔥 por ‹ 💧 › por 🔄 💨 por ❴ 🌍 plus 🌑 ❵ por popen 🔥 pclose pclose matches popen 🔥 pclose
