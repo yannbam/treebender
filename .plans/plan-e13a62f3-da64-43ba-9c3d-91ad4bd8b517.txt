@@ -27,7 +27,7 @@
 ├── 🔄 |Phase3-Refinement| "Advanced features for full expressiveness: complex patterns and meta-linguistic capabilities" (🔵) (13%)
 │   ├── 🔄 |advanced-patterns| "Extend pattern matching with quantifiers and complex combinators.\n\nAdvanced features:\n- Nested patterns\n- Pattern guards\n- Named pattern captures\n- Backtracking optimization" (🔵) (33%)
 │   │   ├── ✅ |nested-patterns| "Support patterns within patterns" (🔵)
-│   │   ├── ⏸️ |pattern-guards| "Conditional constraints on pattern matches" (🔵)
+│   │   ├── 🔄 |pattern-guards| "Conditional constraints on pattern matches" (🔵)
 │   │   └── ⏸️ |named-captures| "Bind matched patterns to variables" (🔵)
 │   └── ⏸️ |quotation-system| "Implement quotation for meta-linguistic operations.\n\nQuotation levels:\n- 「」 Use/mention distinction\n- 『』 Meta-quotation\n- Quasi-quotation for templates\n\nEnables talking about the language itself." (🔵) (0%)
 │       ├── ⏸️ |basic-quotation| "Implement 「」 for quoting emoji without evaluation" (🔵)
