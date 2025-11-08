@@ -59,12 +59,12 @@
         },
         {
           "name": "CompTarget pattern",
-          "details": "Consolidate CompTarget enumeration (14→10 lines) using TargetStructure abstraction",
+          "details": "DEFERRED TO EXPERIMENTAL EXPLORATION:\n\nThe CompTarget pattern uses applies_to features to encode semantic groupings:\n- applies_to: element, container, pattern (structural types)\n- applies_to: transformed (semantic category - multiple structures)\n- applies_to: power, annotated (other semantic categories)\n\nQuestion for future exploration: Is this expressing a deeper pattern about \"the act of applying something to another thing\" where the feature tags are the operands of that meta-operation?\n\nExperimental approach: Try abstracting the application operation itself, with structures as operands. Does this reveal elegant meta-pattern or is explicit enumeration actually clearer here?\n\nCurrent state: 14 explicit rules. Unclear if abstraction improves or complicates.",
           "status": "pending",
           "priority": "medium",
           "uuid": "9faf9930-68b7-4698-862f-561e4901eb81",
           "created_at": "2025-11-08T16:18:48.323Z",
-          "updated_at": "2025-11-08T16:26:42.528Z"
+          "updated_at": "2025-11-08T16:51:50.841Z"
         },
         {
           "name": "FusedContents pattern",
@@ -137,21 +137,21 @@
       "sub_tasks": [
         {
           "name": "Pattern can-match",
-          "details": "Use feature propagation instead of explicit enumeration (19→12 lines)",
+          "details": "DEFERRED TO EXPERIMENTAL EXPLORATION:\n\nCurrent approach: Explicit enumeration of which patterns can match which types\nPattern[ can_match: fire ] -> POpen Element[ type: fire ] POr Element[ type: water ] PClose\nPattern[ can_match: water ] -> POpen Element[ type: fire ] POr Element[ type: water ] PClose\n\nPotential refactoring: Automatic type inference via feature propagation\nPattern[ can_match: #t ] -> POpen PatternContent[ can_match: #t ] PClose\nPatternContent[ can_match: #t ] -> Element[ type: #t ]\nPatternContent[ can_match: #t1 ] -> Element[ type: #t1 ] POr Element[ type: #t2 ]\nPatternContent[ can_match: #t2 ] -> Element[ type: #t1 ] POr Element[ type: #t2 ]\n\nBenefits if it works: Automatic scaling to new element types, more elegant\nRisks: Complex feature propagation with containers/transformed elements, semantic change from manual to automatic\n\nExperimental approach: Try on small subset first, verify it generates all the same matches as explicit version\n\nCurrent state: 19 explicit rules. Worth exploring but not critical.",
           "status": "pending",
           "priority": "medium",
           "uuid": "45aeb64a-8d26-4214-92a9-e53d092cc0ef",
           "created_at": "2025-11-08T16:18:48.323Z",
-          "updated_at": "2025-11-08T16:18:48.323Z"
+          "updated_at": "2025-11-08T16:52:04.067Z"
         },
         {
           "name": "Verify feature propagation",
-          "details": "Ensure feature tags properly unify through new abstractions",
+          "details": "N/A - depends on Pattern can-match refactoring being attempted.\n\nIf Pattern can-match is explored in future session, this verification step becomes critical:\n- Test feature tags properly unify through PatternContent\n- Verify can_match propagates correctly from Element types\n- Check edge cases with containers, transformed elements\n- Ensure no unexpected feature unification failures\n\nFor now, feature propagation in the completed refactorings (AnnotatedStructures, PatternContent with Matchable) has been verified through comprehensive test suite.",
           "status": "pending",
           "priority": "high",
           "uuid": "80705209-2daf-497d-b87c-7e5dc052fcca",
           "created_at": "2025-11-08T16:18:48.323Z",
-          "updated_at": "2025-11-08T16:18:48.323Z"
+          "updated_at": "2025-11-08T16:52:13.937Z"
         }
       ],
       "uuid": "dbd25961-5099-491f-b64c-592bb29a7989",
@@ -227,5 +227,5 @@
     }
   ],
   "created_at": "2025-11-08T16:18:48.324Z",
-  "updated_at": "2025-11-08T16:41:48.454Z"
+  "updated_at": "2025-11-08T16:52:13.937Z"
 }
