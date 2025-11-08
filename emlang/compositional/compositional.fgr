@@ -21,6 +21,7 @@ Sigil -> Container
 Sigil -> Composite
 Sigil -> TransformedElement
 Sigil -> TransformedContainer
+Sigil -> TransformedQuotation
 Sigil -> ComposedTransform
 Sigil -> Pattern
 Sigil -> QuantifiedPattern
@@ -30,6 +31,7 @@ Sigil -> AnnotatedElement
 Sigil -> AnnotatedPattern
 Sigil -> AnnotatedComposite
 Sigil -> AnnotatedTransformed
+Sigil -> Quotation
 
 // === ANNOTATED STRUCTURES (from sigil-emoji-native) ===
 // Linguistic markers that add semantic richness
@@ -71,26 +73,31 @@ AnnotatedComposite -> SwitchRef Composite
 // Evidentials (epistemic source) on transformations
 AnnotatedTransformed -> Evidential TransformedElement
 AnnotatedTransformed -> Evidential TransformedContainer
+AnnotatedTransformed -> Evidential TransformedQuotation
 AnnotatedTransformed -> Evidential ComposedTransform
 
 // Aspects (temporal structure) on transformations
 AnnotatedTransformed -> Aspectual TransformedElement
 AnnotatedTransformed -> Aspectual TransformedContainer
+AnnotatedTransformed -> Aspectual TransformedQuotation
 AnnotatedTransformed -> Aspectual ComposedTransform
 
 // Modals (necessity/possibility) on transformations
 AnnotatedTransformed -> Modal TransformedElement
 AnnotatedTransformed -> Modal TransformedContainer
+AnnotatedTransformed -> Modal TransformedQuotation
 AnnotatedTransformed -> Modal ComposedTransform
 
 // Directionality (energy flow) on transformations
 AnnotatedTransformed -> Directional TransformedElement
 AnnotatedTransformed -> Directional TransformedContainer
+AnnotatedTransformed -> Directional TransformedQuotation
 AnnotatedTransformed -> Directional ComposedTransform
 
 // Semantic roles on transformations (Phase 2)
 AnnotatedTransformed -> SemanticRole TransformedElement
 AnnotatedTransformed -> SemanticRole TransformedContainer
+AnnotatedTransformed -> SemanticRole TransformedQuotation
 AnnotatedTransformed -> SemanticRole ComposedTransform
 
 // === TRANSFORMER EMOJI (Phase 1A) ===
@@ -134,6 +141,10 @@ TransformedContainer[ transform: #t ] -> Transformer[ op: #t ] Container
 // Transformer + Pattern creates a transformed pattern
 // Example: 🔄 popen 🔥 por 💧 pclose = recursive pattern matching
 TransformedPattern[ transform: #t ] -> Transformer[ op: #t ] Pattern
+
+// Transformer + Quotation creates a transformed quotation
+// Example: 🪞「 🔥 」= reflected quotation, 🔄「 💧 」= recursive quotation
+TransformedQuotation[ transform: #t ] -> Transformer[ op: #t ] Quotation
 
 // Multiple transformers compose left-to-right
 // Example: 🔄 📦 🔥 = recursively packaged fire
@@ -348,6 +359,11 @@ Container[ type: transform ] -> TransOpen FusedContents TransClose
 // Channeler ⦅ ⦆ - directs energy, preserves all properties
 Container[ type: channel, energy: #e, state: #s ] -> ChanOpen Contents[ energy: #e, state: #s ] ChanClose
 
+// === QUOTATION (Phase 3C) ===
+// Quote any Sigil - creates suspended/represented form
+// Composes freely with all features via transformers, roles, etc.
+Quotation -> QuoteOpen Sigil QuoteClose
+
 // === CONTENTS ===
 // Recursive contents allow arbitrary nesting depth
 // Each level of nesting adds semantic complexity
@@ -431,6 +447,11 @@ TransOpen -> ❴
 TransClose -> ❵
 ChanOpen -> ⦅
 ChanClose -> ⦆
+
+// === QUOTATION DELIMITERS (Phase 3C) ===
+// Quotation wraps any Sigil to suspend/represent it
+QuoteOpen -> 「
+QuoteClose -> 」
 
 // ======================================================================
 // === PHASE 1C: ADVANCED COMPOSITIONAL FEATURES ===

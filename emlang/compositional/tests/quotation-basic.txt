@@ -1,0 +1,35 @@
+# Basic Quotation Tests
+# Test what emerges from FREE COMPOSITION
+
+# Simple quoted elements
+「🔥」
+「💧」
+「💨」
+
+# Quoted containers (quoting structure!)
+「‹ 🔥 ›」
+「⟦ 💧 ⟧」
+
+# Quoted transformations
+「🔄 🔥」
+「📦 💧」
+
+# Nested quotation (quote a quote!)
+「「🔥」」
+「「「💧」」」
+
+# Transformers on quotations (FREE COMPOSITION!)
+🔄「🔥」
+🪞「💧」
+📦「‹ 🔥 ›」
+
+# Semantic roles on quotations
+🤌「🔥」
+🎯「💧」
+🛠️「🔄 🔥」
+
+# Quoted composites
+「❴ 🔥 plus 💧 ❵」
+
+# Quoted patterns (meta!)
+「popen 🔥 por 💧 pclose」

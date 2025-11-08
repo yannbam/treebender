@@ -1,0 +1,49 @@
+# Quotation Free Composition Tests
+# Exploring what emerges when quotation composes with all features
+
+## Basic Quotation
+「 🔥 」
+「 💧 」
+「 ‹ 🔥 › 」
+「 ❴ 🔥 plus 💧 ❵」
+
+## Nested Quotation (quotes all the way down!)
+「 「 🔥 」 」
+「 「 「 💧 」 」 」
+
+## Transformers on Quotations
+🔄 「 🔥 」
+🪞 「 💧 」
+📦 「 ‹ 🔥 › 」
+🎭 「 🔄 💨 」
+
+## Semantic Roles on Quotations
+🤌 「 🔥 」
+🎯 「 💧 」
+🛠️ 「 🔄 🔥 」
+
+## Semantic Roles on Transformed Quotations
+🤌 🔄 「 🔥 」
+🎯 🪞 「 💧 」
+🛠️ 📦 「 ‹ 🔥 › 」
+
+## Quoting Transformations
+「 🔄 🔥 」
+「 📦 💧 」
+「 🔄 📦 🔥 」
+
+## Quoting Patterns (meta!)
+「 popen 🔥 por 💧 pclose 」
+
+## Quoting Composites
+「 ❴ 🔥 plus 💧 ❵ 」
+「 🔥 🔥 」
+
+## Transforming Quoted Transformations (meta recursion!)
+🔄 「 🔄 🔥 」
+🪞 「 🪞 💧 」
+
+## Quoting Annotations
+「 🌿 🔥 」
+「 🧠 💧 」
+「 👁️ 💨 」
